@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Dodawanie skladnika</title>
+</head>
+<body>
+<form th:action="@{'/component/addComponentToBase'}" th:object="${component}" method="post">
+    <p>Nazwa:</p>
+    <input type="text" th:field="*{name}" />
+    <p>Opis:</p>
+    <input type="text" th:field="*{description}" />
+    <p>Cena jednostkowa:</p>
+    <input type="text" th:field="*{unitPrice}" />
+    <p>Jednostka:</p>
+    <input type="text" th:field="*{unit}" />
+    <p>Jednostka:</p>
+    <input type="text" th:field="*{unit}" />
+    <input type="submit" value="Wprowadź"/>
+</form>
+</body>
+</html>

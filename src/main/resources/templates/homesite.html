@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<h1 th:text="${message}"></h1>
+<div>
+    <label>Składniki oferty:</label>
+    <a th:href="@{'/component/showAll'}">Pokaż wszystkie skladniki</a>
+    <a th:href="@{'/component/addComponent'}">Dodaj składnik oferty</a>
+</div>
+<div>
+    <label>Inwestorzy:</label>
+    <a th:href="@{'/inwestor/showAll'}">Pokaż inwestorów</a>
+    <a th:href="@{'/inwestor/addInvestor'}">Dodaj inwestora</a>
+</div>
+<div>
+    <label>Oferty</label>
+    <a th:href="@{'/offers/showAll'}">Pokaż oferty</a>
+    <a th:href="@{'/offers/addOffer'}">Dodaj ofertę</a>
+</div>
+</body>
+</html>

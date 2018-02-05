@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+
+<form th:action="@{/inwestor/addInvestorToBase}" method="post" th:object="${investor}">
+    <p>Nazwa inwestora</p>
+    <input type="text" th:field="*{name}"/>
+    <p>MIASTO</p>
+    <input type="text" th:field="*{city}"/>
+    <input type="submit" value="Wprowadź"/>
+</form>
+</body>
+</html>
