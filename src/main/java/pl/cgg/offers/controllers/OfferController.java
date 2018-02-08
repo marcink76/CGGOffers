@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.cgg.offers.models.Component;
 import pl.cgg.offers.models.Offer;
 import pl.cgg.offers.service.ComponentService;
@@ -16,7 +15,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/offers")
-@SessionAttributes("offer")
+@SessionAttributes({"offer", "componentMap"})
 public class OfferController {
 
     @Autowired
@@ -27,7 +26,6 @@ public class OfferController {
 
     @Autowired
     private ComponentService componentService;
-
 
     @GetMapping("/showAll")
     private String showAll(Model model) {
@@ -44,21 +42,18 @@ public class OfferController {
 
     @PostMapping("/setInvestorToOffer")
     public String addOfferToBase(Offer offer, Model model,
-                                 @RequestParam Long investor_id,
-                                 RedirectAttributes redirectAttributes) {
+                                 @RequestParam Long investor_id) {
         offerService.setInvestorToOffer(offer, investor_id);
-        System.out.println(investor_id);
-        HashMap <Component, Boolean> componentMap = componentService.getComponentBoolMap();
-        model.addAttribute("componentMap", componentMap);
 
         return "addComponentToOfferForm";
     }
 
     @PostMapping("/addComponentToOffer")
-    public String setComponentsToOffer(@RequestParam HashMap<Component, Long> componentMap,
+    public String setComponentsToOffer(@ModelAttribute("componentMap") HashMap<Component, Boolean> componentMap,
                                        Offer offer,
                                        Model model) {
-        model.addAttribute("componentMap", componentMap);
+        List<Component> componentList = componentService.setComponentToList(componentMap);
+        model.addAttribute("componentList", componentList);
         return "showCompleteOfferForm";
     }
 

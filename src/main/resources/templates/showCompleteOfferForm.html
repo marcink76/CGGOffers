@@ -7,12 +7,11 @@
 <body>
 <form th:action="@{'/offers/addComponentToOffer'}" method="post">
     <table>
-        <tr th:each="component:${componentMap}">
-            <td th:text="${component.key}"></td>
-            <td th:text="${component.key}"></td>
-            <td th:text="${component.key}"></td>
-            <td th:text="${component.key}"></td>
-            <td><input type="checkbox" th:name="*{component.key}" th:value="${!(component.value)}"/></td>
+        <tr th:each="component:${componentList}">
+            <td th:text="${component.name}"></td>
+            <td th:text="${component.id}"></td>
+            <td th:text="${component.value}"></td>
+            <td></td>
 
 
         </tr>

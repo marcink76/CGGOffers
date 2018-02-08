@@ -94,4 +94,17 @@ public class Component implements Serializable {
     public void setOffer(Offer offer) {
         this.offer = offer;
     }
+
+    @Override
+    public String toString() {
+        return "Component{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", quantity=" + quantity +
+                ", unitPrice=" + unitPrice +
+                ", unit='" + unit + '\'' +
+                ", offer=" + offer +
+                '}';
+    }
 }

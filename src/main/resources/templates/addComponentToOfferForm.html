@@ -5,14 +5,15 @@
     <title>Title</title>
 </head>
 <body>
-<form th:action="@{'/offers/addComponentToOffer'}" method="post">
+<form th:action="@{'/offers/addComponentToOffer'}" method="post" th:object="${componentAddingList}">
     <table>
         <tr th:each="component:${componentMap}">
             <td th:text="${component.key.id}"></td>
             <td th:text="${component.key.name}"></td>
             <td th:text="${component.key.description}"></td>
             <td th:text="${component.key.unit}"></td>
-            <td><input type="checkbox" th:name="*{component.key}" th:value="${!(component.value)}"/></td>
+            <td><input type="hidden" th:field="*{componentNumber}" th:value="${component.key.id}"/></td>
+            <td><input type="checkbox" th:field="*{valueBool}" th:value="${!(component.value)}"/></td>
 
 
         </tr>
