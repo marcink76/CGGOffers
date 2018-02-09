@@ -3,6 +3,7 @@ package pl.cgg.offers.models;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "skladnik_oferty")
@@ -24,8 +25,8 @@ public class Component implements Serializable {
     @Column(name = "jednostka")
     private String unit;
 
-    @ManyToOne
-    private Offer offer;
+    @ManyToMany
+    private List<Offer> offer;
 
     public Component(String name, String description, int quantity, double unitPrice, String unit, Offer offer) {
         this.name = name;
@@ -33,7 +34,7 @@ public class Component implements Serializable {
         this.quantity = quantity;
         this.unitPrice = unitPrice;
         this.unit = unit;
-        this.offer = offer;
+
     }
 
     public Component() {
@@ -87,11 +88,11 @@ public class Component implements Serializable {
         this.unit = unit;
     }
 
-    public Offer getOffer() {
+    public List<Offer> getOffer() {
         return offer;
     }
 
-    public void setOffer(Offer offer) {
+    public void setOffer(List<Offer> offer) {
         this.offer = offer;
     }
 

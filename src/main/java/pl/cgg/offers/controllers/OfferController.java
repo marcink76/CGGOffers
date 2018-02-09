@@ -10,6 +10,7 @@ import pl.cgg.offers.service.ComponentService;
 import pl.cgg.offers.service.InvestorService;
 import pl.cgg.offers.service.OfferService;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -41,19 +42,27 @@ public class OfferController {
     }
 
     @PostMapping("/setInvestorToOffer")
-    public String addOfferToBase(Offer offer, Model model,
-                                 @RequestParam Long investor_id) {
-        offerService.setInvestorToOffer(offer, investor_id);
-
+    public String addOfferToBase(Offer offer,
+                                 Model model,
+                                 @RequestParam(required = false) Long investor_id,
+                                 @RequestParam(required = false) Long component_id) {
+        if (investor_id != null) {
+            offerService.setInvestorToOffer(offer, investor_id);
+        }
+        componentService.getDoubleListComponent(component_id);
+        model.addAttribute("componentList", componentService.getComponentList());
+        if (componentService.getTempComponentList() != null) {
+            model.addAttribute("tempComponentList", componentService.getTempComponentList());
+        }
         return "addComponentToOfferForm";
     }
 
     @PostMapping("/addComponentToOffer")
-    public String setComponentsToOffer(@ModelAttribute("componentMap") HashMap<Component, Boolean> componentMap,
+    public String setComponentsToOffer(@RequestParam(required = false) Long id,
                                        Offer offer,
                                        Model model) {
-        List<Component> componentList = componentService.setComponentToList(componentMap);
-        model.addAttribute("componentList", componentList);
+        offer.setComponentList(componentService.getTempComponentList());
+        offerService.saveToBase(offer);
         return "showCompleteOfferForm";
     }
 

@@ -22,7 +22,7 @@ public class Offer implements Serializable{
     @Column(name = "Koszt_calkowity")
     private double totalPrice;
 
-    @OneToMany
+    @ManyToMany
     private List<Component> componentList;
 
     @ManyToOne

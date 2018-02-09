@@ -12,11 +12,20 @@ import java.util.List;
 @Service
 public class ComponentService {
 
+
+    private List<Component> componentList;
+    private List<Component> tempComponentList = new ArrayList<>();
+
+
     @Autowired
     private ComponentRepository componentRepository;
 
     public List<Component> getAllComponents() {
         return componentRepository.findAll();
+    }
+
+    public Component getOneComponent(Long id) {
+        return componentRepository.findOne(id);
     }
 
     public void addToBase(Component component) {
@@ -44,12 +53,39 @@ public class ComponentService {
         return componentList;
     }
 
-    public List<Component> getComponent(Long id){
-        List<Component> components = new ArrayList<>();
-         if (components.size() == 0){
-             components = componentRepository.findAll();
-         }
+    public void getDoubleListComponent(Long component_id) {
 
-        return components;
+        if (component_id == null) {
+            componentList = componentRepository.findAll();
+            tempComponentList.clear();
+        } else {
+
+            for (Component componentsToAdd : componentList) {
+                if (componentsToAdd.getId() == component_id) {
+                    System.out.println(componentsToAdd.toString());
+                    tempComponentList.add(componentsToAdd);
+                }
+            }
+            componentList.removeIf(component -> component.getId() == component_id);
+        }
+    }
+
+    // getters and setters
+//------------------------------------------------------------
+
+    public List<Component> getComponentList() {
+        return componentList;
+    }
+
+    public void setComponentList(List<Component> componentList) {
+        this.componentList = componentList;
+    }
+
+    public List<Component> getTempComponentList() {
+        return tempComponentList;
+    }
+
+    public void setTempComponentList(List<Component> tempComponentList) {
+        this.tempComponentList = tempComponentList;
     }
 }

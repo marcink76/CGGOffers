@@ -5,20 +5,36 @@
     <title>Title</title>
 </head>
 <body>
-<form th:action="@{'/offers/addComponentToOffer'}" method="post" th:object="${componentAddingList}">
-    <table>
-        <tr th:each="component:${componentMap}">
-            <td th:text="${component.key.id}"></td>
-            <td th:text="${component.key.name}"></td>
-            <td th:text="${component.key.description}"></td>
-            <td th:text="${component.key.unit}"></td>
-            <td><input type="hidden" th:field="*{componentNumber}" th:value="${component.key.id}"/></td>
-            <td><input type="checkbox" th:field="*{valueBool}" th:value="${!(component.value)}"/></td>
 
-
-        </tr>
-    </table>
-    <input type="submit" value="Dodaj"/>
+<table>
+    <tr th:each="component:${componentList}">
+        <td th:text="${component.id}"></td>
+        <td th:text="${component.name}"></td>
+        <td th:text="${component.description}"></td>
+        <td th:text="${component.unit}"></td>
+        <td>
+        <form th:action="@{'/offers/setInvestorToOffer'}" method="post">
+            <button name="component_id" type="submit" th:value="${component.id}">Dodaj</button>
+        </form>
+        </td>
+    </tr>
+</table>
+<table>
+    <tr th:each="component:${tempComponentList}">
+        <td th:text="${component.id}"></td>
+        <td th:text="${component.name}"></td>
+        <td th:text="${component.description}"></td>
+        <td th:text="${component.unit}"></td>
+        <td>
+            <form th:action="@{'/offers/setInvestorToOffer'}" method="post">
+                <button name="component_id" type="submit" th:value="${component.id}">Usun</button>
+            </form>
+        </td>
+    </tr>
+</table>
+<a th:href="@{/}">Powrót do strony głównej.</a>
+<form th:action="@{'/offers/addComponentToOffer'}" method="post">
+    <input type="submit" value="dodaj"/>
 </form>
 </body>
 </html>
