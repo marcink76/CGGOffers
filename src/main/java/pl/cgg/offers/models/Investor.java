@@ -23,6 +23,8 @@ public class Investor implements Serializable{
     private String localNumber;
     @Column(name = "Miasto")
     private String city;
+    @Column(name = "Kod_pocztowy")
+    private String zipcode;
     @Column(name = "nip")
     private String nip;
     @Column(name = "email")
@@ -118,5 +120,13 @@ public class Investor implements Serializable{
 
     public void setNip(String nip) {
         this.nip = nip;
+    }
+
+    public String getZipcode() {
+        return zipcode;
+    }
+
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
     }
 }

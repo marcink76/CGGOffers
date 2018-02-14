@@ -5,7 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.cgg.offers.models.Component;
+import pl.cgg.offers.models.ComponentPrice;
 import pl.cgg.offers.models.Offer;
+import pl.cgg.offers.service.ComponentPriceService;
 import pl.cgg.offers.service.ComponentService;
 import pl.cgg.offers.service.InvestorService;
 import pl.cgg.offers.service.OfferService;
@@ -28,8 +30,11 @@ public class OfferController {
     @Autowired
     private ComponentService componentService;
 
+    @Autowired
+    private ComponentPriceService componentPriceService;
+
     @GetMapping("/showAll")
-    private String showAll(Model model) {
+    public String showAll(Model model) {
         model.addAttribute("offersList", offerService.getAll());
         return "showAllOffers";
     }
@@ -58,12 +63,24 @@ public class OfferController {
     }
 
     @PostMapping("/addComponentToOffer")
-    public String setComponentsToOffer(@RequestParam(required = false) Long id,
-                                       Offer offer,
-                                       Model model) {
-        offer.setComponentList(componentService.getTempComponentList());
+    public String setComponentsToOffer(@ModelAttribute("componentPrices") List<ComponentPrice> componentPrices,
+            Offer offer,
+            Model model) {
+        List<Component> tempComponentList = componentService.getTempComponentList();
+        offer.setComponentList(tempComponentList);
+        model.addAttribute("componentList", tempComponentList);
+        //model.addAttribute("componentPrices", componentPrices);
         offerService.saveToBase(offer);
         return "showCompleteOfferForm";
+    }
+
+    @PostMapping("/completeOffer")
+    public String saveOfferToBase(@ModelAttribute("componentPrices") List<ComponentPrice> componentPrices,
+                                  Offer offer, Model model) {
+        //List<ComponentPrice> componentPrices = new ArrayList<>();
+        model.addAttribute("componentPrices", componentPrices);
+        //offer.setComponentPriceList(componentPrice);
+        return "redirect:showall";
     }
 
 

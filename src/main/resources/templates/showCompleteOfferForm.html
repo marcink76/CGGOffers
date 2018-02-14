@@ -5,12 +5,13 @@
     <title>Title</title>
 </head>
 <body>
-<form th:action="@{'/offers/addComponentToOffer'}" method="post">
+<form th:action="@{'/offers/addComponentToOffer'}" method="post" th:object="${componentPrices}">
     <table>
         <tr th:each="component:${componentList}">
             <td th:text="${component.name}"></td>
-            <td th:text="${component.id}"></td>
-            <td th:text="${component.description}"></td>
+            <td>Cena jednostkowa: <input type="number" th:field="*{componentPrice}"/></td>
+            <td>Ilość: <input type="number" th:field="*{quantity}"/> </td>
+
             <td></td>
 
 

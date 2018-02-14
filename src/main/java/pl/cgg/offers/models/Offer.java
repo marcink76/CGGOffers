@@ -22,8 +22,11 @@ public class Offer implements Serializable{
     @Column(name = "Koszt_calkowity")
     private double totalPrice;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Component> componentList;
+
+    @ManyToMany
+    private List<ComponentPrice> componentPriceList;
 
     @ManyToOne
     private Investor investor;
@@ -85,5 +88,13 @@ public class Offer implements Serializable{
 
     public void setInvestor(Investor investor) {
         this.investor = investor;
+    }
+
+    public List<ComponentPrice> getComponentPriceList() {
+        return componentPriceList;
+    }
+
+    public void setComponentPriceList(List<ComponentPrice> componentPriceList) {
+        this.componentPriceList = componentPriceList;
     }
 }

@@ -7,10 +7,13 @@
 <body>
     <table>
         <tr th:each="components:${ComponentList}">
+
             <td th:text="${components.id}"></td>
+            <td th:text="${components.description}"></td>
             <td th:text="${components.name}"></td>
-            <td th:text="${components.getUnitPrice()}"></td>
+            <td th:text="${components.unit}"></td>
         </tr>
     </table>
+<a th:href="@{'/'}">Strona główna</a>
 </body>
 </html>

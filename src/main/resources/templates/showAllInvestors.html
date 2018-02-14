@@ -9,6 +9,12 @@
     <tr th:each="investors:${investorList}">
         <td th:text="${investors.id}"></td>
         <td th:text="${investors.name}"></td>
+        <td th:text="${investors.city}"></td>
+        <td th:text="${investors.street}"></td>
+        <td th:text="${investors.posesionNumber}"></td>
+        <td th:text="${investors.localNumber}"></td>
+        <td th:text="${investors.zipcode}"></td>
+        <td th:text="${investors.email}"></td>
     </tr>
 </table>
 <a th:href="@{'/'}">Powrót</a>

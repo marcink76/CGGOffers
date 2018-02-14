@@ -21,6 +21,8 @@ public class OfferService {
     @Autowired
     private InvestorService investorService;
 
+    private Offer offer;
+
     public List<Offer> getAll() {
         return offerRepository.findAll();
     }
@@ -37,5 +39,13 @@ public class OfferService {
 
     public List<Component> getAllComponent(){
         return componentService.getAllComponents();
+    }
+
+    public Offer getOffer() {
+        return offer;
+    }
+
+    public void setOffer(Offer offer) {
+        this.offer = offer;
     }
 }

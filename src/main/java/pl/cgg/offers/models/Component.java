@@ -18,21 +18,18 @@ public class Component implements Serializable {
     private String name;
     @Column(name = "opis")
     private String description;
-    @Column(name = "ilosc")
-    private int quantity;
-    @Column(name = "cena")
-    private double unitPrice;
     @Column(name = "jednostka")
     private String unit;
 
     @ManyToMany
+    private List<ComponentPrice> componentPriceList;
+
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Offer> offer;
 
     public Component(String name, String description, int quantity, double unitPrice, String unit, Offer offer) {
         this.name = name;
         this.description = description;
-        this.quantity = quantity;
-        this.unitPrice = unitPrice;
         this.unit = unit;
 
     }
@@ -64,22 +61,6 @@ public class Component implements Serializable {
         this.description = description;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public double getUnitPrice() {
-        return unitPrice;
-    }
-
-    public void setUnitPrice(double unitPrice) {
-        this.unitPrice = unitPrice;
-    }
-
     public String getUnit() {
         return unit;
     }
@@ -96,14 +77,20 @@ public class Component implements Serializable {
         this.offer = offer;
     }
 
+    public List<ComponentPrice> getComponentPriceList() {
+        return componentPriceList;
+    }
+
+    public void setComponentPriceList(List<ComponentPrice> componentPriceList) {
+        this.componentPriceList = componentPriceList;
+    }
+
     @Override
     public String toString() {
         return "Component{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", quantity=" + quantity +
-                ", unitPrice=" + unitPrice +
                 ", unit='" + unit + '\'' +
                 ", offer=" + offer +
                 '}';
