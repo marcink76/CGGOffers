@@ -21,10 +21,11 @@ public class Component implements Serializable {
     @Column(name = "jednostka")
     private String unit;
 
-    @ManyToMany
+    //TODO Zmienić na ManyToOne
+    @OneToMany//(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<ComponentPrice> componentPriceList;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Offer> offer;
 
     public Component(String name, String description, int quantity, double unitPrice, String unit, Offer offer) {

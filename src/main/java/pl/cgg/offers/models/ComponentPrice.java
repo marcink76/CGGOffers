@@ -17,11 +17,11 @@ public class ComponentPrice {
     @Column(name = "cena_calkowita")
     private double totalPrice;
 
-    @ManyToMany
-    private List<Component> componentList;
+    @ManyToOne
+    private Component component;
 
-    @ManyToMany
-    private List<Offer> offerList;
+    @ManyToOne
+    private Offer offer;
 
     public ComponentPrice(int quantity, double componentPrice){
         this.componentPrice = componentPrice;
@@ -63,19 +63,19 @@ public class ComponentPrice {
         this.totalPrice = totalPrice;
     }
 
-    public List<Component> getComponentList() {
-        return componentList;
+    public Component getComponent() {
+        return component;
     }
 
-    public void setComponentList(List<Component> componentList) {
-        this.componentList = componentList;
+    public void setComponent(Component component) {
+        this.component = component;
     }
 
-    public List<Offer> getOfferList() {
-        return offerList;
+    public Offer getOffer() {
+        return offer;
     }
 
-    public void setOfferList(List<Offer> offerList) {
-        this.offerList = offerList;
+    public void setOffer(Offer offer) {
+        this.offer = offer;
     }
 }

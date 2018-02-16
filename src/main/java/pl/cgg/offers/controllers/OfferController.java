@@ -63,25 +63,30 @@ public class OfferController {
     }
 
     @PostMapping("/addComponentToOffer")
-    public String setComponentsToOffer(@ModelAttribute("componentPrices") List<ComponentPrice> componentPrices,
-            Offer offer,
-            Model model) {
+    public String setComponentsToOffer(Offer offer, Model model) {
         List<Component> tempComponentList = componentService.getTempComponentList();
         offer.setComponentList(tempComponentList);
         model.addAttribute("componentList", tempComponentList);
-        //model.addAttribute("componentPrices", componentPrices);
+        HashMap<Component, ComponentPrice> componentAndPrices = componentPriceService.getComonentPriceToMap();
+        model.addAttribute("componentAndPrices", componentAndPrices);
         offerService.saveToBase(offer);
         return "showCompleteOfferForm";
     }
 
     @PostMapping("/completeOffer")
-    public String saveOfferToBase(@ModelAttribute("componentPrices") List<ComponentPrice> componentPrices,
-                                  Offer offer, Model model) {
-        //List<ComponentPrice> componentPrices = new ArrayList<>();
-        model.addAttribute("componentPrices", componentPrices);
-        //offer.setComponentPriceList(componentPrice);
+    public String saveOfferToBase(Offer offer, Model model) {
+        HashMap<Component, ComponentPrice> componentAndPrices = componentPriceService.getComonentPriceToMap();
+
+        //model.addAttribute("componentPrices", componentPrices);
+
         return "redirect:showall";
     }
+    @GetMapping("/ajaxtest")
+    public String ajaxTest (){
+
+        return "ajax";
+    }
+
 
 
 }

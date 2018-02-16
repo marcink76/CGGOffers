@@ -33,7 +33,7 @@ public class InvestorController {
     }
     @PostMapping("/addInvestorToBase")
     public String addInvestorToBase(Investor investor){
-        investorService.saveInvestor(investor);
+        investorService.addInvestor(investor);
         return "redirect:showAll";
     }
 }

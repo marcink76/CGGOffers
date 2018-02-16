@@ -22,10 +22,10 @@ public class Offer implements Serializable{
     @Column(name = "Koszt_calkowity")
     private double totalPrice;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany//(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Component> componentList;
 
-    @ManyToMany
+    @OneToMany
     private List<ComponentPrice> componentPriceList;
 
     @ManyToOne
