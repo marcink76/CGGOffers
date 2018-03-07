@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class ComponentService {
 
-
+    private Component component;
     private List<Component> componentList;
     private List<Component> tempComponentList = new ArrayList<>();
 
@@ -87,5 +87,13 @@ public class ComponentService {
 
     public void setTempComponentList(List<Component> tempComponentList) {
         this.tempComponentList = tempComponentList;
+    }
+
+    public Component getComponent() {
+        return component;
+    }
+
+    public void setComponent(Component component) {
+        this.component = component;
     }
 }

@@ -67,15 +67,14 @@ public class OfferController {
         List<Component> tempComponentList = componentService.getTempComponentList();
         offer.setComponentList(tempComponentList);
         model.addAttribute("componentList", tempComponentList);
-        HashMap<Component, ComponentPrice> componentAndPrices = componentPriceService.getComonentPriceToMap();
-        model.addAttribute("componentAndPrices", componentAndPrices);
+        model.addAttribute("componentPriceList", componentPriceService.makeComponentPriceTempList());
         offerService.saveToBase(offer);
         return "showCompleteOfferForm";
     }
 
     @PostMapping("/completeOffer")
     public String saveOfferToBase(Offer offer, Model model) {
-        HashMap<Component, ComponentPrice> componentAndPrices = componentPriceService.getComonentPriceToMap();
+
 
         //model.addAttribute("componentPrices", componentPrices);
 
