@@ -6,4 +6,9 @@ import pl.cgg.offers.models.Template;
 
 @Repository
 public interface TemplateRepository extends JpaRepository<Template, Long>{
+
+    Template getByTemplateName(String name);
+
+    Template getByTemplateNameStartsWith(String letters);
+
 }

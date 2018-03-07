@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-
+<a th:href="@{'/component/addComponent'}" class="std-href">Dodaj nowy składnik oferty</a>
 <table>
     <tr th:each="component:${componentList}">
         <td th:text="${component.id}"></td>

@@ -19,4 +19,12 @@ public class TemplateService {
     public void saveTemplate(Template template){
         templateRepository.save(template);
     }
+
+    public Template getByName(String name){
+        return templateRepository.getByTemplateName(name);
+    }
+
+    public String getByFirstLetter(String letters){
+        return templateRepository.getByTemplateNameStartsWith(letters).getTemplateName();
+    }
 }

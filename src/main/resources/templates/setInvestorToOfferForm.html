@@ -5,6 +5,8 @@
     <title>Title</title>
 </head>
 <body>
+<a th:href="@{'/'}" class="std-href">Strona główna</a>
+<a th:href="@{'/investor/addInvestor'}" class="std-href">Dodaj nowego investora</a>
 <table>
     <tr th:each="investor:${investorsList}">
         <td th:text="${investor.id}"></td>
@@ -17,5 +19,7 @@
         </td>
     </tr>
 </table>
+
+
 </body>
 </html>

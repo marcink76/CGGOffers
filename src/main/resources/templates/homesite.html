@@ -2,29 +2,31 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8"/>
-    <title>Title</title>
+    <title>Strona główna</title>
 </head>
 <body>
 <h1 th:text="${message}"></h1>
-<div>
+<div class="home-site-box">
     <label>Składniki oferty:</label>
-    <a th:href="@{'/component/showAll'}">Pokaż wszystkie skladniki</a>
-    <a th:href="@{'/component/addComponent'}">Dodaj składnik oferty</a>
+    <a th:href="@{'/component/showAll'}" class="std-href">Pokaż wszystkie skladniki</a>
+    <a th:href="@{'/component/addComponent'}" class="std-href">Dodaj składnik oferty</a>
 </div>
-<div>
+<div class="home-site-box">
     <label>Inwestorzy:</label>
-    <a th:href="@{'/inwestor/showAll'}">Pokaż inwestorów</a>
-    <a th:href="@{'/inwestor/addInvestor'}">Dodaj inwestora</a>
+    <a th:href="@{'/investor/showAll'}" class="std-href">Pokaż inwestorów</a>
+    <a th:href="@{'/investor/addInvestor'}" class="std-href">Dodaj inwestora</a>
 </div>
-<div>
-    <label>Szablony</label>
-    <a th:href="@{'/offers/showAll'}">Pokaż oferty</a>
-    <a th:href="@{'/offers/addOffer'}">Dodaj ofertę</a>
+<div class="home-site-box">
+    <label>Oferty</label>
+    <a th:href="@{'/offers/showAll'}" class="std-href">Pokaż oferty</a>
+    <a th:href="@{'/offers/addOffer'}" class="std-href">Dodaj ofertę</a>
+    <a th:href="@{'/offers/addOfferFromTemplate'}" class="std-href">Dodaj ofertę z szablonu</a>
+
 </div>
-<div>
+<div class="home-site-box">
     <label>Szablony</label>
-    <a th:href="@{'/templates/showAll'}">Pokaż szablony</a>
-    <a th:href="@{'/templates/addTemplate'}">Dodaj szablon</a>
+    <a th:href="@{'/templates/showAll'}" class="std-href">Pokaż szablony</a>
+    <a th:href="@{'/templates/addTemplate'}" class="std-href">Dodaj szablon</a>
 </div>
 </body>
 </html>

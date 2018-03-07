@@ -11,7 +11,7 @@ import pl.cgg.offers.models.Investor;
 import pl.cgg.offers.service.InvestorService;
 
 @Controller
-@RequestMapping("/inwestor")
+@RequestMapping("/investor")
 public class InvestorController {
 
     @Autowired

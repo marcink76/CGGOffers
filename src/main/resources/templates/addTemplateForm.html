@@ -5,6 +5,7 @@
     <title>Title</title>
 </head>
 <body>
+<a th:href="@{'/'}" class="std-href">Strona główna</a>
 <form th:action="@{'/templates/setToBase'}" method="post" th:object="${template}">
     <label for="template-name">Nazwa szabonu</label>
     <input class="std-input" id="template-name" th:field="*{templateName}"/>

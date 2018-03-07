@@ -2,12 +2,16 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8"/>
-    <title>Title</title>
+    <title>Inwestorzy</title>
 </head>
 <body>
+<a th:href="@{'/'}" class="std-href">Strona główna</a>
+
 <table>
     <tr th:each="investors:${investorList}">
         <td th:text="${investors.id}"></td>
+        <td th:text="${investors.firstName}"></td>
+        <td th:text="${investors.lastName}"></td>
         <td th:text="${investors.name}"></td>
         <td th:text="${investors.city}"></td>
         <td th:text="${investors.street}"></td>
@@ -17,7 +21,5 @@
         <td th:text="${investors.email}"></td>
     </tr>
 </table>
-<a th:href="@{'/'}">Powrót</a>
-<a th:href="@{'/'}">Powrót</a>
 </body>
 </html>

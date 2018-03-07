@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Dodawanie skladnika</title>
+
 </head>
 <body>
+<a th:href="@{'/'}" class="std-href">Strona główna</a>
 <form th:action="@{'/component/addComponentToBase'}" th:object="${component}" method="post">
-    <p>Nazwa:</p>
-    <input class="std-input" type="text" th:field="*{name}" />
-    <p>Opis:</p>
-    <input class="std-input" type="text" th:field="*{description}" />
-    <p>Jednostka:</p>
-    <input class="std-input" type="text" th:field="*{unit}" />
+    <label for="input-component-name">Nazwa:</label>
+    <input class="std-input" id="input-component-name" type="text" th:field="*{name}" />
+    <label for="input-desc">Opis:</label>
+    <input class="std-input" id="input-desc" type="text" th:field="*{description}" />
+    <label for="input-unit">Jednostka:</label>
+    <input class="std-input" id="input-unit" type="text" th:field="*{unit}" />
 
     <input type="submit" value="Wprowadź"/>
 </form>

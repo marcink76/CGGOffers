@@ -7,10 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.cgg.offers.models.Component;
 import pl.cgg.offers.models.ComponentPrice;
 import pl.cgg.offers.models.Offer;
-import pl.cgg.offers.service.ComponentPriceService;
-import pl.cgg.offers.service.ComponentService;
-import pl.cgg.offers.service.InvestorService;
-import pl.cgg.offers.service.OfferService;
+import pl.cgg.offers.service.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,6 +29,9 @@ public class OfferController {
 
     @Autowired
     private ComponentPriceService componentPriceService;
+
+    @Autowired
+    private TemplateService templateService;
 
     @GetMapping("/showAll")
     public String showAll(Model model) {
@@ -84,5 +84,12 @@ public class OfferController {
     public String ajaxTest (){
 
         return "ajax";
+    }
+
+    @GetMapping("/addOfferFromTemplate")
+    public String addOfferFromTemplate(Model model){
+        model.addAttribute("templateList", templateService.getAllTemplate());
+
+        return "addOfferFromTemplateForm";
     }
 }
