@@ -9,8 +9,15 @@ import java.util.List;
 
 @Service
 public class TemplateService {
+
+    private Template template;
+
     @Autowired
     private TemplateRepository templateRepository;
+
+    public Template getTemplateById(Long id){
+        return templateRepository.findOne(id);
+    }
 
     public List<Template> getAllTemplate(){
         return templateRepository.findAll();
@@ -26,5 +33,13 @@ public class TemplateService {
 
     public String getByFirstLetter(String letters){
         return templateRepository.getByTemplateNameStartsWith(letters).getTemplateName();
+    }
+
+    public Template getTemplate() {
+        return template;
+    }
+
+    public void setTemplate(Template template) {
+        this.template = template;
     }
 }

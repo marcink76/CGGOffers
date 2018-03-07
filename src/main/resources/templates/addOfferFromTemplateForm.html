@@ -5,9 +5,9 @@
     <title>Title</title>
 </head>
 <body>
-<form>
-    <select>
-        <option th:each="template:${templateList}" th:text="${template.templateName}"></option>
+<form th:action="@{/offerFromTemplate/setTemplateToOffer}" method="post">
+    <select name="template-id">
+        <option th:each="template:${templateList}" th:text="${template.templateName}" th:value="${template.id}"></option>
     </select>
     <input type="submit"/>
 </form>

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.cgg.offers.models.Component;
 import pl.cgg.offers.models.ComponentPrice;
 import pl.cgg.offers.models.Offer;
+import pl.cgg.offers.models.Template;
 import pl.cgg.offers.service.*;
 
 import java.util.ArrayList;
@@ -84,12 +85,5 @@ public class OfferController {
     public String ajaxTest (){
 
         return "ajax";
-    }
-
-    @GetMapping("/addOfferFromTemplate")
-    public String addOfferFromTemplate(Model model){
-        model.addAttribute("templateList", templateService.getAllTemplate());
-
-        return "addOfferFromTemplateForm";
     }
 }
