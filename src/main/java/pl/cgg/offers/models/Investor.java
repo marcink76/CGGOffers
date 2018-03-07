@@ -15,6 +15,10 @@ public class Investor implements Serializable{
     private Long id;
     @Column(name = "Nazwa")
     private String name;
+    @Column(name = "Imie")
+    private String firstName;
+    @Column(name = "Nazwisko")
+    private String lastName;
     @Column(name = "Ulica")
     private String street;
     @Column(name = "Nr_posesji")
@@ -128,5 +132,21 @@ public class Investor implements Serializable{
 
     public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }

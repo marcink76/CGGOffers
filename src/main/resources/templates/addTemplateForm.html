@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{'/templates/setToBase'}" method="post" th:object="${template}">
+    <label for="template-name">Nazwa szabonu</label>
+    <input class="std-input" id="template-name" th:field="*{templateName}"/>
+    <ul th:each="component:${components}">
+        <li th:text="${component.name}"></li>
+    </ul>
+    <input type="submit" value="Dodaj"/>
+
+</form>
+</body>
+</html>

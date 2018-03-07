@@ -7,11 +7,11 @@
 <body>
 <form th:action="@{'/component/addComponentToBase'}" th:object="${component}" method="post">
     <p>Nazwa:</p>
-    <input type="text" th:field="*{name}" />
+    <input class="std-input" type="text" th:field="*{name}" />
     <p>Opis:</p>
-    <input type="text" th:field="*{description}" />
+    <input class="std-input" type="text" th:field="*{description}" />
     <p>Jednostka:</p>
-    <input type="text" th:field="*{unit}" />
+    <input class="std-input" type="text" th:field="*{unit}" />
 
     <input type="submit" value="Wprowadź"/>
 </form>

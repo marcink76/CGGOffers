@@ -28,6 +28,9 @@ public class Component implements Serializable {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Offer> offer;
 
+    @ManyToMany
+    private List<Template> template;
+
     public Component(String name, String description, int quantity, double unitPrice, String unit, Offer offer) {
         this.name = name;
         this.description = description;

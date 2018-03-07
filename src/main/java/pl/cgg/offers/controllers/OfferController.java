@@ -85,7 +85,4 @@ public class OfferController {
 
         return "ajax";
     }
-
-
-
 }
