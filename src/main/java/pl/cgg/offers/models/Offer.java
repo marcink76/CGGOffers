@@ -14,11 +14,14 @@ public class Offer implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_oferty")
     private Long id;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "Data_wprowadzenia")
     private LocalDate date;
+
     @Column(name = "opis")
     private String description;
+
     @Column(name = "Koszt_calkowity")
     private double totalPrice;
 

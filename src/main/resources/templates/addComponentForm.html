@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
+<head th:replace="head :: head">
     <meta charset="UTF-8"/>
     <title>Dodawanie skladnika</title>
 
 </head>
 <body>
-<a th:href="@{'/'}" class="std-href">Strona główna</a>
-<form th:action="@{'/component/addComponentToBase'}" th:object="${component}" method="post">
-    <label for="input-component-name">Nazwa:</label>
-    <input class="std-input" id="input-component-name" type="text" th:field="*{name}" />
-    <label for="input-desc">Opis:</label>
-    <input class="std-input" id="input-desc" type="text" th:field="*{description}" />
-    <label for="input-unit">Jednostka:</label>
-    <input class="std-input" id="input-unit" type="text" th:field="*{unit}" />
+<nav th:replace="layout/menu :: menu"></nav>
+<article class="main-art" id="main-article">
+    <form th:action="@{'/component/addComponentToBase'}" th:object="${component}" method="post">
+        <label for="input-component-name">Nazwa:</label>
+        <input class="std-input" id="input-component-name" type="text" th:field="*{name}"/>
+        <label for="input-desc">Opis:</label>
+        <input class="std-input" id="input-desc" type="text" th:field="*{description}"/>
+        <label for="input-unit">Jednostka:</label>
+        <input class="std-input" id="input-unit" type="text" th:field="*{unit}"/>
 
-    <input type="submit" value="Wprowadź"/>
-</form>
+        <input type="submit" value="Wprowadź"/>
+    </form>
+</article>
 </body>
 </html>

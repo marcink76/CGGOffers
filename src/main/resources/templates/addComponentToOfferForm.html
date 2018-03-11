@@ -1,40 +1,42 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
+<head th:replace="head :: head">
     <meta charset="UTF-8"/>
     <title>Title</title>
 </head>
 <body>
-<a th:href="@{'/component/addComponent'}" class="std-href">Dodaj nowy składnik oferty</a>
-<table>
-    <tr th:each="component:${componentList}">
-        <td th:text="${component.id}"></td>
-        <td th:text="${component.name}"></td>
-        <td th:text="${component.description}"></td>
-        <td th:text="${component.unit}"></td>
-        <td>
-        <form th:action="@{'/offers/setInvestorToOffer'}" method="post">
-            <button name="component_id" type="submit" th:value="${component.id}">Dodaj</button>
-        </form>
-        </td>
-    </tr>
-</table>
-<table>
-    <tr th:each="component:${tempComponentList}">
-        <td th:text="${component.id}"></td>
-        <td th:text="${component.name}"></td>
-        <td th:text="${component.description}"></td>
-        <td th:text="${component.unit}"></td>
-        <td>
-            <form th:action="@{'/offers/setInvestorToOffer'}" method="post">
-                <button name="component_id" type="submit" th:value="${component.id}">Usun</button>
-            </form>
-        </td>
-    </tr>
-</table>
-<a th:href="@{/}">Powrót do strony głównej.</a>
-<form th:action="@{'/offers/addComponentToOffer'}" method="post">
-    <input type="submit" value="dodaj"/>
-</form>
+<nav th:replace="layout/menu :: menu"></nav>
+<article class="main-art" id="main-article">
+    <a th:href="@{'/component/addComponent'}" class="std-href">Dodaj nowy składnik oferty</a>
+    <table>
+        <tr th:each="component, stat:${componentList}" th:class="${stat.odd} ? 'row odd-row' : 'row even-row'">
+            <td th:text="${component.id}"></td>
+            <td th:text="${component.name}"></td>
+            <td th:text="${component.description}"></td>
+            <td th:text="${component.unit}"></td>
+            <td>
+                <form th:action="@{'/offers/setInvestorToOffer'}" method="post">
+                    <button name="component_id" type="submit" th:value="${component.id}">Dodaj</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+    <table>
+        <tr th:each="component, stat:${tempComponentList}" th:class="${stat.odd} ? 'row odd-row' : 'row even-row'">
+            <td th:text="${component.id}"></td>
+            <td th:text="${component.name}"></td>
+            <td th:text="${component.description}"></td>
+            <td th:text="${component.unit}"></td>
+            <td>
+                <form th:action="@{'/offers/setInvestorToOffer'}" method="post">
+                    <button name="component_id" type="submit" th:value="${component.id}">Usun</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+    <form th:action="@{'/offers/addComponentToOffer'}" method="post">
+        <input type="submit" value="dodaj"/>
+    </form>
+</article>
 </body>
 </html>

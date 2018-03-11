@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
+<head th:replace="head :: head">
     <meta charset="UTF-8"/>
     <title>Title</title>
 </head>
 <body>
-<table>
-    <tr th:each="offer:${offersList}">
-        <td th:text="${offer.id}"></td>
-        <td th:text="${offer.date}"></td>
-        <td th:text="${offer.description}"></td>
-        <td th:text="${offer.totalPrice}"></td>
-        <td th:text="${offer.investor.name}"></td>
-    </tr>
-
-</table>
-
+<nav th:replace="layout/menu :: menu"></nav>
+<article class="main-art" id="main-article">
+    <table>
+        <tr th:each="offer, stat:${offersList}" th:class="${stat.odd} ? 'row odd-row' : 'row even-row' ">
+            <td th:text="${offer.id}"></td>
+            <td th:text="${offer.date}"></td>
+            <td th:text="${offer.description}"></td>
+            <td th:text="${offer.totalPrice}"></td>
+            <td th:text="${offer.investor.name}"></td>
+        </tr>
+    </table>
+</article>
 </body>
 </html>

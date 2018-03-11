@@ -15,3 +15,8 @@ INSERT INTO offers.skladnik_oferty (opis, nazwa_uslugi, jednostka)
 VALUES ('Badanie w laboratorium', 'Badania laboratoryjne', 'szt.');
 INSERT INTO offers.skladnik_oferty (opis, nazwa_uslugi, jednostka)
 VALUES ('Badanie georadarem', 'Badanie georadarem', 'm');
+
+INSERT INTO offers.uzytkownik (nazwisko, imie, rola, login, haslo) VALUES ('Skrzypcz', 'Ewelina', 'ADMIN', 'Ewel', 'Ewe');
+INSERT INTO offers.uzytkownik (nazwisko, imie, rola, login, haslo) VALUES ('Skrzypcz', 'Tomasz', 'USER', 'Tom', 'Tom');
+INSERT INTO offers.uzytkownik (nazwisko, imie, rola, login, haslo) VALUES ('Konieczny', 'Marcin', 'ADMIN', 'M',
+                                                                           'K');

@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
+<head th:replace="head :: head">
     <meta charset="UTF-8"/>
     <title>Title</title>
 </head>
 <body>
+<nav th:replace="layout/menu :: menu"></nav>
+<article class="main-art" id="main-article">
     <table>
-        <tr th:each="components:${ComponentList}">
+        <tr th:each="components, stat :${ComponentList}" th:class="${stat.odd} ? 'row odd-row' : 'row even-row'">
 
             <td th:text="${components.id}"></td>
             <td th:text="${components.description}"></td>
@@ -14,6 +16,7 @@
             <td th:text="${components.unit}"></td>
         </tr>
     </table>
-<a th:href="@{'/'}">Strona główna</a>
+    <a th:href="@{'/'}">Strona główna</a>
+</article>
 </body>
 </html>

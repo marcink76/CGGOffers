@@ -2,6 +2,7 @@ const getInvestorBtn = document.getElementById('get-investor-btn');
 const addInvestorBtn = document.getElementById('add-investor-btn');
 const showAllInvestors = document.getElementById('get-all-investor-btn');
 const msgBox = document.getElementById('info-box');
+const ul = document.getElementById('ul-main-menu').nextSibling;
 
 investor = {
     "id": "",

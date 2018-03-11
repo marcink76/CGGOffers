@@ -12,7 +12,7 @@ public class Template {
 
     private String templateName;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
     private List<Component> componentList;
 
     public long getId() {

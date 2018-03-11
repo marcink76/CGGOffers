@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="head :: head">
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/styles.css}"/>
+</head>
+<body>
+<nav th:replace="layout/menu :: menu"></nav>
+<article class="main-art" id="main-article">
+    <form th:action="@{'/templates/setToBase'}" method="post" th:object="${template}">
+        <h3 th:text="${template.templateName}">Dodaj składniki do szablonu:</h3>
+        <table>
+            <tr class="row">
+                <th>id:</th>
+                <th>nazwa:</th>
+                <th>opis:</th>
+            </tr>
+            <tr th:each="component, stat:${wrapper}" th:class="${stat.odd}? 'row odd-row' : 'row even-row'"
+                th:object="${wrapper}">
+                <td th:text="${component.id}"></td>
+                <td th:text="${component.name}"></td>
+                <td th:text="${component.description}"></td>
+            </tr>
+        </table>
+        <input type="submit" value="Dodaj"/>
+    </form>
+</article>
+</body>
+</html>

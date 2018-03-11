@@ -1,19 +1,35 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
+<head th:replace="head :: head">
 </head>
 <body>
-<a th:href="@{'/'}" class="std-href">Strona główna</a>
+<nav th:replace="layout/menu :: menu"></nav>
+<article class="main-art" id="main-article"></article>
 <form th:action="@{'/templates/setToBase'}" method="post" th:object="${template}">
     <label for="template-name">Nazwa szabonu</label>
     <input class="std-input" id="template-name" th:field="*{templateName}"/>
-    <ul th:each="component:${components}">
-        <li th:text="${component.name}"></li>
-    </ul>
-    <input type="submit" value="Dodaj"/>
+    <h3>Dodaj składniki do szablonu:</h3>
+    <table>
+        <tr class="row">
+            <th>id</th>
+            <th>nazwa:</th>
+            <th>dodaj:</th>
+        </tr>
+        <tr th:each="component, stat:${wrapper.componentList}" th:class="${stat.odd}? 'row odd-row' : 'row even-row'"
+            th:object="${wrapper}">
+            <td th:text="${component.id}"></td>
+            <td th:text="${component.name}"></td>
 
+            <td><input type="checkbox" th:name="|componentList[${stat.index}].id|" th:value="${stat.index + 1}"/></td>
+            <input type="hidden" th:field="*{componentList[__${stat.index}__].name}"/>
+            <input type="hidden" th:field="*{componentList[__${stat.index}__].description}"/>
+            <input type="hidden" th:field="*{componentList[__${stat.index}__].componentPriceList}"/>
+            <input type="hidden" th:field="*{componentList[__${stat.index}__].unit}"/>
+            <input type="hidden" th:field="*{componentList[__${stat.index}__].offer}"/>
+        </tr>
+    </table>
+    <input type="submit" value="Dodaj"/>
+    <footer th:include="footer :: stopka"></footer>
 </form>
 </body>
 </html>

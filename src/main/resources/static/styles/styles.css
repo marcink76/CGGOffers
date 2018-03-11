@@ -1,3 +1,10 @@
+*{
+    margin: 0px;
+}
+body{
+    font-family: Arial, sans-serif;
+    font-size: 0.8em;
+}
 .std-input{
     border: bisque solid 2px;
     border-radius: 7px;
@@ -18,12 +25,43 @@
     margin: 10px;
 }
 .std-href{
-    display: block;
-    padding: 10px;
-    margin: 10px;
-    font-size: 0.8em;
     font-family: Arial, sans-serif;
     text-decoration: none;
-    border: 2px #ffca15 solid;
-    background-color: #fff600;
+}
+.row{
+    height: 35px;
+}
+.row td{
+    width: auto;
+    padding: 10px;
+}
+.row th{
+    width: auto;
+    padding: 10px;
+    background-color: #00aada5c;
+    font-weight: normal;
+}
+.odd-row{
+    background-color: #add7e8;
+}
+.even-row{
+    background-color: #00aada33;
+}
+.cell-menu{
+    width: auto;
+    float: left;
+    list-style: none;
+    text-align: center;
+    padding: 10px;
+    margin: 2px;
+    background-color: cornflowerblue;
+}
+.cell-menu:hover{
+    background-color: #add7e8;
+}
+.main-art{
+    clear: both;
+}
+#ul-main-menu::after{
+    clear: both; !important;
 }

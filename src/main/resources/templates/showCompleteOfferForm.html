@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
+<head th:replace="head :: head">
     <meta charset="UTF-8"/>
     <title>Title</title>
 </head>
 <body>
-<form th:action="@{'/offers/addComponentToOffer'}" method="post" th:object="${componentPriceList}">
-    <table>
-        <tr th:each="component:${componentList}">
-            <td th:text="${component.name}"></td>
-            <td><label th:for="'input-price' + ${component.id}">Cena jednostkowa: </label>
-                <input type="number" th:id="'input-price' + ${component.id}" class="input-price" name="price"/>
-            </td>
-            <td><label th:for="'input-quantity' + ${component.id}">Ilość: </label>
-                <input type="number" th:id="'input-quantity' + ${component.id}" class="input-quantity" name="quantity"/>
-            </td>
-            <td class="component-price" th:id="'component-price' + ${component.id}">
-            </td>
-        </tr>
-    </table>
-    <div id="total-price-box" class="total-price"></div>
-    <input type="hidden" id="total-price" value=""/>
-    <input type="submit" value="Dodaj"/>
-</form>
-<script type="text/javascript" th:src="@{/scripts/offer.js}"></script>
+<nav th:replace="layout/menu :: menu"></nav>
+<article class="main-art" id="main-article">
+    <form th:action="@{'/offers/addComponentToOffer'}" method="post" th:object="${componentPriceList}">
+        <table>
+            <tr th:each="component, stat:${componentList}" th:class="${stat.odd} ?'row odd-row' : 'row even-row' ">
+                <td th:text="${component.name}"></td>
+                <td><label th:for="'input-price' + ${component.id}">Cena jednostkowa: </label>
+                    <input type="number" th:id="'input-price' + ${component.id}" class="input-price" name="price"/>
+                </td>
+                <td><label th:for="'input-quantity' + ${component.id}">Ilość: </label>
+                    <input type="number" th:id="'input-quantity' + ${component.id}" class="input-quantity"
+                           name="quantity"/>
+                </td>
+                <td class="component-price" th:id="'component-price' + ${component.id}">
+                </td>
+            </tr>
+        </table>
+        <div id="total-price-box" class="total-price"></div>
+        <input type="hidden" id="total-price" value=""/>
+        <input type="submit" value="Dodaj"/>
+    </form>
+</article>
 </body>
 </html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<body>
+<nav th:fragment="menu" id="main-menu" class="main-menu">
+    <ul id="ul-main-menu">
+        <li class="cell-menu"><a th:href="@{'/component/showAll'}" class="std-href">Pokaż wszystkie skladniki</a></li>
+        <li class="cell-menu"><a th:href="@{'/component/addComponent'}" class="std-href">Dodaj składnik oferty</a></li>
+        <li class="cell-menu"><a th:href="@{'/investor/showAll'}" class="std-href">Pokaż inwestorów</a></li>
+        <li class="cell-menu"><a th:href="@{'/investor/addInvestor'}" class="std-href">Dodaj inwestora</a></li>
+        <li class="cell-menu"><a th:href="@{'/offers/showAll'}" class="std-href">Pokaż oferty</a></li>
+        <li class="cell-menu"><a th:href="@{'/offers/addOffer'}" class="std-href">Dodaj ofertę</a></li>
+        <li class="cell-menu"><a th:href="@{'/offerFromTemplate/addOfferFromTemplate'}" class="std-href">Dodaj ofertę z szablonu</a></li>
+        <li class="cell-menu"><a th:href="@{'/templates/showAll'}" class="std-href">Pokaż szablony</a></li>
+        <li class="cell-menu"><a th:href="@{'/templates/addTemplate'}" class="std-href">Dodaj szablon</a></li>
+    </ul>
+</nav>
+</body>
+</html>

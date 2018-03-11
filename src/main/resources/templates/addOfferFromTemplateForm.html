@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
+<head th:replace="head :: head">
     <meta charset="UTF-8"/>
     <title>Title</title>
 </head>
 <body>
-<form th:action="@{/offerFromTemplate/setTemplateToOffer}" method="post">
-    <select name="template-id">
-        <option th:each="template:${templateList}" th:text="${template.templateName}" th:value="${template.id}"></option>
-    </select>
-    <input type="submit"/>
-</form>
+<nav th:replace="layout/menu :: menu"></nav>
+<article class="main-art" id="main-article">
 
-<a th:href="@{'/'}" class="std-href">Strona główna</a>
+    <form th:action="@{/offerFromTemplate/setTemplateToOffer}" method="post">
+        <div name="template-id" th:each="template, iterStat:${templateList}">
+            <h3 th:text="${template.templateName}"></h3>
+            <p th:each="components:${template.getComponentList()}" th:text="${components.name}"
+               th:value="${template.id}"></p>
+            <input type="submit" name="template-id" th:value="${template.id}"/>
+        </div>
 
+    </form>
+</article>
 </body>
 </html>

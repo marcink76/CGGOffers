@@ -28,7 +28,7 @@ public class Component implements Serializable {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Offer> offer;
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private List<Template> template;
 
     public Component(String name, String description, int quantity, double unitPrice, String unit, Offer offer) {
@@ -73,6 +73,14 @@ public class Component implements Serializable {
         this.unit = unit;
     }
 
+    public List<ComponentPrice> getComponentPriceList() {
+        return componentPriceList;
+    }
+
+    public void setComponentPriceList(List<ComponentPrice> componentPriceList) {
+        this.componentPriceList = componentPriceList;
+    }
+
     public List<Offer> getOffer() {
         return offer;
     }
@@ -81,12 +89,12 @@ public class Component implements Serializable {
         this.offer = offer;
     }
 
-    public List<ComponentPrice> getComponentPriceList() {
-        return componentPriceList;
+    public List<Template> getTemplate() {
+        return template;
     }
 
-    public void setComponentPriceList(List<ComponentPrice> componentPriceList) {
-        this.componentPriceList = componentPriceList;
+    public void setTemplate(List<Template> template) {
+        this.template = template;
     }
 
     @Override

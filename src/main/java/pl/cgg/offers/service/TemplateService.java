@@ -15,23 +15,33 @@ public class TemplateService {
     @Autowired
     private TemplateRepository templateRepository;
 
-    public Template getTemplateById(Long id){
+    public Template getTemplateById(Long id) {
         return templateRepository.findOne(id);
     }
 
-    public List<Template> getAllTemplate(){
+    public List<Template> getAllTemplate() {
         return templateRepository.findAll();
     }
 
-    public void saveTemplate(Template template){
-        templateRepository.save(template);
+    public boolean saveTemplate(Template template) {
+        boolean checkName = false;
+        List<Template> templateList = this.getAllTemplate();
+        for (Template templates : templateList) {
+            checkName = templates.getTemplateName().equals(template.getTemplateName());
+        }
+        if (checkName) {
+            return true;
+        } else {
+            templateRepository.save(template);
+            return false;
+        }
     }
 
-    public Template getByName(String name){
+    public Template getByName(String name) {
         return templateRepository.getByTemplateName(name);
     }
 
-    public String getByFirstLetter(String letters){
+    public String getByFirstLetter(String letters) {
         return templateRepository.getByTemplateNameStartsWith(letters).getTemplateName();
     }
 
