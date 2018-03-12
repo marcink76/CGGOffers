@@ -65,3 +65,6 @@ body{
 #ul-main-menu::after{
     clear: both; !important;
 }
+.info-red{
+    color: darkred;
+}

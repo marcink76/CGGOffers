@@ -9,7 +9,7 @@
 <nav th:replace="layout/menu :: menu"></nav>
 <article class="main-art" id="main-article">
     <form th:action="@{'/templates/setToBase'}" method="post" th:object="${template}">
-        <h3 th:text="${template.templateName}">Dodaj składniki do szablonu:</h3>
+        <h3 th:text="${template.templateName}">Nazwa szablonu</h3>
         <table>
             <tr class="row">
                 <th>id:</th>
@@ -23,8 +23,13 @@
                 <td th:text="${component.description}"></td>
             </tr>
         </table>
-        <input type="submit" value="Dodaj"/>
+
+        <p th:if="${message.get(0) == 'Zapis poprawny'}"><input type="submit" value="Dodaj"/></p>
+        <p th:if="${message.get(0) != 'Zapis poprawny'}"><a th:href="@{/templates/addTemplate}">Powrót</a></p>
     </form>
+    <h4 class="info-red" th:each="message:${message}">
+        <p th:text="${message}"></p>
+    </h4>
 </article>
 </body>
 </html>

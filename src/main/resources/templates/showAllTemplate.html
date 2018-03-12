@@ -9,20 +9,22 @@
 <body>
 
 <nav th:replace="layout/menu :: menu"></nav>
+<article class="main-art" id="main-article">
+    <h4 th:if="${templatesList.isEmpty()}">Brak szablonów</h4>
+    <table th:unless="${templatesList.isEmpty()}">
 
-<table>
-    <tr>
-        <th>Nazwa szablonu:</th>
-    </tr>
-    <tr th:each="template:${templatesList}">
-        <td th:text="${template.templateName}"></td>
-    </tr>
-</table>
+        <tr>
+            <th>Nazwa szablonu:</th>
+        </tr>
+        <tr th:each="template:${templatesList}">
+            <td th:text="${template.templateName}"></td>
+        </tr>
+    </table>
 
-<div th:each="template:${templatesList}">
-    <h3 th:text="${template.templateName}"></h3>
-    <p th:each="components:${template.getComponentList()}" th:text="${components.name}"></p>
-</div>
-
+    <div th:each="template:${templatesList}">
+        <h3 th:text="${template.templateName}"></h3>
+        <p th:each="components:${template.getComponentList()}" th:text="${components.name}"></p>
+    </div>
+</article>
 </body>
 </html>

@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
+<head th:replace="head :: head">
     <meta charset="UTF-8"/>
     <title>Title</title>
     <link rel="stylesheet" type="text/css" th:href="@{/styles/styles.css}"/>
 </head>
 <body>
+<nav th:replace="layout/menu :: menu"></nav>
 <article class="main-art" id="main-article">
-
-    <nav th:replace="layout/menu :: menu"></nav>
     <form th:action="@{/inwestor/addInvestorToBase}" method="post" th:object="${investor}">
         <div id="basic-data" class="basic-data">
             <label for="input-name" class="basic-lbl">Nazwa inwestora:</label>
@@ -46,7 +45,7 @@
             <input type="submit" value="Wprowadź" class="std-btn"/>
         </div>
         <table>
-            <tr th:each="component:${componentList}">
+            <tr th:each="component, stat:${componentList}" th:class="${stat.odd} ? 'row odd-row' : 'row even-row'">
                 <td th:text="${component.name}"></td>
             </tr>
         </table>

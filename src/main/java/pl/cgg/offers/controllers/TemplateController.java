@@ -53,19 +53,19 @@ public class TemplateController {
     public String addTemplate(@ModelAttribute("wrapper") ComponentWrapper wrapper, Template template, Model model) {
         template.setComponentList(null);
         List<Component> tempList = wrapper.getComponentList();
-        List<Component> componentList = new ArrayList<>();// = componentService.getAllComponents();
+        List<Component> componentList = new ArrayList<>();
 
         tempList.removeIf(component -> component.getId() == null);
 
         for (Component comp : tempList) {
             componentList.add(componentService.getOneComponent(comp.getId()));
         }
-        componentService.setTempComponentList(componentList);
 
+        template.setComponentList(componentList);
         model.addAttribute("wrapper", componentList);
         model.addAttribute("template", template);
-        template.setComponentList(componentList);
-        templateRepository.save(template);
+        model.addAttribute("message", templateService.saveTemplate(template));
+
         return "showCompleteTemplate";
     }
 }
