@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.cgg.offers.models.Template;
 import pl.cgg.offers.repositories.TemplateRepository;
-
 import java.util.List;
 
 @Service
@@ -32,6 +31,7 @@ public class TemplateService {
         if (checkName) {
             return true;
         } else {
+
             templateRepository.save(template);
             return false;
         }

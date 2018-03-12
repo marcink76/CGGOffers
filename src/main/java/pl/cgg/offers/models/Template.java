@@ -8,11 +8,12 @@ import java.util.List;
 public class Template {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_szablonu")
     private long id;
 
     private String templateName;
 
-    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
+    @ManyToMany//(mappedBy = "templateList")
     private List<Component> componentList;
 
     public long getId() {

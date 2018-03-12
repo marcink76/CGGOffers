@@ -3,11 +3,16 @@ package pl.cgg.offers.models;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.Comparator;
 import java.util.List;
+import java.util.function.Function;
+import java.util.function.ToDoubleFunction;
+import java.util.function.ToIntFunction;
+import java.util.function.ToLongFunction;
 
 @Entity
 @Table(name = "skladnik_oferty")
-public class Component implements Serializable {
+public class Component implements Serializable, Comparator<Component>, Comparable<Component>  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,21 +26,16 @@ public class Component implements Serializable {
     @Column(name = "jednostka")
     private String unit;
 
-    //TODO Zmienić na ManyToOne
-    @OneToMany//(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany
     private List<ComponentPrice> componentPriceList;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Offer> offer;
-
-    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    private List<Template> template;
 
     public Component(String name, String description, int quantity, double unitPrice, String unit, Offer offer) {
         this.name = name;
         this.description = description;
         this.unit = unit;
-
     }
 
     public Component() {
@@ -73,14 +73,6 @@ public class Component implements Serializable {
         this.unit = unit;
     }
 
-    public List<ComponentPrice> getComponentPriceList() {
-        return componentPriceList;
-    }
-
-    public void setComponentPriceList(List<ComponentPrice> componentPriceList) {
-        this.componentPriceList = componentPriceList;
-    }
-
     public List<Offer> getOffer() {
         return offer;
     }
@@ -89,12 +81,12 @@ public class Component implements Serializable {
         this.offer = offer;
     }
 
-    public List<Template> getTemplate() {
-        return template;
+    public List<ComponentPrice> getComponentPriceList() {
+        return componentPriceList;
     }
 
-    public void setTemplate(List<Template> template) {
-        this.template = template;
+    public void setComponentPriceList(List<ComponentPrice> componentPriceList) {
+        this.componentPriceList = componentPriceList;
     }
 
     @Override
@@ -106,5 +98,50 @@ public class Component implements Serializable {
                 ", unit='" + unit + '\'' +
                 ", offer=" + offer +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Component o) {
+        return 0;
+    }
+
+    @Override
+    public int compare(Component o1, Component o2) {
+        return 0;
+    }
+
+    @Override
+    public Comparator<Component> reversed() {
+        return null;
+    }
+
+    @Override
+    public Comparator<Component> thenComparing(Comparator<? super Component> other) {
+        return null;
+    }
+
+    @Override
+    public <U> Comparator<Component> thenComparing(Function<? super Component, ? extends U> keyExtractor, Comparator<? super U> keyComparator) {
+        return null;
+    }
+
+    @Override
+    public <U extends Comparable<? super U>> Comparator<Component> thenComparing(Function<? super Component, ? extends U> keyExtractor) {
+        return null;
+    }
+
+    @Override
+    public Comparator<Component> thenComparingInt(ToIntFunction<? super Component> keyExtractor) {
+        return null;
+    }
+
+    @Override
+    public Comparator<Component> thenComparingLong(ToLongFunction<? super Component> keyExtractor) {
+        return null;
+    }
+
+    @Override
+    public Comparator<Component> thenComparingDouble(ToDoubleFunction<? super Component> keyExtractor) {
+        return null;
     }
 }

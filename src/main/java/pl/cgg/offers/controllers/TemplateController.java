@@ -7,10 +7,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.cgg.offers.models.Component;
 import pl.cgg.offers.models.Template;
+import pl.cgg.offers.repositories.TemplateRepository;
 import pl.cgg.offers.service.ComponentService;
 import pl.cgg.offers.service.TemplateService;
 import pl.cgg.offers.wrappers.ComponentWrapper;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Controller
@@ -22,6 +25,9 @@ public class TemplateController {
 
     @Autowired
     private ComponentService componentService;
+
+    @Autowired
+    private TemplateRepository templateRepository;
 
     @ModelAttribute("allComponents")
     public List<Component> allComponents() {
@@ -47,44 +53,19 @@ public class TemplateController {
     public String addTemplate(@ModelAttribute("wrapper") ComponentWrapper wrapper, Template template, Model model) {
         template.setComponentList(null);
         List<Component> tempList = wrapper.getComponentList();
-        List<Component> componentList = componentService.getAllComponents();
-//        TODO
-        for (int i = 0; i < tempList.size(); i++) {
-            for (int j = 0; j < componentList.size(); j++) {
-                if(tempList.get(i).getId() == null){
+        List<Component> componentList = new ArrayList<>();// = componentService.getAllComponents();
 
-                }
-            }
+        tempList.removeIf(component -> component.getId() == null);
+
+        for (Component comp : tempList) {
+            componentList.add(componentService.getOneComponent(comp.getId()));
         }
+        componentService.setTempComponentList(componentList);
 
-//        for (int i = 0; i < componentList.size(); i++) {
-//            if (tempList.get(i).getId() == null) {
-//                final int j = i + 1;
-//                componentList.removeIf(component -> component.getId() == j);
-//            }
-//        }
         model.addAttribute("wrapper", componentList);
         model.addAttribute("template", template);
         template.setComponentList(componentList);
-        templateService.saveTemplate(template);
+        templateRepository.save(template);
         return "showCompleteTemplate";
     }
-//    @GetMapping("/addTemplate")
-//    public String addTemplate(Model model) {
-//        model.addAttribute("template", new Template());
-//        model.addAttribute("components", componentService.getAllComponents());
-//        return "addTemplateForm";
-//    }
-//
-//    @PostMapping("/setToBase")
-//    public String setTemplate(
-//            @RequestParam("") Template template, Model model) {
-//        template.setComponentList(componentService.getAllComponents());
-//        if (templateService.saveTemplate(template)) {
-//            model.addAttribute("message", "Błąd w dodawaniu szablonu");
-//            return "message";
-//        }
-//        return "redirect:/templates/showAll";
-//    }
-
 }
