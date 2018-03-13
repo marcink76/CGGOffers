@@ -21,6 +21,7 @@
             </td>
         </tr>
     </table>
+    <p th:if="${!tempComponentList.isEmpty()}">Elementy dodane do oferty:</p>
     <table>
         <tr th:each="component, stat:${tempComponentList}" th:class="${stat.odd} ? 'row odd-row' : 'row even-row'">
             <td th:text="${component.id}"></td>
@@ -29,8 +30,7 @@
             <td th:text="${component.unit}"></td>
             <td>
                 <form th:action="@{'/offers/setInvestorToOffer'}" method="post">
-                    <button name="componentIdDel" type="submit" th:value="${component.id}" class="std-btn">Usu
-                        ń</button>
+                    <button name="componentIdDel" type="submit" th:value="${component.id}" class="std-btn">Usuń</button>
                 </form>
             </td>
         </tr>

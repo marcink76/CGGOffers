@@ -16,7 +16,7 @@
             <td th:text="${investor.nip}"></td>
             <td>
                 <form th:action="@{'/offers/setInvestorToOffer'}" method="post">
-                    <input type="hidden" name="investor_id" th:value="${investor.id}"/>
+                    <input type="hidden" name="investorId" th:value="${investor.id}"/>
                     <input type="submit" value="Dodaj" class="std-btn"/></form>
             </td>
         </tr>

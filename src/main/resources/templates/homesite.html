@@ -1,33 +1,38 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
+<head th:replace="head :: head">
     <meta charset="UTF-8"/>
     <title>Strona główna</title>
     <link rel="stylesheet" type="text/css" th:href="@{/styles/styles.css}"/>
 </head>
 <body>
-<h1 th:text="${message}"></h1>
-<div class="home-site-box">
-    <label>Składniki oferty:</label>
-    <a th:href="@{'/component/showAll'}" class="std-href">Pokaż wszystkie skladniki</a>
-    <a th:href="@{'/component/addComponent'}" class="std-href">Dodaj składnik oferty</a>
-</div>
-<div class="home-site-box">
-    <label>Inwestorzy:</label>
-    <a th:href="@{'/investor/showAll'}" class="std-href">Pokaż inwestorów</a>
-    <a th:href="@{'/investor/addInvestor'}" class="std-href">Dodaj inwestora</a>
-</div>
-<div class="home-site-box">
-    <label>Oferty</label>
-    <a th:href="@{'/offers/showAll'}" class="std-href">Pokaż oferty</a>
-    <a th:href="@{'/offers/addOffer'}" class="std-href">Dodaj ofertę</a>
-    <a th:href="@{'/offerFromTemplate/addOfferFromTemplate'}" class="std-href">Dodaj ofertę z szablonu</a>
+<nav th:replace="layout/menu :: menu"></nav>
+<article class="main-art" id="main-article">
 
-</div>
-<div class="home-site-box">
-    <label>Szablony</label>
-    <a th:href="@{'/templates/showAll'}" class="std-href">Pokaż szablony</a>
-    <a th:href="@{'/templates/addTemplate'}" class="std-href">Dodaj szablon</a>
-</div>
+    <h1 th:text="${message}"></h1>
+    <div class="home-site-box">
+        <label>Składniki oferty:</label>
+        <a th:href="@{'/component/showAll'}" class="std-href">Pokaż wszystkie skladniki</a>
+        <a th:href="@{'/component/addComponent'}" class="std-href">Dodaj składnik oferty</a>
+    </div>
+    <div class="home-site-box">
+        <label>Inwestorzy:</label>
+        <a th:href="@{'/investor/showAll'}" class="std-href">Pokaż inwestorów</a>
+        <a th:href="@{'/investor/addInvestor'}" class="std-href">Dodaj inwestora</a>
+    </div>
+    <div class="home-site-box">
+        <label>Oferty</label>
+        <a th:href="@{'/offers/showAll'}" class="std-href">Pokaż oferty</a>
+        <a th:href="@{'/offers/addOffer'}" class="std-href">Dodaj ofertę</a>
+        <a th:href="@{'/offerFromTemplate/addOfferFromTemplate'}" class="std-href">Dodaj ofertę z szablonu</a>
+
+    </div>
+    <div class="home-site-box">
+        <label>Szablony</label>
+        <a th:href="@{'/templates/showAll'}" class="std-href">Pokaż szablony</a>
+        <a th:href="@{'/templates/addTemplate'}" class="std-href">Dodaj szablon</a>
+    </div>
+    <footer th:replace="/layout/footer :: footer"></footer>
+</article>
 </body>
 </html>

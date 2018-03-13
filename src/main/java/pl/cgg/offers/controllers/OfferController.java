@@ -66,7 +66,7 @@ public class OfferController {
         if (investorId != null) {
             offerService.setInvestorToOffer(offer, investorId);
         }
-        componentService.getDoubleListComponent(componentId);
+        componentService.addToTempComponentList(componentId, componentIdDel);
         model.addAttribute("componentList", componentService.getComponentList());
         if (componentService.getTempComponentList() != null) {
             model.addAttribute("tempComponentList", componentService.getTempComponentList());
