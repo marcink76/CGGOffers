@@ -12,10 +12,10 @@
             <tr th:each="component, stat:${componentList}" th:class="${stat.odd} ?'row odd-row' : 'row even-row' ">
                 <td th:text="${component.name}"></td>
                 <td><label th:for="'input-price' + ${component.id}">Cena jednostkowa: </label>
-                    <input type="number" th:id="'input-price' + ${component.id}" class="input-price" name="price"/>
+                    <input type="number" th:id="'input-price' + ${component.id}" class="std-input" name="price"/>
                 </td>
                 <td><label th:for="'input-quantity' + ${component.id}">Ilość: </label>
-                    <input type="number" th:id="'input-quantity' + ${component.id}" class="input-quantity"
+                    <input type="number" th:id="'input-quantity' + ${component.id}" class="std-input"
                            name="quantity"/>
                 </td>
                 <td class="component-price" th:id="'component-price' + ${component.id}">

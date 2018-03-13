@@ -9,6 +9,9 @@ VALUES ('Kasia', 'Kasiunia', 'Piła', 'kasiaaaa@buziaczek.pl', '10', 'Kasiex', '
 INSERT INTO offers.inwestor (imie, nazwisko, miasto, email, nr_lokalu, nazwa, nip, numertelefonu, nr_posesji, ulica)
 VALUES
   ('Krasula', 'Krasulska', 'Kołobrzeg', 'krowa@muu.pl', '1', 'Krowex', '333333333', '111111111', '2', 'Szarlatana');
+  INSERT INTO offers.inwestor (imie, nazwisko, miasto, email, nr_lokalu, nazwa, nip, numertelefonu, nr_posesji, ulica)
+VALUES
+  ('Zygmunt', 'Zygowski', 'Zakopane', 'zyga@zygeo.pl', '1', 'Zygeo', '7819870987', '+489998765', '290', 'Długa');
 INSERT INTO offers.skladnik_oferty (opis, nazwa_uslugi, jednostka) VALUES ('Badania gruntu', 'Badanie gruntu', 'szt.');
 INSERT INTO offers.skladnik_oferty (opis, nazwa_uslugi, jednostka) VALUES ('Odwierty głebokie', 'Odwiert', 'szt.');
 INSERT INTO offers.skladnik_oferty (opis, nazwa_uslugi, jednostka)
