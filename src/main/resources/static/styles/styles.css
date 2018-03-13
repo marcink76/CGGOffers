@@ -14,29 +14,32 @@
 :root{
     --width-: 1300px;
     --background-color: #0ea69a;
+    --inputs-background-color: #cffff46e;
+    --border-color: #0ea69a;
 }
 body{
     font-family: Roboto, sans-serif;
     font-size: 0.8em;
 }
 .std-input{
-    border: #0ea69a solid 1px;
-    background-color: #cffff4;
+    border: var(--border-color) solid 1px;
+    background-color: var(--inputs-background-color);
     border-radius: 7px;
-    height: 20px;
+    padding: 3px;
+    height: 17px;
 }
 .basic-lbl{
     font-family: Roboto, sans-serif;
     font-size: 0.8em;
 }
 .std-btn{
-    background-color: #cffff4 ;
-    border: 1px #0d958a solid;
+    background-color: var(--inputs-background-color) ;
+    border: 1px var(--border-color) solid;
     border-radius: 7px;
-    height: 20px;
+    height: 25px;
 }
 .input-box{
-    border: 1px solid #dddddd;
+    border: 1px solid var(--border-color);
     width: max-content;
     border-radius: 20px;
     padding: 10px;
@@ -48,6 +51,7 @@ body{
 }
 .row{
     height: 35px;
+    border: var(--border-color) 1px solid;
 }
 .row td{
     width: auto;
@@ -61,10 +65,10 @@ body{
     font-weight: normal;
 }
 .odd-row{
-    background-color: #61e6d2;
+    background-color: var(--inputs-background-color);
 }
 .even-row{
-    background-color: #2dd4da;
+    background-color: #2dd4da4d;
 }
 .main-menu{
     width: var(--width-);
