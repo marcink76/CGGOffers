@@ -71,6 +71,7 @@ public class OfferController {
         if (componentService.getTempComponentList() != null) {
             model.addAttribute("tempComponentList", componentService.getTempComponentList());
         }
+        model.addAttribute("investor", investorService.getInvestorById(investorId));
         return "addComponentToOfferForm";
     }
 

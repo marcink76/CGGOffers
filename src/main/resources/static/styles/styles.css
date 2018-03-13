@@ -1,6 +1,10 @@
 *{
     margin: 0px;
 }
+:root{
+    --width-: 1300px;
+    --background-color: #0ea69a;
+}
 body{
     font-family: Arial, sans-serif;
     font-size: 0.8em;
@@ -52,9 +56,8 @@ body{
     background-color: #2dd4da;
 }
 .main-menu{
-    margin-left: 0px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    width: var(--width-);
+    margin: 10px auto;
 }
 .cell-menu{
     width: auto;
@@ -72,6 +75,9 @@ body{
 }
 .main-art{
     clear: both;
+    width: var(--width-);
+    margin-left: auto;
+    margin-right: auto;
 }
 #ul-main-menu::after{
     clear: both; !important;
@@ -92,4 +98,26 @@ body{
     border: 1px  #2dd4da solid;
     margin: 10px;
     padding: 10px;
+}
+.home-img{
+    height: 10px;
+    width: auto;
+}
+.header{
+    display: block;
+    width: 1300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.header img{
+    width: 250px;
+    height: auto;
+}
+.footer{
+    width: var(--width-);
+    height: 100px;
+    border-radius: 20px;
+    background-color: #0d958a;
+    margin-left: auto;
+    margin-right: auto;
 }
