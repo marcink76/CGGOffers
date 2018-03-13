@@ -6,6 +6,7 @@
 
 </head>
 <body>
+<header th:replace="layout/header :: header"></header>
 <nav th:replace="layout/menu :: menu"></nav>
 <article class="main-art" id="main-article">
     <div class="input-box">
@@ -16,7 +17,13 @@
             <input class="std-input" id="input-desc" type="text" th:field="*{description}"/>
             <label for="input-unit">Jednostka:</label>
             <input class="std-input" id="input-unit" type="text" th:field="*{unit}"/>
+            <label for="category-selector">Kategoria:</label>
+            <select id="category-selector" th:field="*{category}">
+                <option th:each="category:${T(pl.cgg.offers.models.ComponentCategory).values()}"
+                        th:text="${category.getDescription()}" th:value="${category}"></option>
+            </select>
             <input type="submit" value="Wprowadź" class="std-btn"/>
+
         </form>
     </div>
 </article>
