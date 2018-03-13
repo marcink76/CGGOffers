@@ -12,19 +12,22 @@ import java.util.function.ToLongFunction;
 
 @Entity
 @Table(name = "skladnik_oferty")
-public class Component implements Serializable, Comparator<Component>, Comparable<Component>  {
+public class Component {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "skladnik_id")
     private Long id;
     @NotNull
-    @Column(name = "Nazwa_uslugi")
+    @Column(name = "nazwa_uslugi")
     private String name;
     @Column(name = "opis")
     private String description;
     @Column(name = "jednostka")
     private String unit;
+    @Column(name = "kategoria_skladnika")
+    @Enumerated(value = EnumType.STRING)
+    private ComponentCategory category;
 
     @ManyToMany
     private List<ComponentPrice> componentPriceList;
@@ -89,6 +92,14 @@ public class Component implements Serializable, Comparator<Component>, Comparabl
         this.componentPriceList = componentPriceList;
     }
 
+    public ComponentCategory getCategory() {
+        return category;
+    }
+
+    public void setCategory(ComponentCategory category) {
+        this.category = category;
+    }
+
     @Override
     public String toString() {
         return "Component{" +
@@ -98,50 +109,5 @@ public class Component implements Serializable, Comparator<Component>, Comparabl
                 ", unit='" + unit + '\'' +
                 ", offer=" + offer +
                 '}';
-    }
-
-    @Override
-    public int compareTo(Component o) {
-        return 0;
-    }
-
-    @Override
-    public int compare(Component o1, Component o2) {
-        return 0;
-    }
-
-    @Override
-    public Comparator<Component> reversed() {
-        return null;
-    }
-
-    @Override
-    public Comparator<Component> thenComparing(Comparator<? super Component> other) {
-        return null;
-    }
-
-    @Override
-    public <U> Comparator<Component> thenComparing(Function<? super Component, ? extends U> keyExtractor, Comparator<? super U> keyComparator) {
-        return null;
-    }
-
-    @Override
-    public <U extends Comparable<? super U>> Comparator<Component> thenComparing(Function<? super Component, ? extends U> keyExtractor) {
-        return null;
-    }
-
-    @Override
-    public Comparator<Component> thenComparingInt(ToIntFunction<? super Component> keyExtractor) {
-        return null;
-    }
-
-    @Override
-    public Comparator<Component> thenComparingLong(ToLongFunction<? super Component> keyExtractor) {
-        return null;
-    }
-
-    @Override
-    public Comparator<Component> thenComparingDouble(ToDoubleFunction<? super Component> keyExtractor) {
-        return null;
     }
 }
