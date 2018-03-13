@@ -8,6 +8,7 @@
 <nav th:replace="layout/menu :: menu"></nav>
 <header th:replace="layout/header :: header"></header>
 <article class="main-art" id="main-article">
+    <p>Podaj pierwszą literę nazwy inwestora:</p>
     <div th:replace="layout/filtermenu" class="filterby-letter-box"></div>
     <p class="info-box" th:if="${investorsList.isEmpty()}" th:text="${'Brak inwestorów na literę: ' + firstLetter}"></p>
     <table>
