@@ -9,7 +9,7 @@
 <nav th:replace="layout/menu :: menu"></nav>
 <article class="main-art" id="main-article">
     <form th:action="@{/inwestor/addInvestorToBase}" method="post" th:object="${investor}">
-        <div id="basic-data" class="basic-data">
+        <div id="basic-data" class="input-box">
             <label for="input-name" class="basic-lbl">Nazwa inwestora:</label>
             <input class="std-input" id="input-name" type="text" th:field="*{name}"/>
             <label for="input-firstname" class="basic-lbl">Imię:</label>
@@ -17,7 +17,7 @@
             <label for="input-street" class="basic-lbl">Nazwisko:</label>
             <input class="std-input" id="input-lastname" type="text" th:field="*{lastName}"/>
         </div>
-        <div id="adress" class="basic-data">
+        <div id="adress" class="input-box">
             <label for="input-street" class="basic-lbl">Ulica:</label>
             <input class="std-input" id="input-street" type="text" th:field="*{street}"/>
             <label for="input-posesion-nr" class="basic-lbl">Numer posesji:</label>
@@ -31,7 +31,7 @@
             <label for="input-zipcode" class="basic-lbl">kod pocztowy</label>
             <input class="std-input" id="input-zipcode" type="text" pattern="[0-9]{2}-[0-9]{3}" th:field="*{zipcode}"/>
         </div>
-        <div id="additional-data" class="basic-data">
+        <div id="additional-data" class="input-box">
             <label for="input-nip" class="basic-lbl">NIP</label>
             <input class="std-input" id="input-nip" type="number" th:field="*{nip}"/>
             <label for="input-email" class="basic-lbl">E-mail</label>
@@ -39,7 +39,7 @@
             <label for="input-phone-nr" class="basic-lbl">Numer telefonu</label>
             <input class="std-input" id="input-phone-nr" type="number" th:field="*{phoneNumber}"/>
         </div>
-        <div id="a" class="basic-data">
+        <div id="a" class="input-box">
             <label for="persist-chk" class="basic-lbl">Zapisać w bazie</label>
             <input id="persist-chk" type="checkbox" name="persist" value="true"/>
             <input type="submit" value="Wprowadź" class="std-btn"/>

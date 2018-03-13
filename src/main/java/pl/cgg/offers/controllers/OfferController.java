@@ -4,11 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.cgg.offers.models.Component;
-import pl.cgg.offers.models.ComponentPrice;
-import pl.cgg.offers.models.Offer;
-import pl.cgg.offers.models.Template;
+import pl.cgg.offers.models.*;
 import pl.cgg.offers.service.*;
+import pl.cgg.offers.utility.Utils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,6 +32,9 @@ public class OfferController {
     @Autowired
     private TemplateService templateService;
 
+    @Autowired
+    private Utils utils;
+
     @GetMapping("/showAll")
     public String showAll(Model model) {
         model.addAttribute("offersList", offerService.getAll());
@@ -41,9 +42,18 @@ public class OfferController {
     }
 
     @GetMapping("/addOffer")
-    public String addOffer(Model model) {
+    public String addOffer(@RequestParam(required = false) Character firstLetter,
+                           Model model) {
+        List<Investor> investorList = new ArrayList<>();
+        if (firstLetter == null) {
+            investorList = investorService.getAllInvestors();
+        } else {
+            investorList = investorService.getByFirstLetter(firstLetter);
+        }
+
+        model.addAttribute("chars", utils.alphabet());
         model.addAttribute("offer", new Offer());
-        model.addAttribute("investorsList", investorService.getAllInvestors());
+        model.addAttribute("investorsList", investorList);
         return "setInvestorToOfferForm";
     }
 
@@ -81,8 +91,9 @@ public class OfferController {
 
         return "redirect:showall";
     }
+
     @GetMapping("/ajaxtest")
-    public String ajaxTest (){
+    public String ajaxTest() {
 
         return "ajax";
     }

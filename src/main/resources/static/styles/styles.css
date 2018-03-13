@@ -6,19 +6,22 @@ body{
     font-size: 0.8em;
 }
 .std-input{
-    border: bisque solid 2px;
+    border: #0ea69a solid 1px;
+    background-color: #cffff4;
     border-radius: 7px;
+    height: 20px;
 }
 .basic-lbl{
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     font-size: 0.8em;
 }
 .std-btn{
-    background-color: #fff600;
-    border: 2px #ffca15 solid;
+    background-color: #cffff4 ;
+    border: 1px #0d958a solid;
     border-radius: 7px;
+    height: 20px;
 }
-.basic-data{
+.input-box{
     background-color: #eaeaea;
     border-radius: 20px;
     padding: 10px;
@@ -38,23 +41,26 @@ body{
 .row th{
     width: auto;
     padding: 10px;
-    background-color: #00aada5c;
+    background-color: rgb(14, 166, 154);
+    color: white;
     font-weight: normal;
 }
 .odd-row{
-    background-color: #add7e8;
+    background-color: #61e6d2;
 }
 .even-row{
-    background-color: #00aada33;
+    background-color: #2dd4da;
 }
 .cell-menu{
     width: auto;
     float: left;
+    color: white;
     list-style: none;
     text-align: center;
     padding: 10px;
     margin: 2px;
-    background-color: cornflowerblue;
+    background-color: #0ea69a;
+    border-radius: 10px;
 }
 .cell-menu:hover{
     background-color: #add7e8;
@@ -66,5 +72,19 @@ body{
     clear: both; !important;
 }
 .info-red{
-    color: darkred;
+    color: #cd0000;
+}
+
+.footer-logo{
+    width: 250px;
+    height: auto;
+}
+.template-component{
+    width: 350px;
+    height: auto;
+    background-color: #eeeeee;
+    border-radius: 15px;
+    border: 1px  #2dd4da solid;
+    margin: 10px;
+    padding: 10px;
 }

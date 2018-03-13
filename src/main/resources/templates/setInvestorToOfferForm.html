@@ -7,6 +7,9 @@
 <body>
 <nav th:replace="layout/menu :: menu"></nav>
 <article class="main-art" id="main-article">
+    <form method="get" th:action="@{/offers/addOffer}">
+    <button name="firstLetter" th:each="char:${chars}" class="std-btn" th:value="${char}" th:text="${char}"></button>
+    </form>
     <table>
         <tr th:each="investor, stat:${investorsList}" th:class="${stat.odd} ? 'row odd-row' : 'row even-row' ">
             <td th:text="${investor.id}"></td>
@@ -15,10 +18,11 @@
             <td>
                 <form th:action="@{'/offers/setInvestorToOffer'}" method="post">
                     <input type="hidden" name="investor_id" th:value="${investor.id}"/>
-                    <input type="submit" value="Dodaj"/></form>
+                    <input type="submit" value="Dodaj" class="std-btn"/></form>
             </td>
         </tr>
     </table>
 </article>
+<footer th:replace="/layout/footer :: footer"></footer>
 </body>
 </html>
