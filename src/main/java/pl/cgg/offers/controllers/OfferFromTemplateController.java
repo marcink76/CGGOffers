@@ -40,5 +40,4 @@ public class OfferFromTemplateController {
         model.addAttribute("componentList", componentList);
         return "setInvestorToTemplateOffer";
     }
-    //@RequestParam("total-price") Double totalPrice,
 }

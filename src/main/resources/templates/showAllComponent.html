@@ -7,6 +7,7 @@
 <body>
 <nav th:replace="layout/menu :: menu"></nav>
 <article class="main-art" id="main-article">
+    <h4 th:if="${ComponentList.isEmpty()}" th:text="Brak komponentów"></h4>
     <table>
         <tr th:each="components, stat :${ComponentList}" th:class="${stat.odd} ? 'row odd-row' : 'row even-row'">
 
@@ -16,7 +17,6 @@
             <td th:text="${components.unit}"></td>
         </tr>
     </table>
-    <a th:href="@{'/'}">Strona główna</a>
 </article>
 </body>
 </html>

@@ -11,6 +11,8 @@ import java.util.List;
 @Service
 public class InvestorService {
 
+    private List<Investor> investorList;
+
     @Autowired
     private InvestorRepository investorRepository;
 
@@ -27,7 +29,20 @@ public class InvestorService {
         return investor;
     }
 
+    public List<Investor> getInvestorList() {
+        return investorList;
+    }
+
+    public void setInvestorList(List<Investor> investorList) {
+        this.investorList = investorList;
+    }
+
     public Investor getInvestorById(Long id) {
         return investorRepository.findOne(id);
+    }
+
+    public List<Investor> getByFirstLetter(Character firstLetter){
+        String firstLetters = firstLetter.toString();
+        return investorRepository.getInvestorsByNameStartsWith(firstLetters);
     }
 }

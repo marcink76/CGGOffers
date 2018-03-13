@@ -6,30 +6,36 @@
 <nav th:replace="layout/menu :: menu"></nav>
 <article class="main-art" id="main-article"></article>
 <form th:action="@{'/templates/setToBase'}" method="post" th:object="${template}">
-    <label for="template-name">Nazwa szabonu</label>
+    <label for="template-name">Podaj nazwę szabonu</label>
     <input class="std-input" id="template-name" th:field="*{templateName}"/>
     <h3>Dodaj składniki do szablonu:</h3>
-    <table>
-        <tr class="row">
-            <th>id</th>
-            <th>nazwa:</th>
-            <th>dodaj:</th>
-        </tr>
-        <tr th:each="component, stat:${wrapper.componentList}" th:class="${stat.odd}? 'row odd-row' : 'row even-row'"
-            th:object="${wrapper}">
-            <td th:text="${component.id}"></td>
-            <td th:text="${component.name}"></td>
+    <div class="">
+        <table>
+            <tr class="row">
+                <th>id</th>
+                <th>nazwa:</th>
+                <th>dodaj:</th>
+            </tr>
 
-            <td><input type="checkbox" th:name="|componentList[${stat.index}].id|" th:value="${stat.index + 1}"/></td>
-            <input type="hidden" th:field="*{componentList[__${stat.index}__].name}"/>
-            <input type="hidden" th:field="*{componentList[__${stat.index}__].description}"/>
-            <input type="hidden" th:field="*{componentList[__${stat.index}__].componentPriceList}"/>
-            <input type="hidden" th:field="*{componentList[__${stat.index}__].unit}"/>
-            <input type="hidden" th:field="*{componentList[__${stat.index}__].offer}"/>
-        </tr>
-    </table>
-    <input type="submit" value="Dodaj"/>
-    <footer th:include="footer :: stopka"></footer>
+            <tr th:each="component, stat:${wrapper.componentList}"
+                th:class="${stat.odd}? 'row odd-row' : 'row even-row'"
+                th:object="${wrapper}">
+                <td th:text="${component.id}"></td>
+                <td th:text="${component.name}"></td>
+
+                <td><input type="checkbox" th:name="|componentList[${stat.index}].id|" th:value="${stat.index + 1}"/>
+                </td>
+                <input type="hidden" th:field="*{componentList[__${stat.index}__].name}"/>
+                <input type="hidden" th:field="*{componentList[__${stat.index}__].description}"/>
+                <input type="hidden" th:field="*{componentList[__${stat.index}__].componentPriceList}"/>
+                <input type="hidden" th:field="*{componentList[__${stat.index}__].unit}"/>
+                <input type="hidden" th:field="*{componentList[__${stat.index}__].offer}"/>
+            </tr>
+
+        </table>
+    </div>
+    <input type="submit" value="Dodaj" class="std-btn"/>
+    <footer th:replace="/layout/footer :: footer"></footer>
 </form>
 </body>
 </html>

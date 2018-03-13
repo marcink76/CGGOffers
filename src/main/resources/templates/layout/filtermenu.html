@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<div th:fragment="filtermenu" class="filterby-letter-box">
+    <form method="get" th:action="@{/offers/addOffer}">
+        <button name="firstLetter" th:each="char:${chars}" class="std-btn" th:value="${char}"
+                th:text="${char}"></button>
+    </form>
+</div>
+</html>
