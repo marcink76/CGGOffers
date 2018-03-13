@@ -53,23 +53,29 @@ public class ComponentService {
         return componentList;
     }
 
-    public void getDoubleListComponent(Long component_id) {
+    public void addToTempComponentList(Long componentId, Long componentIdDel) {
 
-        if (component_id == null) {
+        if (componentId == null && componentIdDel == null) {
             componentList = componentRepository.findAll();
             tempComponentList.clear();
-        } else {
-
+        } else if (componentId != null && componentIdDel == null) {
             for (Component componentsToAdd : componentList) {
-                if (componentsToAdd.getId() == component_id) {
+                if (componentsToAdd.getId() == componentId) {
                     System.out.println(componentsToAdd.toString());
                     tempComponentList.add(componentsToAdd);
                 }
             }
-            componentList.removeIf(component -> component.getId() == component_id);
+            componentList.removeIf(component -> component.getId() == componentId);
+        } else if (componentIdDel != null && componentId == null) {
+            for (Component componentsToAdd : tempComponentList) {
+                if (componentsToAdd.getId() == componentIdDel) {
+                    System.out.println(componentsToAdd.toString());
+                    componentList.add(componentsToAdd);
+                }
+            }
+            tempComponentList.removeIf(component -> component.getId() == componentIdDel);
         }
     }
-
     // getters and setters
 //------------------------------------------------------------
 
