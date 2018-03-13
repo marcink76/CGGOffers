@@ -16,7 +16,7 @@
             <td th:text="${component.unit}"></td>
             <td>
                 <form th:action="@{'/offers/setInvestorToOffer'}" method="post">
-                    <button name="component_id" type="submit" th:value="${component.id}" class="std-btn">Dodaj</button>
+                    <button name="componentId" type="submit" th:value="${component.id}" class="std-btn">Dodaj</button>
                 </form>
             </td>
         </tr>
@@ -29,7 +29,8 @@
             <td th:text="${component.unit}"></td>
             <td>
                 <form th:action="@{'/offers/setInvestorToOffer'}" method="post">
-                    <button name="component_id" type="submit" th:value="${component.id}" class="std-btn">Usun</button>
+                    <button name="componentIdDel" type="submit" th:value="${component.id}" class="std-btn">Usu
+                        ń</button>
                 </form>
             </td>
         </tr>

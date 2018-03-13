@@ -6,10 +6,9 @@
 </head>
 <body>
 <nav th:replace="layout/menu :: menu"></nav>
+<header th:replace="layout/header :: header"></header>
 <article class="main-art" id="main-article">
-    <form method="get" th:action="@{/offers/addOffer}">
-    <button name="firstLetter" th:each="char:${chars}" class="std-btn" th:value="${char}" th:text="${char}"></button>
-    </form>
+    <div th:replace="layout/filtermenu" class="filterby-letter-box"></div>
     <table>
         <tr th:each="investor, stat:${investorsList}" th:class="${stat.odd} ? 'row odd-row' : 'row even-row' ">
             <td th:text="${investor.id}"></td>

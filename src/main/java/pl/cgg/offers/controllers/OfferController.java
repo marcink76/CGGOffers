@@ -44,7 +44,7 @@ public class OfferController {
     @GetMapping("/addOffer")
     public String addOffer(@RequestParam(required = false) Character firstLetter,
                            Model model) {
-        List<Investor> investorList = new ArrayList<>();
+        List<Investor> investorList;
         if (firstLetter == null) {
             investorList = investorService.getAllInvestors();
         } else {
@@ -60,12 +60,13 @@ public class OfferController {
     @PostMapping("/setInvestorToOffer")
     public String addOfferToBase(Offer offer,
                                  Model model,
-                                 @RequestParam(required = false) Long investor_id,
-                                 @RequestParam(required = false) Long component_id) {
-        if (investor_id != null) {
-            offerService.setInvestorToOffer(offer, investor_id);
+                                 @RequestParam(required = false) Long investorId,
+                                 @RequestParam(required = false) Long componentId,
+                                 @RequestParam(required = false) Long componentIdDel) {
+        if (investorId != null) {
+            offerService.setInvestorToOffer(offer, investorId);
         }
-        componentService.getDoubleListComponent(component_id);
+        componentService.getDoubleListComponent(componentId);
         model.addAttribute("componentList", componentService.getComponentList());
         if (componentService.getTempComponentList() != null) {
             model.addAttribute("tempComponentList", componentService.getTempComponentList());

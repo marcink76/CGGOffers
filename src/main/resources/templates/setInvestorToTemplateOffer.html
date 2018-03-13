@@ -40,16 +40,19 @@
             <input class="std-input" id="input-phone-nr" type="number" th:field="*{phoneNumber}"/>
         </div>
         <div id="a" class="input-box">
-            <label for="persist-chk" class="basic-lbl">Zapisać w bazie</label>
+            <label for="persist-chk" class="basic-lbl">Zapisać w bazie?</label>
             <input id="persist-chk" type="checkbox" name="persist" value="true"/>
             <input type="submit" value="Wprowadź" class="std-btn"/>
         </div>
-        <table>
+        <table><tr>
+            <th>Wybrane składniki oferty:</th>
+        </tr>
             <tr th:each="component, stat:${componentList}" th:class="${stat.odd} ? 'row odd-row' : 'row even-row'">
                 <td th:text="${component.name}"></td>
             </tr>
         </table>
-        <input type="number" name="total-price"/>
+        <label for="total-price">Podaj cenę całkowitą oferty: </label>
+        <input id="total-price" type="number" name="total-price" class="std-input"/>
     </form>
 </article>
 </body>

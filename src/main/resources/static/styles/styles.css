@@ -51,6 +51,11 @@ body{
 .even-row{
     background-color: #2dd4da;
 }
+.main-menu{
+    margin-left: 0px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 .cell-menu{
     width: auto;
     float: left;
