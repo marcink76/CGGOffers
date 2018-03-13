@@ -47,7 +47,6 @@ public class TemplateService {
         } else {
             return stringList;
         }
-
     }
 
     private boolean compareName(Template template) {

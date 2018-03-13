@@ -9,6 +9,7 @@
 <header th:replace="layout/header :: header"></header>
 <article class="main-art" id="main-article">
     <div th:replace="layout/filtermenu" class="filterby-letter-box"></div>
+    <p class="info-box" th:if="${investorsList.isEmpty()}" th:text="${'Brak inwestorów na literę: ' + firstLetter}"></p>
     <table>
         <tr th:each="investor, stat:${investorsList}" th:class="${stat.odd} ? 'row odd-row' : 'row even-row' ">
             <td th:text="${investor.id}"></td>
