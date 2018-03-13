@@ -50,7 +50,7 @@ public class OfferController {
         } else {
             investorList = investorService.getByFirstLetter(firstLetter);
         }
-
+        model.addAttribute("firstLetter", firstLetter);
         model.addAttribute("chars", utils.alphabet());
         model.addAttribute("offer", new Offer());
         model.addAttribute("investorsList", investorList);
