@@ -30,6 +30,10 @@ public class ComponentPriceService {
         return componentPriceHashMap;
     }
 
+    public void saveComponentPrice(ComponentPrice componentPrice){
+        componetPriceRepository.save(componentPrice);
+    }
+
     public List<ComponentPrice> getComponentPrice(){
         List<ComponentPrice> componentPrices = new ArrayList<>();
         List<ComponentOffer> componentOfferList = componentService.getTempComponentOfferList();

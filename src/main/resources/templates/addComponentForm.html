@@ -10,7 +10,7 @@
 <nav th:replace="layout/menu :: menu"></nav>
 <article class="main-art" id="main-article">
     <div class="input-box">
-        <form th:action="@{'/componentOffer/addComponentToBase'}" th:object="${component}" method="post">
+        <form th:action="@{'/component/addComponentToBase'}" th:object="${component}" method="post">
             <label for="input-componentOffer-name">Nazwa:</label>
             <input class="std-input" id="input-componentOffer-name" type="text" th:field="*{name}"/>
             <label for="input-desc">Opis:</label>
@@ -27,5 +27,6 @@
         </form>
     </div>
 </article>
+<footer th:replace="layout/footer :: footer"></footer>
 </body>
 </html>

@@ -9,8 +9,6 @@ import pl.cgg.offers.service.*;
 import pl.cgg.offers.utility.Utils;
 import pl.cgg.offers.wrappers.ComponentPriceWrapper;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -88,9 +86,13 @@ public class OfferController {
         model.addAttribute("wrapper", wrapper);
         model.addAttribute("componentList", tempComponentOfferList);
 
+        for (int i = 0; i < wrapper.getComponentPrices().size(); i++) {
+            wrapper.getComponentPrices().get(i).setOffer(offer);
+            wrapper.getComponentPrices().get(i).setComponentOffer(tempComponentOfferList.get(i));
+            componentPriceService.saveComponentPrice(wrapper.getComponentPrices().get(i));
+        }
+        componentPriceService.setComponentPriceList(wrapper.getComponentPrices());
         offer.setComponentOfferList(tempComponentOfferList);
-
-        offerService.saveToBase(offer);
         return "showCompleteOfferForm";
     }
 
@@ -98,11 +100,18 @@ public class OfferController {
     public String saveOfferToBase(@ModelAttribute("wrapper") ComponentPriceWrapper wrapper,
                                   Offer offer,
                                   Model model) {
-        model.addAttribute("wrapper", wrapper.getComponentPrices());
 
-        //model.addAttribute("componentPrices", componentPrices);
+        List<ComponentPrice> componentPrices = componentPriceService.getComponentPriceList();
+        for (int i = 0; i < componentPrices.size() ; i++) {
+            componentPrices.get(i).setComponentPrice(wrapper.getComponentPrices().get(i).getComponentPrice());
+            componentPrices.get(i).setQuantity(wrapper.getComponentPrices().get(i).getQuantity());
+            componentPriceService.saveComponentPrice(componentPrices.get(i));
+        }
 
-        return "endOfferForm";
+        model.addAttribute("componentPricesList", componentPrices);
+        model.addAttribute(offer);
+        offerService.saveToBase(offer);
+        return "finalOfferForm";
     }
 
     @GetMapping("/ajaxtest")
