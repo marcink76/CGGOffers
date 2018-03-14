@@ -16,10 +16,10 @@ public class ComponentPrice {
     @Column(name = "cena_calkowita")
     private double totalPrice;
 
-    @ManyToOne
+    @OneToOne
     private ComponentOffer componentOffer;
 
-    @ManyToOne
+    @OneToOne
     private Offer offer;
 
     public ComponentPrice(int quantity, double componentPrice){
@@ -68,13 +68,5 @@ public class ComponentPrice {
 
     public void setComponentOffer(ComponentOffer componentOffer) {
         this.componentOffer = componentOffer;
-    }
-
-    public Offer getOffer() {
-        return offer;
-    }
-
-    public void setOffer(Offer offer) {
-        this.offer = offer;
     }
 }

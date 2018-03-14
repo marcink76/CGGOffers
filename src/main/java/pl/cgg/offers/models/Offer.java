@@ -28,11 +28,9 @@ public class Offer implements Serializable{
     @ManyToMany//(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<ComponentOffer> componentOfferList;
 
-    @OneToMany
-    private List<ComponentPrice> componentPriceList;
-
     @ManyToOne
     private Investor investor;
+
 
     public Offer() {
     }
@@ -91,13 +89,5 @@ public class Offer implements Serializable{
 
     public void setInvestor(Investor investor) {
         this.investor = investor;
-    }
-
-    public List<ComponentPrice> getComponentPriceList() {
-        return componentPriceList;
-    }
-
-    public void setComponentPriceList(List<ComponentPrice> componentPriceList) {
-        this.componentPriceList = componentPriceList;
     }
 }

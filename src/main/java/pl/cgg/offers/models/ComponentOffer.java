@@ -29,8 +29,8 @@ public class ComponentOffer {
     @Enumerated(value = EnumType.STRING)
     private ComponentCategory category;
 
-    @ManyToMany
-    private List<ComponentPrice> componentPriceList;
+    @OneToOne
+    private ComponentPrice componentPrice;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Offer> offer;
@@ -84,12 +84,12 @@ public class ComponentOffer {
         this.offer = offer;
     }
 
-    public List<ComponentPrice> getComponentPriceList() {
-        return componentPriceList;
+    public ComponentPrice getComponentPrice() {
+        return componentPrice;
     }
 
-    public void setComponentPriceList(List<ComponentPrice> componentPriceList) {
-        this.componentPriceList = componentPriceList;
+    public void setComponentPrice(ComponentPrice componentPrice) {
+        this.componentPrice = componentPrice;
     }
 
     public ComponentCategory getCategory() {
