@@ -2,7 +2,7 @@ package pl.cgg.offers.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.cgg.offers.models.Component;
+import pl.cgg.offers.models.ComponentOffer;
 import pl.cgg.offers.models.Offer;
 import pl.cgg.offers.repositories.OfferRepository;
 
@@ -37,7 +37,7 @@ public class OfferService {
         offerRepository.save(offer);
     }
 
-    public List<Component> getAllComponent(){
+    public List<ComponentOffer> getAllComponent(){
         return componentService.getAllComponents();
     }
 

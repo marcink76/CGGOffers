@@ -7,9 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import pl.cgg.offers.models.Component;
+import pl.cgg.offers.models.ComponentOffer;
 import pl.cgg.offers.models.Investor;
-import pl.cgg.offers.models.Offer;
 import pl.cgg.offers.models.Template;
 import pl.cgg.offers.service.OfferService;
 import pl.cgg.offers.service.TemplateService;
@@ -35,9 +34,9 @@ public class OfferFromTemplateController {
     public String setTemplateToOffer(@RequestParam("template-id") Long id,
                                      Model model){
         Template template = templateService.getTemplateById(id);
-        List<Component> componentList = template.getComponentList();
+        List<ComponentOffer> componentOfferList = template.getComponentOfferList();
         model.addAttribute("investor", new Investor());
-        model.addAttribute("componentList", componentList);
+        model.addAttribute("componentList", componentOfferList);
         return "setInvestorToTemplateOffer";
     }
 }

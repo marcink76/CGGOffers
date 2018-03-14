@@ -1,17 +1,17 @@
 package pl.cgg.offers.wrappers;
 
-import pl.cgg.offers.models.Component;
+import pl.cgg.offers.models.ComponentOffer;
 
 import java.util.List;
 
 public class ComponentWrapper {
-    private List<Component> componentList;
+    private List<ComponentOffer> componentOfferList;
 
-    public List<Component> getComponentList() {
-        return componentList;
+    public List<ComponentOffer> getComponentOfferList() {
+        return componentOfferList;
     }
 
-    public void setComponentList(List<Component> componentList) {
-        this.componentList = componentList;
+    public void setComponentOfferList(List<ComponentOffer> componentOfferList) {
+        this.componentOfferList = componentOfferList;
     }
 }

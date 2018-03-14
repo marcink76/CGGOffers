@@ -12,7 +12,7 @@
     <form th:action="@{/offerFromTemplate/setTemplateToOffer}" method="post">
         <div class="template-component" th:each="template, iterStat:${templateList}">
             <h3 th:text="${template.templateName}"></h3>
-            <p th:each="components:${template.getComponentList()}" th:text="${components.name}"
+            <p th:each="components:${template.getComponentOfferList()}" th:text="${components.name}"
                th:value="${template.id}"></p>
             <input type="submit" name="template-id" class="std-btn" th:value="${template.id}"/>
         </div>

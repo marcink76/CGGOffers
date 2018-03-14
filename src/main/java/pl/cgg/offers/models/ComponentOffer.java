@@ -12,7 +12,7 @@ import java.util.function.ToLongFunction;
 
 @Entity
 @Table(name = "skladnik_oferty")
-public class Component {
+public class ComponentOffer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,13 +35,13 @@ public class Component {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Offer> offer;
 
-    public Component(String name, String description, int quantity, double unitPrice, String unit, Offer offer) {
+    public ComponentOffer(String name, String description, int quantity, double unitPrice, String unit, Offer offer) {
         this.name = name;
         this.description = description;
         this.unit = unit;
     }
 
-    public Component() {
+    public ComponentOffer() {
     }
 
     public Long getId() {
@@ -102,7 +102,7 @@ public class Component {
 
     @Override
     public String toString() {
-        return "Component{" +
+        return "ComponentOffer{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +

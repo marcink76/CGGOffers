@@ -15,14 +15,14 @@ public class Template {
     private String templateName;
 
     @ManyToMany
-    private List<Component> componentList;
+    private List<ComponentOffer> componentOfferList;
 
     public Template() {
     }
 
-    public Template(String templateName, List<Component> componentList) {
+    public Template(String templateName, List<ComponentOffer> componentOfferList) {
         this.templateName = templateName;
-        this.componentList = componentList;
+        this.componentOfferList = componentOfferList;
     }
 
     public Template(String templateName) {
@@ -45,12 +45,12 @@ public class Template {
         this.templateName = templateName;
     }
 
-    public List<Component> getComponentList() {
-        return componentList;
+    public List<ComponentOffer> getComponentOfferList() {
+        return componentOfferList;
     }
 
-    public void setComponentList(List<Component> componentList) {
-        this.componentList = componentList;
+    public void setComponentOfferList(List<ComponentOffer> componentOfferList) {
+        this.componentOfferList = componentOfferList;
     }
 
     @Override
@@ -60,12 +60,12 @@ public class Template {
         Template template = (Template) o;
         return id == template.id &&
                 Objects.equals(templateName, template.templateName) &&
-                Objects.equals(componentList, template.componentList);
+                Objects.equals(componentOfferList, template.componentOfferList);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, templateName, componentList);
+        return Objects.hash(id, templateName, componentOfferList);
     }
 }

@@ -1,7 +1,6 @@
 package pl.cgg.offers.models;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "cena_skladnika")
@@ -18,7 +17,7 @@ public class ComponentPrice {
     private double totalPrice;
 
     @ManyToOne
-    private Component component;
+    private ComponentOffer componentOffer;
 
     @ManyToOne
     private Offer offer;
@@ -63,12 +62,12 @@ public class ComponentPrice {
         this.totalPrice = totalPrice;
     }
 
-    public Component getComponent() {
-        return component;
+    public ComponentOffer getComponentOffer() {
+        return componentOffer;
     }
 
-    public void setComponent(Component component) {
-        this.component = component;
+    public void setComponentOffer(ComponentOffer componentOffer) {
+        this.componentOffer = componentOffer;
     }
 
     public Offer getOffer() {

@@ -16,11 +16,11 @@
             <th>nazwa:</th>
             <th>opis:</th>
         </tr>
-        <tr th:each="component, stat:${wrapper}" th:class="${stat.odd}? 'row odd-row' : 'row even-row'"
+        <tr th:each="componentOffer, stat:${wrapper}" th:class="${stat.odd}? 'row odd-row' : 'row even-row'"
             th:object="${wrapper}">
-            <td th:text="${component.id}"></td>
-            <td th:text="${component.name}"></td>
-            <td th:text="${component.description}"></td>
+            <td th:text="${componentOffer.id}"></td>
+            <td th:text="${componentOffer.name}"></td>
+            <td th:text="${componentOffer.description}"></td>
         </tr>
     </table>
     <p th:if="${message.get(0) == 'Zapis poprawny'}"><input type="submit" value="Dodaj"/></p>
