@@ -33,12 +33,11 @@
                     <input type="hidden" th:field="*{componentOfferList[__${stat.index}__].unit}"/>
                     <input type="hidden" th:field="*{componentOfferList[__${stat.index}__].offer}"/>
                 </tr>
-
             </table>
         </div>
         <input type="submit" value="Dodaj" class="std-btn"/>
-        <footer th:replace="/layout/footer :: footer"></footer>
     </form>
 </article>
+<footer th:replace="/layout/footer :: footer"></footer>
 </body>
 </html>

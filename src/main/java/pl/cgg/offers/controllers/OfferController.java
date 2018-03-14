@@ -9,8 +9,6 @@ import pl.cgg.offers.service.*;
 import pl.cgg.offers.utility.Utils;
 import pl.cgg.offers.wrappers.ComponentPriceWrapper;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -88,9 +86,13 @@ public class OfferController {
         model.addAttribute("wrapper", wrapper);
         model.addAttribute("componentList", tempComponentOfferList);
 
-        offer.setComponentOfferList(tempComponentOfferList);
+        for (int i = 0; i < wrapper.getComponentPrices().size(); i++) {
+            wrapper.getComponentPrices().get(i).setOffer(offer);
+            wrapper.getComponentPrices().get(i).setComponentOffer(tempComponentOfferList.get(i));
+            componentPriceService.saveComponentPrice(wrapper.getComponentPrices().get(i));
+        }
 
-        offerService.saveToBase(offer);
+        offer.setComponentOfferList(tempComponentOfferList);
         return "showCompleteOfferForm";
     }
 
@@ -98,11 +100,9 @@ public class OfferController {
     public String saveOfferToBase(@ModelAttribute("wrapper") ComponentPriceWrapper wrapper,
                                   Offer offer,
                                   Model model) {
-        model.addAttribute("wrapper", wrapper.getComponentPrices());
-
-        //model.addAttribute("componentPrices", componentPrices);
-
-        return "endOfferForm";
+        model.addAttribute("componentPricesList", wrapper.getComponentPrices());
+        offerService.saveToBase(offer);
+        return "finalOfferForm";
     }
 
     @GetMapping("/ajaxtest")

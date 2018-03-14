@@ -10,6 +10,12 @@
 <article class="main-art" id="main-article">
     <form th:action="@{'/offers/completeOffer'}" method="post" th:object="${wrapper}">
         <table>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
             <tr th:each="components, stat:${componentList}" th:class="${stat.odd} ?'row odd-row' : 'row even-row' ">
                 <td th:text="${components.id}"></td>
                 <td th:text="${components.name}"></td>
