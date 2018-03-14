@@ -8,7 +8,7 @@
 <header th:replace="layout/header :: header"></header>
 <nav th:replace="layout/menu :: menu"></nav>
 <article class="main-art" id="main-article">
-    <a th:href="@{'/component/addComponent'}" class="std-href">Dodaj składnik do oferty dla: </a>
+    <a th:href="@{'/componentOffer/addComponent'}" class="std-href">Dodaj składnik do oferty dla: </a>
     <div th:object="${investor}" class="">
         <p th:text="${investor.name}"></p>
         <p th:text="${investor.firstName + ' ' + investor.lastName}"></p>

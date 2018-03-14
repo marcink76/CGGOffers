@@ -18,20 +18,20 @@
                     <th>dodaj:</th>
                 </tr>
 
-                <tr th:each="component, stat:${wrapper.componentList}"
+                <tr th:each="componentOffer, stat:${wrapper.componentOfferList}"
                     th:class="${stat.odd}? 'row odd-row' : 'row even-row'"
                     th:object="${wrapper}">
-                    <td th:text="${component.id}"></td>
-                    <td th:text="${component.name}"></td>
+                    <td th:text="${componentOffer.id}"></td>
+                    <td th:text="${componentOffer.name}"></td>
 
-                    <td><input type="checkbox" th:name="|componentList[${stat.index}].id|"
+                    <td><input type="checkbox" th:name="|componentOfferList[${stat.index}].id|"
                                th:value="${stat.index + 1}"/>
                     </td>
-                    <input type="hidden" th:field="*{componentList[__${stat.index}__].name}"/>
-                    <input type="hidden" th:field="*{componentList[__${stat.index}__].description}"/>
-                    <input type="hidden" th:field="*{componentList[__${stat.index}__].componentPriceList}"/>
-                    <input type="hidden" th:field="*{componentList[__${stat.index}__].unit}"/>
-                    <input type="hidden" th:field="*{componentList[__${stat.index}__].offer}"/>
+                    <input type="hidden" th:field="*{componentOfferList[__${stat.index}__].name}"/>
+                    <input type="hidden" th:field="*{componentOfferList[__${stat.index}__].description}"/>
+                    <input type="hidden" th:field="*{componentOfferList[__${stat.index}__].componentPriceList}"/>
+                    <input type="hidden" th:field="*{componentOfferList[__${stat.index}__].unit}"/>
+                    <input type="hidden" th:field="*{componentOfferList[__${stat.index}__].offer}"/>
                 </tr>
 
             </table>

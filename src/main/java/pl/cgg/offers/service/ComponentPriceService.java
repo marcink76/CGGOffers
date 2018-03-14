@@ -2,7 +2,7 @@ package pl.cgg.offers.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.cgg.offers.models.Component;
+import pl.cgg.offers.models.ComponentOffer;
 import pl.cgg.offers.models.ComponentPrice;
 import pl.cgg.offers.repositories.ComponetPriceRepository;
 
@@ -21,22 +21,22 @@ public class ComponentPriceService {
 
     private List<ComponentPrice> componentPriceList = new ArrayList<>();
 
-    public List<ComponentPrice> makeComponentPriceTempList() {
-        List<Component> componentList = componentService.getTempComponentList();
-        List<ComponentPrice> componentPriceList = new ArrayList<>();
-        for (int i = 0; i < componentList.size(); i++) {
-            componentPriceList.add(new ComponentPrice());
-        }
-        return componentPriceList;
-    }
-
-    public HashMap<Component, ComponentPrice> getComponentPriceToMap() {
-        HashMap<Component, ComponentPrice> componentPriceHashMap = new HashMap<>();
-        List<Component> componentList = componentService.getTempComponentList();
-        for (Component components : componentList) {
+    public HashMap<ComponentOffer, ComponentPrice> getComponentPriceToMap() {
+        HashMap<ComponentOffer, ComponentPrice> componentPriceHashMap = new HashMap<>();
+        List<ComponentOffer> componentOfferList = componentService.getTempComponentOfferList();
+        for (ComponentOffer components : componentOfferList) {
             componentPriceHashMap.put(components, new ComponentPrice());
         }
         return componentPriceHashMap;
+    }
+
+    public List<ComponentPrice> getComponentPrice(){
+        List<ComponentPrice> componentPrices = new ArrayList<>();
+        List<ComponentOffer> componentOfferList = componentService.getTempComponentOfferList();
+        for (ComponentOffer comps : componentOfferList) {
+            componentPrices.add(new ComponentPrice());
+        }
+        return componentPrices;
     }
 
     public ComponentPrice getOneComponentPrice(Long id) {

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.cgg.offers.models.*;
 import pl.cgg.offers.service.*;
 import pl.cgg.offers.utility.Utils;
+import pl.cgg.offers.wrappers.ComponentPriceWrapper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -67,9 +68,9 @@ public class OfferController {
             offerService.setInvestorToOffer(offer, investorId);
         }
         componentService.addToTempComponentList(componentId, componentIdDel);
-        model.addAttribute("componentList", componentService.getComponentList());
-        if (componentService.getTempComponentList() != null) {
-            model.addAttribute("tempComponentList", componentService.getTempComponentList());
+        model.addAttribute("componentList", componentService.getComponentOfferList());
+        if (componentService.getTempComponentOfferList() != null) {
+            model.addAttribute("tempComponentList", componentService.getTempComponentOfferList());
         }
         model.addAttribute("investor", investorService.getInvestorById(investorId));
         return "addComponentToOfferForm";
@@ -77,21 +78,31 @@ public class OfferController {
 
     @PostMapping("/addComponentToOffer")
     public String setComponentsToOffer(Offer offer, Model model) {
-        List<Component> tempComponentList = componentService.getTempComponentList();
-        offer.setComponentList(tempComponentList);
-        model.addAttribute("componentList", tempComponentList);
-        model.addAttribute("componentPriceList", componentPriceService.makeComponentPriceTempList());
+
+        ComponentPriceWrapper wrapper = new ComponentPriceWrapper();
+        List<ComponentOffer> tempComponentOfferList = componentService.getTempComponentOfferList();
+
+        List<ComponentPrice> emptyList = componentPriceService.getComponentPrice();
+        wrapper.setComponentPrices(emptyList);
+
+        model.addAttribute("wrapper", wrapper);
+        model.addAttribute("componentList", tempComponentOfferList);
+
+        offer.setComponentOfferList(tempComponentOfferList);
+
         offerService.saveToBase(offer);
         return "showCompleteOfferForm";
     }
 
     @PostMapping("/completeOffer")
-    public String saveOfferToBase(Offer offer, Model model) {
-
+    public String saveOfferToBase(@ModelAttribute("wrapper") ComponentPriceWrapper wrapper,
+                                  Offer offer,
+                                  Model model) {
+        model.addAttribute("wrapper", wrapper.getComponentPrices());
 
         //model.addAttribute("componentPrices", componentPrices);
 
-        return "redirect:showall";
+        return "endOfferForm";
     }
 
     @GetMapping("/ajaxtest")

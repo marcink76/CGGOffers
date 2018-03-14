@@ -12,7 +12,7 @@ import java.util.function.ToLongFunction;
 
 @Entity
 @Table(name = "skladnik_oferty")
-public class Component {
+public class ComponentOffer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,19 +29,19 @@ public class Component {
     @Enumerated(value = EnumType.STRING)
     private ComponentCategory category;
 
-    @ManyToMany
-    private List<ComponentPrice> componentPriceList;
+    @OneToOne
+    private ComponentPrice componentPrice;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Offer> offer;
 
-    public Component(String name, String description, int quantity, double unitPrice, String unit, Offer offer) {
+    public ComponentOffer(String name, String description, int quantity, double unitPrice, String unit, Offer offer) {
         this.name = name;
         this.description = description;
         this.unit = unit;
     }
 
-    public Component() {
+    public ComponentOffer() {
     }
 
     public Long getId() {
@@ -84,12 +84,12 @@ public class Component {
         this.offer = offer;
     }
 
-    public List<ComponentPrice> getComponentPriceList() {
-        return componentPriceList;
+    public ComponentPrice getComponentPrice() {
+        return componentPrice;
     }
 
-    public void setComponentPriceList(List<ComponentPrice> componentPriceList) {
-        this.componentPriceList = componentPriceList;
+    public void setComponentPrice(ComponentPrice componentPrice) {
+        this.componentPrice = componentPrice;
     }
 
     public ComponentCategory getCategory() {
@@ -102,7 +102,7 @@ public class Component {
 
     @Override
     public String toString() {
-        return "Component{" +
+        return "ComponentOffer{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +

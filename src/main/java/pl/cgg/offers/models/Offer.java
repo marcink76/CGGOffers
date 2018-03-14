@@ -26,22 +26,20 @@ public class Offer implements Serializable{
     private double totalPrice;
 
     @ManyToMany//(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Component> componentList;
-
-    @OneToMany
-    private List<ComponentPrice> componentPriceList;
+    private List<ComponentOffer> componentOfferList;
 
     @ManyToOne
     private Investor investor;
 
+
     public Offer() {
     }
 
-    public Offer(LocalDate date, String description, double totalPrice, List<Component> componentList, Investor investor) {
+    public Offer(LocalDate date, String description, double totalPrice, List<ComponentOffer> componentOfferList, Investor investor) {
         this.date = date;
         this.description = description;
         this.totalPrice = totalPrice;
-        this.componentList = componentList;
+        this.componentOfferList = componentOfferList;
         this.investor = investor;
     }
 
@@ -77,12 +75,12 @@ public class Offer implements Serializable{
         this.totalPrice = totalPrice;
     }
 
-    public List<Component> getComponentList() {
-        return componentList;
+    public List<ComponentOffer> getComponentOfferList() {
+        return componentOfferList;
     }
 
-    public void setComponentList(List<Component> componentList) {
-        this.componentList = componentList;
+    public void setComponentOfferList(List<ComponentOffer> componentOfferList) {
+        this.componentOfferList = componentOfferList;
     }
 
     public Investor getInvestor() {
@@ -91,13 +89,5 @@ public class Offer implements Serializable{
 
     public void setInvestor(Investor investor) {
         this.investor = investor;
-    }
-
-    public List<ComponentPrice> getComponentPriceList() {
-        return componentPriceList;
-    }
-
-    public void setComponentPriceList(List<ComponentPrice> componentPriceList) {
-        this.componentPriceList = componentPriceList;
     }
 }

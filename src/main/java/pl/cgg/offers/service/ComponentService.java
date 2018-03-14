@@ -2,7 +2,7 @@ package pl.cgg.offers.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.cgg.offers.models.Component;
+import pl.cgg.offers.models.ComponentOffer;
 import pl.cgg.offers.repositories.ComponentRepository;
 
 import java.util.ArrayList;
@@ -12,94 +12,94 @@ import java.util.List;
 @Service
 public class ComponentService {
 
-    private Component component;
-    private List<Component> componentList;
-    private List<Component> tempComponentList = new ArrayList<>();
+    private ComponentOffer componentOffer;
+    private List<ComponentOffer> componentOfferList;
+    private List<ComponentOffer> tempComponentOfferList = new ArrayList<>();
 
 
     @Autowired
     private ComponentRepository componentRepository;
 
-    public List<Component> getAllComponents() {
+    public List<ComponentOffer> getAllComponents() {
         return componentRepository.findAll();
     }
 
-    public Component getOneComponent(Long id) {
+    public ComponentOffer getOneComponent(Long id) {
         return componentRepository.findOne(id);
     }
 
-    public void addToBase(Component component) {
-        componentRepository.save(component);
+    public void addToBase(ComponentOffer componentOffer) {
+        componentRepository.save(componentOffer);
     }
 
-    public HashMap<Component, Boolean> getComponentBoolMap() {
-        HashMap<Component, Boolean> componentBooleanHashMap = new HashMap<>();
-        List<Component> list = componentRepository.findAll();
+    public HashMap<ComponentOffer, Boolean> getComponentBoolMap() {
+        HashMap<ComponentOffer, Boolean> componentBooleanHashMap = new HashMap<>();
+        List<ComponentOffer> list = componentRepository.findAll();
 
-        for (Component components : list) {
+        for (ComponentOffer components : list) {
             componentBooleanHashMap.put(components, true);
         }
         return componentBooleanHashMap;
     }
 
-    public List<Component> setComponentToList(HashMap<Component, Boolean> componentMap) {
+    public List<ComponentOffer> setComponentToList(HashMap<ComponentOffer, Boolean> componentMap) {
 
-        List<Component> componentList = new ArrayList<>();
-        for (HashMap.Entry<Component, Boolean> hashMap : componentMap.entrySet()) {
+        List<ComponentOffer> componentOfferList = new ArrayList<>();
+        for (HashMap.Entry<ComponentOffer, Boolean> hashMap : componentMap.entrySet()) {
             if (!hashMap.getValue()) {
-                componentList.add(hashMap.getKey());
+                componentOfferList.add(hashMap.getKey());
             }
         }
-        return componentList;
+        return componentOfferList;
     }
 
     public void addToTempComponentList(Long componentId, Long componentIdDel) {
 
         if (componentId == null && componentIdDel == null) {
-            componentList = componentRepository.findAll();
-            tempComponentList.clear();
+            componentOfferList = componentRepository.findAll();
+            tempComponentOfferList.clear();
         } else if (componentId != null && componentIdDel == null) {
-            for (Component componentsToAdd : componentList) {
+            for (ComponentOffer componentsToAdd : componentOfferList) {
                 if (componentsToAdd.getId() == componentId) {
                     System.out.println(componentsToAdd.toString());
-                    tempComponentList.add(componentsToAdd);
+                    tempComponentOfferList.add(componentsToAdd);
                 }
             }
-            componentList.removeIf(component -> component.getId() == componentId);
+            componentOfferList.removeIf(component -> component.getId() == componentId);
         } else if (componentIdDel != null && componentId == null) {
-            for (Component componentsToAdd : tempComponentList) {
+            for (ComponentOffer componentsToAdd : tempComponentOfferList) {
                 if (componentsToAdd.getId() == componentIdDel) {
                     System.out.println(componentsToAdd.toString());
-                    componentList.add(componentsToAdd);
+                    componentOfferList.add(componentsToAdd);
                 }
             }
-            tempComponentList.removeIf(component -> component.getId() == componentIdDel);
+            tempComponentOfferList.removeIf(component -> component.getId() == componentIdDel);
         }
     }
     // getters and setters
 //------------------------------------------------------------
 
-    public List<Component> getComponentList() {
-        return componentList;
+    public List<ComponentOffer> getComponentOfferList() {
+        return componentOfferList;
     }
 
-    public void setComponentList(List<Component> componentList) {
-        this.componentList = componentList;
+    public void setComponentOfferList(List<ComponentOffer> componentOfferList) {
+        this.componentOfferList = componentOfferList;
     }
 
-    public List<Component> getTempComponentList() {
-        return tempComponentList;
+    public List<ComponentOffer> getTempComponentOfferList() {
+        return tempComponentOfferList;
     }
 
-    public void setTempComponentList(List<Component> tempComponentList) {
-        this.tempComponentList = tempComponentList;
+    public void setTempComponentOfferList(List<ComponentOffer> tempComponentOfferList) {
+        this.tempComponentOfferList = tempComponentOfferList;
     }
 
-    public Component getComponent() {
-        return component;
+    public ComponentOffer getComponentOffer() {
+        return componentOffer;
     }
 
-    public void setComponent(Component component) {
-        this.component = component;
+    public void setComponentOffer(ComponentOffer componentOffer) {
+        this.componentOffer = componentOffer;
     }
 }

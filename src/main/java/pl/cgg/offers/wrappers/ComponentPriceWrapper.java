@@ -1,20 +1,15 @@
 package pl.cgg.offers.wrappers;
-
-import org.springframework.stereotype.Component;
 import pl.cgg.offers.models.ComponentPrice;
-
-import java.util.ArrayList;
 import java.util.List;
 
-@Component
 public class ComponentPriceWrapper {
-    List<ComponentPrice> componentPriceList = new ArrayList<>();
+    private List<ComponentPrice> componentPrices;
 
-    public List<ComponentPrice> getComponentPriceList() {
-        return componentPriceList;
+    public List<ComponentPrice> getComponentPrices() {
+        return componentPrices;
     }
 
-    public void setComponentPriceList(List<ComponentPrice> componentPriceList) {
-        this.componentPriceList = componentPriceList;
+    public void setComponentPrices(List<ComponentPrice> componentPrices) {
+        this.componentPrices = componentPrices;
     }
 }

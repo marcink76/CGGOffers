@@ -31,7 +31,7 @@ public class TemplateService {
             validation = false;
             stringList.add("Uzupełnij nazwę profilu");
         }
-        if (template.getComponentList() == null || template.getComponentList().isEmpty()) {
+        if (template.getComponentOfferList() == null || template.getComponentOfferList().isEmpty()) {
             validation = false;
             stringList.add("Dodaj składniki szablonu");
         }

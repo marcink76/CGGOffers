@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.cgg.offers.models.Component;
+import pl.cgg.offers.models.ComponentOffer;
 import pl.cgg.offers.service.ComponentService;
 
 @Controller
@@ -24,13 +24,13 @@ public class ComponentController {
 
     @GetMapping("/addComponent")
     public String addComponent(Model model) {
-        model.addAttribute("component", new Component());
+        model.addAttribute("component", new ComponentOffer());
         return "addComponentForm";
     }
 
     @PostMapping("/addComponentToBase")
-    public String addComponentToBase(Component component){
-        componentService.addToBase(component);
+    public String addComponentToBase(ComponentOffer componentOffer){
+        componentService.addToBase(componentOffer);
         return "redirect:showAll";
     }
 

@@ -47,8 +47,8 @@
         <table><tr>
             <th>Wybrane składniki oferty:</th>
         </tr>
-            <tr th:each="component, stat:${componentList}" th:class="${stat.odd} ? 'row odd-row' : 'row even-row'">
-                <td th:text="${component.name}"></td>
+            <tr th:each="componentOffer, stat:${componentOfferList}" th:class="${stat.odd} ? 'row odd-row' : 'row even-row'">
+                <td th:text="${componentOffer.name}"></td>
             </tr>
         </table>
         <label for="total-price">Podaj cenę całkowitą oferty: </label>
