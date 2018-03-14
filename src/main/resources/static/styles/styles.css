@@ -110,7 +110,7 @@ body{
 .template-component{
     width: 350px;
     height: auto;
-    background-color: #eeeeee;
+    background-color: #eeeeee54;
     border-radius: 15px;
     border: 1px  #2dd4da solid;
     margin: 10px;
