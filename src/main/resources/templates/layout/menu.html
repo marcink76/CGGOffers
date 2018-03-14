@@ -3,7 +3,7 @@
 <body>
 <nav th:fragment="menu" id="main-menu" class="main-menu">
     <ul id="ul-main-menu">
-        <li class="cell-menu"><img src="/images/home.png"/></li>
+        <li class="cell-menu"><a href="/"><img src="/images/home.jpg" class="home-img"/></a></li>
         <li class="cell-menu"><a th:href="@{'/component/showAll'}" class="std-href">Pokaż wszystkie skladniki</a></li>
         <li class="cell-menu"><a th:href="@{'/component/addComponent'}" class="std-href">Dodaj składnik oferty</a></li>
         <li class="cell-menu"><a th:href="@{'/investor/showAll'}" class="std-href">Pokaż inwestorów</a></li>
