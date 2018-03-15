@@ -6,8 +6,10 @@
     <link rel="stylesheet" type="text/css" th:href="@{/styles/styles.css}"/>
 </head>
 <body>
+<header th:replace="layout/header :: header"></header>
 <nav th:replace="layout/menu :: menu"></nav>
 <article class="main-art" id="main-article">
+    <h4>Dodaj investora do oferty:</h4>
     <form th:action="@{/inwestor/addInvestorToBase}" method="post" th:object="${investor}">
         <div id="basic-data" class="input-box">
             <label for="input-name" class="basic-lbl">Nazwa inwestora:</label>
@@ -47,7 +49,7 @@
         <table><tr>
             <th>Wybrane składniki oferty:</th>
         </tr>
-            <tr th:each="componentOffer, stat:${componentOfferList}" th:class="${stat.odd} ? 'row odd-row' : 'row even-row'">
+            <tr th:each="componentOffer, stat:${componentList}" th:class="${stat.odd} ? 'row odd-row' : 'row even-row'">
                 <td th:text="${componentOffer.name}"></td>
             </tr>
         </table>

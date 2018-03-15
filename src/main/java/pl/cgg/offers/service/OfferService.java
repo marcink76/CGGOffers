@@ -37,6 +37,10 @@ public class OfferService {
         offerRepository.save(offer);
     }
 
+    public Offer getOneOffer(Long id){
+        return offerRepository.getOne(id);
+    }
+
     public List<ComponentOffer> getAllComponent(){
         return componentService.getAllComponents();
     }

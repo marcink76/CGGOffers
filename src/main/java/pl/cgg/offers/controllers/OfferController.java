@@ -13,7 +13,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/offers")
-@SessionAttributes({"offer", "componentMap"})
+@SessionAttributes({"offer"})
 public class OfferController {
 
     @Autowired
@@ -38,6 +38,14 @@ public class OfferController {
     public String showAll(Model model) {
         model.addAttribute("offersList", offerService.getAll());
         return "showAllOffers";
+    }
+
+    @GetMapping("/showOneOffer/{id}")
+    public String showOne(@PathVariable("id")Long id,
+                          Model model){
+
+        model.addAttribute("offer", offerService.getOneOffer(id));
+        return "offerForm";
     }
 
     @GetMapping("/addOffer")
@@ -82,7 +90,7 @@ public class OfferController {
 
         List<ComponentPrice> emptyList = componentPriceService.getComponentPrice();
         wrapper.setComponentPrices(emptyList);
-
+        model.addAttribute(offer);//to dodałem
         model.addAttribute("wrapper", wrapper);
         model.addAttribute("componentList", tempComponentOfferList);
 

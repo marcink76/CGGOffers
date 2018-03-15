@@ -1,7 +1,9 @@
 package pl.cgg.offers.models;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Min;
 import java.io.Serializable;
 import java.util.List;
 
@@ -13,6 +15,8 @@ public class Investor implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "inwestor_id")
     private Long id;
+    @NotEmpty(message = "podaj nazwę inwestora!")
+    @Min(2)
     @Column(name = "Nazwa")
     private String name;
     @Column(name = "Imie")

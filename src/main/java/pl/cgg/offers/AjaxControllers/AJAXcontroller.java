@@ -1,4 +1,4 @@
-package pl.cgg.offers.controllers;
+package pl.cgg.offers.AjaxControllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

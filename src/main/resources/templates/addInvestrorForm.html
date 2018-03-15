@@ -7,11 +7,16 @@
 <body>
 <header th:replace="layout/header :: header"></header>
 <nav th:replace="layout/menu :: menu"></nav>
+
 <article class="main-art" id="main-article">
-    <form th:action="@{/inwestor/addInvestorToBase}" method="post" th:object="${investor}">
+    <h4>Dodawanie inwestora:</h4>
+    <form th:action="@{/investor/addInvestorToBase}" method="post" th:object="${investor}">
         <div id="basic-data" class="input-box">
-            <label for="input-name" class="basic-lbl">Nazwa inwestora:</label>
-            <input class="std-input" id="input-name" type="text" th:field="*{name}"/>
+            <div>
+                <label for="input-name" class="basic-lbl">Nazwa inwestora:</label>
+                <input class="std-input" id="input-name" type="text" th:field="*{name}"/>
+            </div>
+            <div th:if="${#fields.hasErrors()}" th:errors="*{name}">Brak nazwy inwestora!</div>
             <label for="input-firstname" class="basic-lbl">Imię:</label>
             <input class="std-input" id="input-firstname" type="text" th:field="*{firstName}"/>
             <label for="input-street" class="basic-lbl">Nazwisko:</label>

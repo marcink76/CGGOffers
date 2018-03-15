@@ -9,9 +9,16 @@
 <nav th:replace="layout/menu :: menu"></nav>
 <article class="main-art" id="main-article">
     <h4 th:if="${ComponentList.isEmpty()}" th:text="Brak komponentów"></h4>
+    <h4>Składniki ofert:</h4>
     <table>
+        <tr class="row">
+            <th>Id</th>
+            <th>Opis</th>
+            <th>Nazwa</th>
+            <th>Jednostka</th>
+            <th>Categoria</th>
+        </tr>
         <tr th:each="components, stat :${ComponentList}" th:class="${stat.odd} ? 'row odd-row' : 'row even-row'">
-
             <td th:text="${components.id}"></td>
             <td th:text="${components.description}"></td>
             <td th:text="${components.name}"></td>

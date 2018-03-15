@@ -41,6 +41,10 @@ public class InvestorService {
         return investorRepository.findOne(id);
     }
 
+    public void deleteInvestorFromBase(Long investorId){
+        investorRepository.delete(investorId);
+    }
+
     public List<Investor> getByFirstLetter(Character firstLetter){
         String firstLetters = firstLetter.toString();
         return investorRepository.getInvestorsByNameStartsWith(firstLetters);
