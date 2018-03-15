@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="head :: head">
+    <meta charset="UTF-8"/>
+    <title>Inwestorzy</title>
+</head>
+<body>
+<header th:replace="layout/header :: header"></header>
+<nav th:replace="layout/menu :: menu"></nav>
+<article class="main-art" id="main-article">
+    <h4>Inwestorzy</h4>
+    <table>
+        <tr class="row">
+            <th>id</th>
+            <th>Imie</th>
+            <th>Nazwisko</th>
+            <th>Nazwa</th>
+            <th>Miasto</th>
+            <th>Ulica</th>
+            <th>Nr</th>
+            <th>Nr lokalu</th>
+            <th>Kod</th>
+            <th>email</th>
+            <th>nip</th>
+            <th>usuwanie</th>
+
+        </tr>
+        <tr th:each="invoice, stat:${invoices}" class="table-row"
+            th:class="${stat.odd} ? 'row odd-row' : 'row even-row'">
+            <td th:text="${invoice.id}"></td>
+            <td th:text="${invoice.offer.investor.name}"></td>
+            <td th:text="${invoice.offer.investor.nip}"></td>
+            <td th:text="${invoice.offer.totalPrice}"></td>
+            <td>
+                <form th:action="@{'/invoice/showAll'}" method="post">
+                    <button class="std-btn" name="investorId" th:value="${invoice.id}">usun</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</article>
+<footer th:replace="layout/footer :: footer"></footer>
+</body>
+</html>
