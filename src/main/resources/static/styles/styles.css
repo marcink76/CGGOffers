@@ -2,79 +2,100 @@
     font-family: Roboto;
     src: url("fonts/RobotoCondensed-Regular.ttf");
 }
+
 @font-face {
     font-family: Lato;
     src: url("fonts/Lato-Regular.ttf");
 }
 
-*{
+* {
     margin: 0px;
 }
 
-:root{
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+:root {
     --width-: 1300px;
     --background-color: #0ea69a;
     --inputs-background-color: #cffff46e;
     --border-color: #0ea69a;
 }
-body{
+
+body {
     font-family: Roboto, sans-serif;
     font-size: 0.8em;
 }
-.std-input{
+
+.std-input {
     border: var(--border-color) solid 1px;
+    font-family: inherit;
     background-color: var(--inputs-background-color);
     border-radius: 7px;
     padding: 3px;
     height: 17px;
 }
-.basic-lbl{
+
+.basic-lbl {
     font-family: Roboto, sans-serif;
-    font-size: 0.8em;
+    font-size: 1em;
 }
-.std-btn{
-    background-color: var(--inputs-background-color) ;
+
+.std-btn {
+    background-color: var(--inputs-background-color);
     border: 1px var(--border-color) solid;
     border-radius: 7px;
     height: 25px;
+    font-family: inherit;
 }
-.input-box{
+
+.input-box {
     border: 1px solid var(--border-color);
     width: max-content;
     border-radius: 20px;
     padding: 10px;
     margin: 10px;
 }
-.std-href{
+
+.std-href {
     color: inherit;
     text-decoration: none;
 }
-.row{
+
+.row {
     height: 35px;
     border: var(--border-color) 1px solid;
 }
-.row td{
+
+.row td {
     width: auto;
     padding: 10px;
 }
-.row th{
+
+.row th {
     width: auto;
     padding: 10px;
     background-color: rgb(14, 166, 154);
     color: white;
     font-weight: normal;
 }
-.odd-row{
+
+.odd-row {
     background-color: var(--inputs-background-color);
 }
-.even-row{
+
+.even-row {
     background-color: #2dd4da4d;
 }
-.main-menu{
+
+.main-menu {
     width: var(--width-);
     margin: 10px auto;
 }
-.cell-menu{
+
+.cell-menu {
     font-family: Roboto, sans-serif;
     width: auto;
     float: left;
@@ -86,53 +107,65 @@ body{
     background-color: #0ea69a;
     border-radius: 10px;
 }
-.cell-menu:hover{
+
+.cell-menu:hover {
     background-color: #add7e8;
 }
-.main-art{
+
+.main-art {
     clear: both;
     width: var(--width-);
     margin-left: auto;
     margin-right: auto;
 }
-#ul-main-menu::after{
-    clear: both; !important;
+
+#ul-main-menu::after {
+    clear: both;
+!important;
 }
-.info-red{
+
+.info-red {
     color: #cd0000;
 }
 
-.footer-logo{
+.footer-logo {
     width: 250px;
     height: auto;
 }
 
-.template-component{
+.template-component {
     width: 350px;
     height: auto;
     background-color: #eeeeee54;
     border-radius: 15px;
-    border: 1px  #2dd4da solid;
+    border: 1px #2dd4da solid;
     margin: 10px;
     padding: 10px;
 }
-.home-img{
+
+.home-img {
     height: 10px;
     width: auto;
 }
-.header{
+
+.header {
     display: block;
     width: 1300px;
     margin-left: auto;
     margin-right: auto;
 }
-.header img{
+
+.header img {
     margin-top: 15px;
     width: 250px;
     height: auto;
 }
-.footer{
+
+.footer {
     width: var(--width-);
+    padding-top: 15px;
+    text-align: right;
+    position: center;
     height: 100px;
     border-radius: 20px;
     background-color: #0d958a;
@@ -140,8 +173,9 @@ body{
     margin-left: auto;
     margin-right: auto;
 }
-.letter-btn{
-    background-color: #cffff4 ;
+
+.letter-btn {
+    background-color: #cffff4;
     border: 1px #0d958a solid;
     border-radius: 7px;
     width: 30px;
@@ -149,13 +183,20 @@ body{
     height: 20px;
     text-transform: uppercase;
 }
-.filterby-letter-box{
+
+.filterby-letter-box {
     text-align: left;
     margin: 10px auto 13px;
 }
-.investor-offer{
+
+.investor-offer {
     list-style: none;
 }
-.final-offer-header{
+
+.final-offer-header {
     text-align: center;
+}
+
+.empty-table-cell {
+    background-color: white;
 }

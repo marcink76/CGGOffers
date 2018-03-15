@@ -25,12 +25,20 @@ public class Offer implements Serializable{
     @Column(name = "Koszt_calkowity")
     private double totalPrice;
 
+    @Column(name = "zafakturowanie")
+    private boolean invoicing;
+
+
     @ManyToMany//(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<ComponentOffer> componentOfferList;
 
+    //@Column(name = "investor")
     @ManyToOne
     private Investor investor;
 
+    //@Column(name = "uzytkownik")
+    @ManyToOne
+    private User user;
 
     public Offer() {
     }
@@ -89,5 +97,21 @@ public class Offer implements Serializable{
 
     public void setInvestor(Investor investor) {
         this.investor = investor;
+    }
+
+    public boolean isInvoicing() {
+        return invoicing;
+    }
+
+    public void setInvoicing(boolean invoicing) {
+        this.invoicing = invoicing;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
