@@ -5,6 +5,7 @@
     <title>Title</title>
 </head>
 <body>
+<nav><a href="/offers/showAll">Pokaż oferty</a></nav>
 <article class="offer-show">
     <h2 th:text="${'Oferta nr: ' + offer.id +'/'+ offer.date}"></h2>
     <h4 th:text="${offer.investor.name}"></h4>
@@ -17,7 +18,11 @@
         <tr th:each="components, stat:${offer.componentOfferList}">
             <td th:text="${components.id}"></td>
             <td th:text="${components.name}"></td>
-            <td th:text="${components.componentPrice}"></td>
+            <td>
+                <ul th:each="prices:${components.componentPrice}">
+                    <li th:text="prices"></li>
+                </ul>
+            </td>
         </tr>
     </table>
 </article>

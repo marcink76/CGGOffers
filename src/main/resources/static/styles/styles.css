@@ -165,7 +165,7 @@ body {
     width: var(--width-);
     padding-top: 15px;
     text-align: right;
-    position: center;
+    clear: both;
     height: 100px;
     border-radius: 20px;
     background-color: #0d958a;
@@ -199,4 +199,19 @@ body {
 
 .empty-table-cell {
     background-color: white;
+}
+#offers-add{
+    width: 100%;
+}
+#added-to-box{
+    width: 50%;
+    float: right;
+}
+#to-add-box{
+    width: 50%;
+    float: left;
+}
+#offer-add-btn-box{
+    margin-top: 10px;
+    clear: both;
 }

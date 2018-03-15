@@ -43,8 +43,8 @@ public class OfferController {
     @GetMapping("/showOneOffer/{id}")
     public String showOne(@PathVariable("id")Long id,
                           Model model){
-
-        model.addAttribute("offer", offerService.getOneOffer(id));
+        Offer offer = offerService.getOneOffer(id);
+        model.addAttribute("offer", offer);
         return "offerForm";
     }
 

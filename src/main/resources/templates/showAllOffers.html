@@ -22,7 +22,8 @@
         </tr>
         <tr th:each="offer, stat:${offersList}" th:class="${stat.odd} ? 'row odd-row' : 'row even-row' ">
             <td th:text="${offer.id} + '/' + ${offer.date}"></td>
-            <td th:text="${offer.description}" th:class="${offer.description == null} ? 'empty-table-cell'"></td>
+            <td th:text="${offer.description == null} ? 'brak'"
+                th:class="${offer.description == null} ? 'empty-table-cell'"></td>
             <td th:text="${offer.totalPrice}"></td>
             <td th:text="${offer.investor.name}"></td>
             <td th:text="${offer.investor.city}"></td>

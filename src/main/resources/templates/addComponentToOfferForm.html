@@ -8,43 +8,55 @@
 <header th:replace="layout/header :: header"></header>
 <nav th:replace="layout/menu :: menu"></nav>
 <article class="main-art" id="main-article">
-    <a th:href="@{'/componentOffer/addComponent'}" class="std-href">Dodaj składnik do oferty dla: </a>
+    <h4>Oferta dla:</h4>
     <div th:object="${investor}" class="">
         <p th:text="${investor.name}"></p>
         <p th:text="${investor.firstName + ' ' + investor.lastName}"></p>
     </div>
-    <table>
-        <tr th:each="component, stat:${componentList}" th:class="${stat.odd} ? 'row odd-row' : 'row even-row'">
-            <td th:text="${component.id}"></td>
-            <td th:text="${component.name}"></td>
-            <td th:text="${component.description}"></td>
-            <td th:text="${component.unit}"></td>
-            <td>
-                <form th:action="@{'/offers/setInvestorToOffer'}" method="post">
-                    <button name="componentId" type="submit" th:value="${component.id}" class="std-btn">Dodaj</button>
-                    <input type="hidden" name="investorId" th:value="${investor.id}"/>
-                </form>
-            </td>
-        </tr>
-    </table>
-    <p th:if="${!tempComponentList.isEmpty()}">Elementy dodane do oferty:</p>
-    <table>
-        <tr th:each="component, stat:${tempComponentList}" th:class="${stat.odd} ? 'row odd-row' : 'row even-row'">
-            <td th:text="${component.id}"></td>
-            <td th:text="${component.name}"></td>
-            <td th:text="${component.description}"></td>
-            <td th:text="${component.unit}"></td>
-            <td>
-                <form th:action="@{'/offers/setInvestorToOffer'}" method="post">
-                    <button name="componentIdDel" type="submit" th:value="${component.id}" class="std-btn">Usuń</button>
-                    <input type="hidden" name="investorId" th:value="${investor.id}"/>
-                </form>
-            </td>
-        </tr>
-    </table>
+    <div id="offers-add">
+        <div id="to-add-box">
+            <h4>Dodaj do oferty:</h4>
+            <table>
+                <tr th:each="component, stat:${componentList}" th:class="${stat.odd} ? 'row odd-row' : 'row even-row'">
+                    <td th:text="${component.id}"></td>
+                    <td th:text="${component.name}"></td>
+                    <td th:text="${component.description}"></td>
+                    <td th:text="${component.unit}"></td>
+                    <td>
+                        <form th:action="@{'/offers/setInvestorToOffer'}" method="post">
+                            <button name="componentId" type="submit" th:value="${component.id}" class="std-btn">Dodaj
+                            </button>
+                            <input type="hidden" name="investorId" th:value="${investor.id}"/>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="added-to-box">
+            <h4 th:if="${!tempComponentList.isEmpty()}">Elementy dodane do oferty:</h4>
+            <table>
+                <tr th:each="component, stat:${tempComponentList}"
+                    th:class="${stat.odd} ? 'row odd-row' : 'row even-row'">
+                    <td th:text="${component.id}"></td>
+                    <td th:text="${component.name}"></td>
+                    <td th:text="${component.description}"></td>
+                    <td th:text="${component.unit}"></td>
+                    <td>
+                        <form th:action="@{'/offers/setInvestorToOffer'}" method="post">
+                            <button name="componentIdDel" type="submit" th:value="${component.id}" class="std-btn">Usuń
+                            </button>
+                            <input type="hidden" name="investorId" th:value="${investor.id}"/>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id="offer-add-btn-box">
     <form th:action="@{'/offers/addComponentToOffer'}" method="post">
-        <input type="submit" value="dodaj" class="std-btn"/>
+        <input type="submit" value="dodaj składniki" class="std-btn"/>
     </form>
+    </div>
 </article>
 <footer th:replace="/layout/footer :: footer"></footer>
 </body>
