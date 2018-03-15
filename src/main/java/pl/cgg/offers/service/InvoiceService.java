@@ -6,7 +6,9 @@ import pl.cgg.offers.models.Invoice;
 import pl.cgg.offers.models.Offer;
 import pl.cgg.offers.repositories.InvoiceRepository;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class InvoiceService {
@@ -16,6 +18,10 @@ public class InvoiceService {
 
     @Autowired
     private OfferService offerService;
+
+    public List<Invoice> getAllInvoices(){
+        return invoiceRepository.findAll();
+    }
 
     public void addToBase(Long offerId){
         Invoice invoice = new Invoice();

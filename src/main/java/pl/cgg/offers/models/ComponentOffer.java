@@ -30,6 +30,7 @@ public class ComponentOffer {
     private ComponentCategory category;
 
     @OneToOne
+
     private ComponentPrice componentPrice;
 
     @ManyToMany(fetch = FetchType.EAGER)
