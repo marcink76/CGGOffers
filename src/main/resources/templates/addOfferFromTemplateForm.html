@@ -14,7 +14,7 @@
             <h3 th:text="${template.templateName}"></h3>
             <p th:each="components:${template.getComponentOfferList()}" th:text="${components.name}"
                th:value="${template.id}"></p>
-            <p><label for="investor-from-base-radio">Inwestor z bazy: </label>
+            <p class="p-box-div"><label for="investor-from-base-radio">Inwestor z bazy: </label>
                 <input id="investor-from-base-radio" type="radio" name="investorType" value="fromBase"/>
                 <label for="investor-adhoc">Dodaj inwestora: </label>
                 <input id="investor-adhoc" type="radio" name="investorType" value="adHoc"/>
