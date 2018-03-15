@@ -28,11 +28,11 @@ public class OfferService {
     }
 
     public void saveToBase(Offer offer) {
+        offer.setDate(LocalDate.now());
         offerRepository.save(offer);
     }
 
     public void setInvestorToOffer(Offer offer, Long id){
-        offer.setDate(LocalDate.now());
         offer.setInvestor(investorService.getInvestorById(id));
         offerRepository.save(offer);
     }

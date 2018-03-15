@@ -58,6 +58,7 @@ public class OfferController {
             investorList = investorService.getByFirstLetter(firstLetter);
         }
         model.addAttribute("firstLetter", firstLetter);
+        model.addAttribute("method", "get");
         model.addAttribute("chars", utils.alphabet());
         model.addAttribute("offer", new Offer());
         model.addAttribute("investorsList", investorList);

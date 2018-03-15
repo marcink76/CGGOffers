@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="head :: head">
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<p th:text="${investor.name}"></p>
+<table>
+    <tr th:each="componentents, stat:${componentList} " class="row">
+        <td th:text="${componentents.name}"></td>
+    </tr>
+</table>
+</body>
+</html>

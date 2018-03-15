@@ -30,11 +30,13 @@ public class ComponentOffer {
     private ComponentCategory category;
 
     @OneToOne
-
     private ComponentPrice componentPrice;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Offer> offer;
+
+    @ManyToOne
+    private Template template;
 
     public ComponentOffer(String name, String description, int quantity, double unitPrice, String unit, Offer offer) {
         this.name = name;

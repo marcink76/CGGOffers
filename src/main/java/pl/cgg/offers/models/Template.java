@@ -19,7 +19,7 @@ public class Template {
     @Column(name = "opis_szablonu")
     private String templateDescription;
 
-    @ManyToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<ComponentOffer> componentOfferList;
 
     public Template() {
