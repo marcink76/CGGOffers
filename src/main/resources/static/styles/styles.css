@@ -215,3 +215,11 @@ body {
     margin-top: 10px;
     clear: both;
 }
+.p-box-div{
+    height: min-content;
+    padding: 5px;
+}
+.txt-area{
+    height: 50px;
+    width: 250px;
+}

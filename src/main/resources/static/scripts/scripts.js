@@ -16,7 +16,7 @@ investor = {
     "email": "bgex@sdsdi.pl",
     "phoneNumber": "54321234",
     "offerList": []
-}
+};
 
 getInvestorBtn.addEventListener("click", function () {
     connectAndGet();

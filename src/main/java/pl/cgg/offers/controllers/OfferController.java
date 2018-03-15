@@ -108,14 +108,17 @@ public class OfferController {
     public String saveOfferToBase(@ModelAttribute("wrapper") ComponentPriceWrapper wrapper,
                                   Offer offer,
                                   Model model) {
-
+        double totalPrice = 0;
         List<ComponentPrice> componentPrices = componentPriceService.getComponentPriceList();
         for (int i = 0; i < componentPrices.size() ; i++) {
-            componentPrices.get(i).setComponentPrice(wrapper.getComponentPrices().get(i).getComponentPrice());
-            componentPrices.get(i).setQuantity(wrapper.getComponentPrices().get(i).getQuantity());
+            double componentPrice = wrapper.getComponentPrices().get(i).getComponentPrice();
+            int componentQuantity = wrapper.getComponentPrices().get(i).getQuantity();
+            componentPrices.get(i).setComponentPrice(componentPrice);
+            componentPrices.get(i).setQuantity(componentQuantity);
             componentPriceService.saveComponentPrice(componentPrices.get(i));
+            totalPrice += componentPrice * componentQuantity;
         }
-
+        offer.setTotalPrice(totalPrice);
         model.addAttribute("componentPricesList", componentPrices);
         model.addAttribute(offer);
         offerService.saveToBase(offer);

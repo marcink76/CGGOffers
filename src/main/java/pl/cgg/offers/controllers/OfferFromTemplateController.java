@@ -32,9 +32,14 @@ public class OfferFromTemplateController {
     }
     @PostMapping("/setTemplateToOffer")
     public String setTemplateToOffer(@RequestParam("template-id") Long id,
+                                     @RequestParam("investorType") String investorType,
                                      Model model){
         Template template = templateService.getTemplateById(id);
         List<ComponentOffer> componentOfferList = template.getComponentOfferList();
+        if("fromBase".equals(investorType)){
+            model.addAttribute("investor", new Investor());
+            return "setInvestorFromBaseToTemplateOffer";
+        }
         model.addAttribute("investor", new Investor());
         model.addAttribute("componentList", componentOfferList);
         return "setInvestorToTemplateOffer";
