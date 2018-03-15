@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import pl.cgg.offers.models.ComponentOffer;
 import pl.cgg.offers.models.Investor;
 import pl.cgg.offers.models.Template;
+import pl.cgg.offers.service.InvestorService;
 import pl.cgg.offers.service.OfferService;
 import pl.cgg.offers.service.TemplateService;
 
@@ -25,23 +26,30 @@ public class OfferFromTemplateController {
     @Autowired
     private OfferService offerService;
 
+    @Autowired
+    private InvestorService investorService;
+
     @GetMapping("/addOfferFromTemplate")
-    public String addOfferFromTemplate(Model model){
+    public String addOfferFromTemplate(Model model) {
         model.addAttribute("templateList", templateService.getAllTemplate());
         return "addOfferFromTemplateForm";
     }
+
     @PostMapping("/setTemplateToOffer")
     public String setTemplateToOffer(@RequestParam("template-id") Long id,
                                      @RequestParam("investorType") String investorType,
-                                     Model model){
+                                     Model model) {
         Template template = templateService.getTemplateById(id);
         List<ComponentOffer> componentOfferList = template.getComponentOfferList();
-        if("fromBase".equals(investorType)){
-            model.addAttribute("investor", new Investor());
+        if ("fromBase".equals(investorType)) {
+            model.addAttribute("investorsList", investorService.getAllInvestors());
+            model.addAttribute("componentList", componentOfferList);
             return "setInvestorFromBaseToTemplateOffer";
         }
-        model.addAttribute("investor", new Investor());
-        model.addAttribute("componentList", componentOfferList);
+        if ("adHoc".equals((investorType))) {
+            model.addAttribute("investor", new Investor());
+            model.addAttribute("componentList", componentOfferList);
+        }
         return "setInvestorToTemplateOffer";
     }
 }
