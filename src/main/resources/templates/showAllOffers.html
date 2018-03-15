@@ -21,12 +21,12 @@
             <th>Wystaw fakturę</th>
         </tr>
         <tr th:each="offer, stat:${offersList}" th:class="${stat.odd} ? 'row odd-row' : 'row even-row' ">
-            <td th:text="${offer.id + '/' + offer.date}"></td>
+            <td th:text="${offer.id} + '/' + ${offer.date}"></td>
             <td th:text="${offer.description}" th:class="${offer.description == null} ? 'empty-table-cell'"></td>
             <td th:text="${offer.totalPrice}"></td>
             <td th:text="${offer.investor.name}"></td>
             <td th:text="${offer.investor.city}"></td>
-            <td th:text="${offer.invoicing}"
+            <td th:text="${offer.invoicing == true} ? 'tak' : 'nie'"
                 th:style="${offer.invoicing} ? 'background-color : #10715e ; color : white' : 'background-color : #0aa69a'"></td>
             <td><a th:href="@{'/offers/showOneOffer/'+${offer.id}}">POKAŻ</a></td>
             <td>EDYTUJ</td>
