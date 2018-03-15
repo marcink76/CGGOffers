@@ -14,8 +14,10 @@
             <th>Numer</th>
             <th>Opis</th>
             <th>Cena</th>
+            <th>Oferta z szablonu</th>
             <th>Nazwa inwestora</th>
             <th>Miasto</th>
+
             <th>Zafakturowanie</th>
             <th>Pokaż</th>
             <th>Edytuj</th>
@@ -26,6 +28,7 @@
             <td th:text="${offer.description == null} ? 'brak'"
                 th:class="${offer.description == null} ? 'empty-table-cell'"></td>
             <td th:text="${offer.totalPrice}"></td>
+            <td th:text="${offer.offerFromTemplate == true} ? 'tak' : 'nie'"></td>
             <td th:text="${offer.investor.name}"></td>
             <td th:text="${offer.investor.city}"></td>
             <td th:text="${offer.invoicing == true} ? 'tak' : 'nie'"
@@ -34,7 +37,9 @@
             <td>EDYTUJ</td>
             <td>
                 <form th:action="@{'/invoice/addInvoice'}" method="post">
-                <button name="offerId" th:value="${offer.id}" class="std-btn">DODAJ FV</button></form></td>
+                    <button name="offerId" th:value="${offer.id}" class="std-btn">DODAJ FV</button>
+                </form>
+            </td>
         </tr>
     </table>
 </article>

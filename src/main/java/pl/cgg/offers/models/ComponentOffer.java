@@ -36,6 +36,8 @@ public class ComponentOffer {
     private List<Offer> offer;
 
     @ManyToOne
+    @JoinTable(name = "szablon_skladnik")
+    @JoinColumn(name = "id_skladnika")
     private Template template;
 
     public ComponentOffer(String name, String description, int quantity, double unitPrice, String unit, Offer offer) {
@@ -101,6 +103,14 @@ public class ComponentOffer {
 
     public void setCategory(ComponentCategory category) {
         this.category = category;
+    }
+
+    public Template getTemplate() {
+        return template;
+    }
+
+    public void setTemplate(Template template) {
+        this.template = template;
     }
 
     @Override

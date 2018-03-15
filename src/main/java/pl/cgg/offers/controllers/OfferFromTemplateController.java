@@ -3,10 +3,7 @@ package pl.cgg.offers.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import pl.cgg.offers.models.ComponentOffer;
 import pl.cgg.offers.models.Investor;
 import pl.cgg.offers.models.Offer;
@@ -45,9 +42,12 @@ public class OfferFromTemplateController {
                                      @RequestParam(value = "investorType", required = false) String investorType,
                                      @RequestParam(required = false) Character firstLetter,
                                      Model model) {
+        Offer offer = new Offer();
+
         Template template = templateService.getTemplateById(id);
-        templateService.setTemplate(template);
-        List<ComponentOffer> componentOfferList = templateService.getTemplate().getComponentOfferList();
+        offer.setComponentOfferList(template.getComponentOfferList());
+        offer.setOfferFromTemplate(true);
+        offerService.setOffer(offer);
         if ("fromBase".equals(investorType)) {
             if (firstLetter == null) {
                 model.addAttribute("investorsList", investorService.getAllInvestors());
@@ -56,14 +56,14 @@ public class OfferFromTemplateController {
                 model.addAttribute("investorsList", investorService.getByFirstLetter(firstLetter));
             }
             model.addAttribute("method", "post");
-            model.addAttribute("componentList", componentOfferList);
+            model.addAttribute("componentList", offer.getComponentOfferList());
             model.addAttribute("chars", utils.alphabet());
             model.addAttribute("link", "/offerFromTemplate/finalOfferFromTemplate");
             return "setInvestorFromBaseToTemplateOffer";
         }
         if ("adHoc".equals((investorType))) {
             model.addAttribute("investor", new Investor());
-            model.addAttribute("componentList", componentOfferList);
+            model.addAttribute("componentList", offer.getComponentOfferList());
             return "setInvestorToTemplateOffer";
         }
         return "";
@@ -74,14 +74,7 @@ public class OfferFromTemplateController {
                                          @RequestParam(value = "total-price", required = false) Double totalPrice,
                                          Investor investor,
                                          Model model) {
-        Offer offer = new Offer();
-        List<ComponentOffer> componentList = templateService.getTemplate().getComponentOfferList();
-
-        //offer.setTotalPrice(totalPrice);
-        offer.setOfferFromTemplate(true);
-        offer.setComponentOfferList(componentList);
-        offer.setComponentOfferList(componentList);
-
+        Offer offer = offerService.getOffer();
         if (investorId != null) {
             Investor investorFromBase = investorService.getInvestorById(investorId);
             offer.setInvestor(investorFromBase);
@@ -90,12 +83,11 @@ public class OfferFromTemplateController {
             offer.setInvestor(investor);
         }
         offerService.setOffer(offer);
-        model.addAttribute("componentList", componentList);
+        model.addAttribute("componentList", offer.getComponentOfferList());
         model.addAttribute("investor", investor);
         model.addAttribute("offer", offer);
 
-        //offerService.saveToBase(offer);
-
+        offerService.saveToBase(offer);
         return "finalOfferFromTemplateForm";
     }
 }
