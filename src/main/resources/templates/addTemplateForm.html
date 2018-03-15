@@ -8,8 +8,15 @@
 <article class="main-art" id="main-article">
     <h4>Dodawanie szablonu:</h4>
     <form th:action="@{'/templates/setToBase'}" method="post" th:object="${template}">
-        <label for="template-name">Podaj nazwę szabonu</label>
-        <input class="std-input" id="template-name" th:field="*{templateName}"/>
+        <div class="p-box-div">
+            <label for="template-name">Podaj nazwę szabonu: </label><br/>
+            <input class="std-input" id="template-name" th:field="*{templateName}"/><br/>
+        </div>
+        <div class="p-box-div">
+            <label for="textarea-desc">Podaj opis:</label><br/>
+            <textarea id="textarea-desc" class="txt-area std-input"
+                      th:field="*{templateDescription}"></textarea>
+        </div>
         <h3>Dodaj składniki do szablonu:</h3>
         <div class="">
             <table>
@@ -18,7 +25,6 @@
                     <th>Nazwa:</th>
                     <th>Dodaj:</th>
                 </tr>
-
                 <tr th:each="componentOffer, stat:${wrapper.componentOfferList}"
                     th:class="${stat.odd}? 'row odd-row' : 'row even-row'"
                     th:object="${wrapper}">

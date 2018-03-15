@@ -28,6 +28,9 @@ public class Offer implements Serializable{
     @Column(name = "zafakturowanie")
     private boolean invoicing;
 
+    @Column(name = "oferta_z_szablonu")
+    private boolean offerFromTemplate;
+
 
     @ManyToMany//(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<ComponentOffer> componentOfferList;
@@ -113,5 +116,13 @@ public class Offer implements Serializable{
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public boolean isOfferFromTemplate() {
+        return offerFromTemplate;
+    }
+
+    public void setOfferFromTemplate(boolean offerFromTemplate) {
+        this.offerFromTemplate = offerFromTemplate;
     }
 }

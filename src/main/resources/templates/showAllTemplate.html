@@ -15,6 +15,7 @@
     <div th:unless="${templatesList.isEmpty()}">
         <div th:each="template:${templatesList}" class="template-component">
             <h3 th:text="${template.templateName}"></h3>
+            <h4 th:text="${template.templateDescription}"></h4>
             <p th:each="components:${template.getComponentOfferList()}" th:text="${components.name}"></p>
         </div>
     </div>

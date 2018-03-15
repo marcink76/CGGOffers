@@ -7,12 +7,17 @@ import java.util.Objects;
 @Entity
 @Table(name = "szablon")
 public class Template {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_szablonu")
     private long id;
 
+    @Column(name = "nazwa_szablonu")
     private String templateName;
+
+    @Column(name = "opis_szablonu")
+    private String templateDescription;
 
     @ManyToMany
     private List<ComponentOffer> componentOfferList;
@@ -51,6 +56,14 @@ public class Template {
 
     public void setComponentOfferList(List<ComponentOffer> componentOfferList) {
         this.componentOfferList = componentOfferList;
+    }
+
+    public String getTemplateDescription() {
+        return templateDescription;
+    }
+
+    public void setTemplateDescription(String templateDescription) {
+        this.templateDescription = templateDescription;
     }
 
     @Override
