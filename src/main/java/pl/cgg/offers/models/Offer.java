@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "oferta")
-public class Offer implements Serializable{
+public class Offer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_oferty")
@@ -35,13 +35,15 @@ public class Offer implements Serializable{
     @ManyToMany//(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<ComponentOffer> componentOfferList;
 
-    //@Column(name = "investor")
     @ManyToOne
     private Investor investor;
 
-    //@Column(name = "uzytkownik")
     @ManyToOne
     private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "id_szablonu")
+    private Template template;
 
     public Offer() {
     }
@@ -124,5 +126,13 @@ public class Offer implements Serializable{
 
     public void setOfferFromTemplate(boolean offerFromTemplate) {
         this.offerFromTemplate = offerFromTemplate;
+    }
+
+    public Template getTemplate() {
+        return template;
+    }
+
+    public void setTemplate(Template template) {
+        this.template = template;
     }
 }

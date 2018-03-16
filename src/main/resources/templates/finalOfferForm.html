@@ -7,8 +7,12 @@
 <body>
 <header th:replace="layout/header :: header"></header>
 <nav th:replace="layout/menu :: menu"></nav>
-<article class="main-art" id="main-article">
-    <h2 class="final-offer-header" th:text="${'Oferta nr: ' + offer.id +'/'+ offer.date}"></h2>
+<article
+        class="main-art"
+        id="main-article">
+    <h2 class="final-offer-header"
+        th:text="${'Oferta nr: ' + offer.id +'/'+ offer.date}">
+    </h2>
     <p th:text="${'Poznan '+offer.date}"></p>
     <ul class="investor-offer">
         <li th:text="${offer.investor.name}"></li>
@@ -23,9 +27,9 @@
             <th>Ilość</th>
             <th>Cena jednostkowa</th>
             <th>Cena</th>
-
         </tr>
-        <tr th:each="prices, stat:${componentPricesList}" th:class="${stat.odd} ? 'row even-row' : 'row odd-row'">
+        <tr th:each="prices, stat:${componentPricesList}"
+            th:class="${stat.odd} ? 'row even-row' : 'row odd-row'">
             <td th:text="${stat.index} + 1"></td>
             <td th:text="${prices.componentOffer.name}"></td>
             <td th:text="${prices.quantity}"></td>

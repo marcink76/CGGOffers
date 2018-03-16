@@ -13,6 +13,8 @@ public class InvestorService {
 
     private List<Investor> investorList;
 
+    private Investor investor;
+
     @Autowired
     private InvestorRepository investorRepository;
 
@@ -48,5 +50,13 @@ public class InvestorService {
     public List<Investor> getByFirstLetter(Character firstLetter){
         String firstLetters = firstLetter.toString();
         return investorRepository.getInvestorsByNameStartsWith(firstLetters);
+    }
+
+    public Investor getInvestor() {
+        return investor;
+    }
+
+    public void setInvestor(Investor investor) {
+        this.investor = investor;
     }
 }

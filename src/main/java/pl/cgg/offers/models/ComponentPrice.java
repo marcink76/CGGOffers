@@ -9,12 +9,21 @@ public class ComponentPrice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "ilosc")
     private int quantity;
+
     @Column(name = "cena_jednostkowa")
     private double componentPrice;
+
     @Column(name = "cena_calkowita")
     private double totalPrice;
+//TODO Add checkbox to form
+    @Column(name = "ryczalt")
+    private boolean aLumpSum;
+//TODO Add checkbox to form
+    @Column(name = "pozycja_opcjonalna")
+    private boolean optional;
 
     @OneToOne
     private ComponentOffer componentOffer;
@@ -76,5 +85,21 @@ public class ComponentPrice {
 
     public void setOffer(Offer offer) {
         this.offer = offer;
+    }
+
+    public boolean isaLumpSum() {
+        return aLumpSum;
+    }
+
+    public void setaLumpSum(boolean aLumpSum) {
+        this.aLumpSum = aLumpSum;
+    }
+
+    public boolean isOptional() {
+        return optional;
+    }
+
+    public void setOptional(boolean optional) {
+        this.optional = optional;
     }
 }

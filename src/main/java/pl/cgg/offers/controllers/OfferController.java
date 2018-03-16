@@ -34,6 +34,9 @@ public class OfferController {
     @Autowired
     private Utils utils;
 
+    @Autowired
+    private UserService userService;
+
     @GetMapping("/showAll")
     public String showAll(Model model) {
         model.addAttribute("offersList", offerService.getAll());
@@ -44,7 +47,9 @@ public class OfferController {
     public String showOne(@PathVariable("id")Long id,
                           Model model){
         Offer offer = offerService.getOneOffer(id);
+        List<ComponentPrice> componentPrices = componentPriceService.getComponentPriceByOffer(offer);
         model.addAttribute("offer", offer);
+        model.addAttribute("prices", componentPrices);
         return "offerForm";
     }
 
@@ -58,6 +63,7 @@ public class OfferController {
             investorList = investorService.getByFirstLetter(firstLetter);
         }
         model.addAttribute("firstLetter", firstLetter);
+        model.addAttribute("method", "get");
         model.addAttribute("chars", utils.alphabet());
         model.addAttribute("offer", new Offer());
         model.addAttribute("investorsList", investorList);
@@ -73,6 +79,7 @@ public class OfferController {
         if (investorId != null) {
             offerService.setInvestorToOffer(offer, investorId);
         }
+        offer.setUser(userService.getOneUser(1L));
         componentService.addToTempComponentList(componentId, componentIdDel);
         model.addAttribute("componentList", componentService.getComponentOfferList());
         if (componentService.getTempComponentOfferList() != null) {
@@ -113,8 +120,12 @@ public class OfferController {
         for (int i = 0; i < componentPrices.size() ; i++) {
             double componentPrice = wrapper.getComponentPrices().get(i).getComponentPrice();
             int componentQuantity = wrapper.getComponentPrices().get(i).getQuantity();
+            boolean componentOptional = wrapper.getComponentPrices().get(i).isOptional();
+            boolean componentLumpSum = wrapper.getComponentPrices().get(i).isaLumpSum();
             componentPrices.get(i).setComponentPrice(componentPrice);
             componentPrices.get(i).setQuantity(componentQuantity);
+            componentPrices.get(i).setaLumpSum(componentLumpSum);
+            componentPrices.get(i).setOptional(componentOptional);
             componentPriceService.saveComponentPrice(componentPrices.get(i));
             totalPrice += componentPrice * componentQuantity;
         }

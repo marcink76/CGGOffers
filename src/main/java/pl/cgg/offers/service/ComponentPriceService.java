@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.cgg.offers.models.ComponentOffer;
 import pl.cgg.offers.models.ComponentPrice;
+import pl.cgg.offers.models.Offer;
 import pl.cgg.offers.repositories.ComponetPriceRepository;
 
 import java.util.ArrayList;
@@ -20,6 +21,10 @@ public class ComponentPriceService {
     private ComponetPriceRepository componetPriceRepository;
 
     private List<ComponentPrice> componentPriceList = new ArrayList<>();
+
+    public List<ComponentPrice> getComponentPriceByOffer(Offer offer){
+        return componetPriceRepository.getAllByOffer(offer);
+    }
 
     public HashMap<ComponentOffer, ComponentPrice> getComponentPriceToMap() {
         HashMap<ComponentOffer, ComponentPrice> componentPriceHashMap = new HashMap<>();

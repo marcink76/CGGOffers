@@ -2,9 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <div th:fragment="filtermenu" class="filterby-letter-box">
-    <form method="get" th:action="@{/offers/addOffer}">
-        <button name="firstLetter" th:each="char:${chars}" class="letter-btn" th:value="${char}"
-                th:text="${char}"></button>
+    <form th:method="${method}">
+        <button
+                name="firstLetter"
+                class="letter-btn"
+                th:each="char:${chars}"
+                th:value="${char}"
+                th:text="${char}">
+        </button>
     </form>
 </div>
 </html>

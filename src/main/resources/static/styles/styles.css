@@ -223,3 +223,77 @@ body {
     height: 50px;
     width: 250px;
 }
+
+/* Offer show */
+.offer-show {
+    width: var(--width-);
+    border: 1px solid black;
+}
+.offer-show-h2{
+    font-size: 35px;
+    margin-top: 50px;
+    display: block;
+    width: var(--width-);
+    text-align: center;
+}
+.show-investor-box{
+    width: 50%;
+    display: block;
+    padding-left: 40px;
+    float: left;
+
+}
+.show-bidder-box{
+    width: 50%;
+    display: block;
+    padding-left: 40px;
+    float: right;
+}
+.show-offer-section-box{
+    width: 100%;
+    height: 325px;
+    font-size: 18px;
+}
+.logotype-show-offer{
+    margin-top: 40px;
+    width: 350px;
+    height: auto;
+    horiz-align: center;
+}
+.offer-table-box{
+    padding-left: 150px;
+    padding-right: 150px;
+    /* width: 100%; */
+    text-align: center;
+    clear: both;
+}
+.offer-table-box table{
+    width: 100%;
+}
+.offer-table-box table td{
+    font-size: 18px;
+}
+.offer-table-box table th{
+    font-size: 18px;
+}
+.offer-number-box{
+
+}
+.offer-editor-box{
+    font-size: 18px;
+    width: 88%;
+    margin-top: 25px;
+    padding: -3px;
+    text-align: right;
+}
+.cell-sigma{
+    padding-right: 10px;
+    height: 40px;
+    background-color: white;
+    text-align: right;
+}
+.cell-sum {
+    background-color: var(--background-color);
+    color: white;
+    margin-right: 10px;
+}

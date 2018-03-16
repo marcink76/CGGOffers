@@ -35,6 +35,10 @@ public class ComponentOffer {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Offer> offer;
 
+    @ManyToOne
+    @JoinColumn(name = "id_skladnika")
+    private Template template;
+
     public ComponentOffer(String name, String description, int quantity, double unitPrice, String unit, Offer offer) {
         this.name = name;
         this.description = description;
@@ -98,6 +102,14 @@ public class ComponentOffer {
 
     public void setCategory(ComponentCategory category) {
         this.category = category;
+    }
+
+    public Template getTemplate() {
+        return template;
+    }
+
+    public void setTemplate(Template template) {
+        this.template = template;
     }
 
     @Override
