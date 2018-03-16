@@ -44,7 +44,9 @@ public class OfferController {
     public String showOne(@PathVariable("id")Long id,
                           Model model){
         Offer offer = offerService.getOneOffer(id);
+        List<ComponentPrice> componentPrices = componentPriceService.getComponentPriceByOffer(offer);
         model.addAttribute("offer", offer);
+        model.addAttribute("prices", componentPrices);
         return "offerForm";
     }
 

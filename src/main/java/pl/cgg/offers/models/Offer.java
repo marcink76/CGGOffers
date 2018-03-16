@@ -35,13 +35,15 @@ public class Offer {
     @ManyToMany//(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<ComponentOffer> componentOfferList;
 
-    //@Column(name = "investor")
     @ManyToOne
     private Investor investor;
 
-    //@Column(name = "uzytkownik")
     @ManyToOne
     private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "id_szablonu")
+    private Template template;
 
     public Offer() {
     }
@@ -124,5 +126,13 @@ public class Offer {
 
     public void setOfferFromTemplate(boolean offerFromTemplate) {
         this.offerFromTemplate = offerFromTemplate;
+    }
+
+    public Template getTemplate() {
+        return template;
+    }
+
+    public void setTemplate(Template template) {
+        this.template = template;
     }
 }

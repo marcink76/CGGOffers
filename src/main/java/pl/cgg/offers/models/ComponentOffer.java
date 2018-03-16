@@ -36,7 +36,6 @@ public class ComponentOffer {
     private List<Offer> offer;
 
     @ManyToOne
-    @JoinTable(name = "szablon_skladnik")
     @JoinColumn(name = "id_skladnika")
     private Template template;
 

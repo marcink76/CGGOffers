@@ -46,6 +46,7 @@ public class OfferFromTemplateController {
 
         Template template = templateService.getTemplateById(id);
         offer.setComponentOfferList(template.getComponentOfferList());
+        offer.setTemplate(template);
         offer.setOfferFromTemplate(true);
         offerService.setOffer(offer);
         if ("fromBase".equals(investorType)) {
@@ -56,14 +57,14 @@ public class OfferFromTemplateController {
                 model.addAttribute("investorsList", investorService.getByFirstLetter(firstLetter));
             }
             model.addAttribute("method", "post");
-            model.addAttribute("componentList", offer.getComponentOfferList());
+            model.addAttribute("componentList", offer.getTemplate().getComponentOfferList());
             model.addAttribute("chars", utils.alphabet());
             model.addAttribute("link", "/offerFromTemplate/finalOfferFromTemplate");
             return "setInvestorFromBaseToTemplateOffer";
         }
         if ("adHoc".equals((investorType))) {
             model.addAttribute("investor", new Investor());
-            model.addAttribute("componentList", offer.getComponentOfferList());
+            model.addAttribute("componentList", offer.getTemplate().getComponentOfferList());
             return "setInvestorToTemplateOffer";
         }
         return "";
@@ -83,7 +84,7 @@ public class OfferFromTemplateController {
             offer.setInvestor(investor);
         }
         offerService.setOffer(offer);
-        model.addAttribute("componentList", offer.getComponentOfferList());
+        model.addAttribute("componentList", offer.getTemplate().getComponentOfferList());
         model.addAttribute("investor", investor);
         model.addAttribute("offer", offer);
 

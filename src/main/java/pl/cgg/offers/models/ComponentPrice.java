@@ -9,12 +9,18 @@ public class ComponentPrice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "ilosc")
     private int quantity;
+
     @Column(name = "cena_jednostkowa")
     private double componentPrice;
+
     @Column(name = "cena_calkowita")
     private double totalPrice;
+//TODO Add to form checkbox
+    @Column(name = "ryczalt")
+    private boolean aLumpSum;
 
     @OneToOne
     private ComponentOffer componentOffer;

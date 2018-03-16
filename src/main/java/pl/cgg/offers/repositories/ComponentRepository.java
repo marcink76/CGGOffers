@@ -4,6 +4,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import pl.cgg.offers.models.ComponentOffer;
 
+import java.util.List;
+
 @Repository
 public interface ComponentRepository extends JpaRepository<ComponentOffer, Long> {
+
 }

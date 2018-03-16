@@ -21,7 +21,13 @@ public class Template {
 
     @OneToMany(cascade = {CascadeType.PERSIST}, fetch = FetchType.LAZY)
     @JoinColumn(name = "id_szablonu")
+    @JoinTable(name = "szablon_skladnik")
     private List<ComponentOffer> componentOfferList;
+
+    @Column(name = "Oferta")
+
+    @OneToMany
+    private List<Offer> offerList;
 
     public Template() {
     }
