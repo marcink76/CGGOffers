@@ -27,7 +27,9 @@ INSERT INTO offers.skladnik_oferty (opis, nazwa_uslugi, jednostka, kategoria_skl
 VALUES ('Badanie georadarem', 'Badanie georadarem', 'm', 'LABORATORY_TESTS');
 
 
-INSERT INTO offers.uzytkownik (nazwisko, imie, rola, login, haslo)
-VALUES ('Skrzypcz', 'Ewelina', 'ADMIN', 'Ewel', 'Ewe');
-INSERT INTO offers.uzytkownik (nazwisko, imie, rola, login, haslo) VALUES ('Skrzypcz', 'Tomasz', 'USER', 'Tom', 'Tom');
-INSERT INTO offers.uzytkownik (nazwisko, imie, rola, login, haslo) VALUES ('Konieczny', 'Marcin', 'ADMIN', 'M', 'K');
+INSERT INTO offers.uzytkownik (nazwisko, imie, rola, login, haslo, aktywnosc)
+VALUES ('Skrzypcz', 'Ewelina', 'ADMIN', 'Ewel', 'Ewe', TRUE );
+INSERT INTO offers.uzytkownik (nazwisko, imie, rola, login, haslo, aktywnosc)
+VALUES ('Skrzypcz', 'Tomasz', 'USER', 'Tom', 'Tom', TRUE );
+INSERT INTO offers.uzytkownik (nazwisko, imie, rola, login, haslo, aktywnosc)
+VALUES ('Konieczny', 'Marcin', 'ADMIN', 'M', 'K', TRUE );

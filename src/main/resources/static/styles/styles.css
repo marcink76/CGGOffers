@@ -251,6 +251,7 @@ body {
 }
 .show-offer-section-box{
     width: 100%;
+    height: 325px;
     font-size: 18px;
 }
 .logotype-show-offer{
@@ -274,4 +275,25 @@ body {
 }
 .offer-table-box table th{
     font-size: 18px;
+}
+.offer-number-box{
+
+}
+.offer-editor-box{
+    font-size: 18px;
+    width: 88%;
+    margin-top: 25px;
+    padding: -3px;
+    text-align: right;
+}
+.cell-sigma{
+    padding-right: 10px;
+    height: 40px;
+    background-color: white;
+    text-align: right;
+}
+.cell-sum {
+    background-color: var(--background-color);
+    color: white;
+    margin-right: 10px;
 }

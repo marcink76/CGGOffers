@@ -11,12 +11,14 @@
     <h4>Wprowadź ceny i ilości</h4>
     <form th:action="@{'/offers/completeOffer'}" method="post" th:object="${wrapper}">
         <table>
-            <tr>
+            <tr class="row">
                 <th>Id</th>
                 <th>Nazwa</th>
                 <th>Ilość</th>
                 <th>Cena Jednostkowa</th>
                 <th>&Sigma;</th>
+                <th>Składnik opcjonalny</th>
+                <th>Ryczałt</th>
             </tr>
             <tr th:each="components, stat:${componentList}" th:class="${stat.odd} ?'row odd-row' : 'row even-row' ">
                 <td th:text="${components.id}"></td>
@@ -25,6 +27,17 @@
                 <td><input type="number" th:field="*{componentPrices[__${stat.index}__].componentPrice}"/></td>
                 <td class="componentOffer-price">
                     <input type="hidden" th:field="*{componentPrices[__${stat.index}__].totalPrice}"/>
+                </td>
+                <td>
+                    <input
+                            type="checkbox"
+                            th:field="*{componentPrices[__${stat.index}__].optional}"
+                            th:value="true"/>
+                </td>
+                <td><input
+                        type="checkbox"
+                        th:field="*{componentPrices[__${stat.index}__].aLumpSum}"
+                        th:value="true"/>
                 </td>
             </tr>
         </table>

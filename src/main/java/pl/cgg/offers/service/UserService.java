@@ -13,6 +13,10 @@ public class UserService {
 
     private User user;
 
+    public User getOneUser(Long userId){
+        return userRepository.getOne(userId);
+    }
+
     public User getUser() {
         return user;
     }

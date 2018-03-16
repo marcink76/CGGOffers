@@ -8,10 +8,11 @@
 <nav><a href="/offers/showAll">Pokaż oferty</a></nav>
 <article class="offer-show">
     <div class="logotype"><img src="/images/CGG_logo.png" class="logotype-show-offer"/></div>
-    <div class="offer-number-box"><h2 class="offer-show-h2"
-        th:text="${'Oferta nr: ' + offer.id +'/'+ offer.date}">
-
-    </h2></div>
+    <div class="offer-number-box">
+        <h2 class="offer-show-h2"
+            th:text="${'Oferta nr: ' + offer.id +'/'+ offer.date}">
+        </h2>
+    </div>
     <div class="show-offer-section-box">
         <div class="show-investor-box">
             <p>Oferta dla:</p>
@@ -38,6 +39,8 @@
                 <th>Ilość</th>
                 <th>Cena jednostkowa</th>
                 <th>Suma</th>
+                <th>Ryczałt</th>
+                <th>Opcja</th>
             </tr>
             <tr th:each="prices, stat:${prices}" th:class="${stat.odd} ? 'row odd-row' : 'row even-row'">
                 <td th:text="${stat.index} + 1"></td>
@@ -45,11 +48,19 @@
                 <td th:text="${prices.quantity}"></td>
                 <td th:text="${prices.componentPrice}"></td>
                 <td th:text="${prices.componentPrice} * ${prices.quantity}"></td>
+                <td th:text="${prices.aLumpSum == true} ? 'tak': 'nie'"></td>
+                <td th:text="${prices.optional == true} ? 'tak': 'nie'"></td>
+            </tr>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th class="cell-sigma">Suma netto:</th>
+                <th class="cell-sum" th:text="${offer.totalPrice}"></th>
             </tr>
         </table>
     </div>
-    <h1 th:text="${offer.totalPrice}"></h1>
-    <div>
+    <div class="offer-editor-box">
         <div>
             <h4>Ofertę sporządził:</h4>
             <p th:text="${offer.user.name} + ' ' + ${offer.user.lastName}"></p>
