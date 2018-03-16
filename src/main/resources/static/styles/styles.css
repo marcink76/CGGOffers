@@ -115,6 +115,7 @@ body {
 .main-art {
     clear: both;
     width: var(--width-);
+    min-height: 400px;
     margin-left: auto;
     margin-right: auto;
 }
