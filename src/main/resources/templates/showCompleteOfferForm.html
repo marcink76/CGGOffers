@@ -23,10 +23,21 @@
             <tr th:each="components, stat:${componentList}" th:class="${stat.odd} ?'row odd-row' : 'row even-row' ">
                 <td th:text="${components.id}"></td>
                 <td th:text="${components.name}"></td>
-                <td><input type="number" th:field="*{componentPrices[__${stat.index}__].quantity}"/></td>
-                <td><input type="number" th:field="*{componentPrices[__${stat.index}__].componentPrice}"/></td>
+                <td>
+                    <input
+                            type="number"
+                            class="std-input"
+                            th:field="*{componentPrices[__${stat.index}__].quantity}"/>
+                </td>
+                <td>
+                    <input
+                            type="number"
+                            class="std-input"
+                            th:field="*{componentPrices[__${stat.index}__].componentPrice}"/>
+                </td>
                 <td class="componentOffer-price">
-                    <input type="hidden" th:field="*{componentPrices[__${stat.index}__].totalPrice}"/>
+                    <input type="hidden"
+                           th:field="*{componentPrices[__${stat.index}__].totalPrice}"/>
                 </td>
                 <td>
                     <input
@@ -34,18 +45,29 @@
                             th:field="*{componentPrices[__${stat.index}__].optional}"
                             th:value="true"/>
                 </td>
-                <td><input
-                        type="checkbox"
-                        th:field="*{componentPrices[__${stat.index}__].aLumpSum}"
-                        th:value="true"/>
+                <td>
+                    <input
+                            type="checkbox"
+                            th:field="*{componentPrices[__${stat.index}__].aLumpSum}"
+                            th:value="true"/>
                 </td>
             </tr>
         </table>
-        <div id="total-price-box" class="total-price"></div>
-        <input type="hidden" id="total-price" value=""/>
-        <input class="std-btn" type="submit" value="Dodaj"/>
+        <div
+                id="total-price-box"
+                class="total-price"></div>
+        <input
+                type="hidden"
+                id="total-price" value=""/>
+        <input
+                class="std-btn"
+                type="submit"
+                value="Dodaj"/>
     </form>
 </article>
-<footer th:replace="layout/footer :: footer"></footer>
+<footer
+        th:replace="layout/footer :: footer">
+    
+</footer>
 </body>
 </html>

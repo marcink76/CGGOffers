@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="head :: head">
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<header th:replace="layout/header :: header"></header>
+<nav th:replace="layout/menu :: menu"></nav>
+<article
+        class="main-art"
+        id="main-article">
+    <h4>Dodawanie użytkownika:</h4>
+    <h4 th:if="${message}" th:text="${message}"></h4>
+    <form method="post" th:action="@{/users/addUserToBase}" th:object="${user}">
+        <div id="basic-data" class="input-box">
+
+            <label
+                    for="input-name"
+                    class="basic-lbl">
+                Imię:</label>
+            <input
+                    class="std-input"
+                    id="input-name"
+                    type="text"
+                    th:field="*{name}"/>
+            <label
+                    for="input-lastname"
+                    class="basic-lbl">
+                Nazwisko:
+            </label>
+            <input
+                    class="std-input"
+                    id="input-lastn"
+                    type="text"
+                    th:field="*{lastName}"/>
+            <label
+                    for="input-u-name"
+                    class="basic-lbl">
+                Imię:
+            </label>
+            <input
+                    class="std-input"
+                    id="input-u-name"
+                    type="text"
+                    th:field="*{userName}"/>
+            <label
+                    for="input-lastname"
+                    class="basic-lbl">
+                Nazwisko:
+            </label>
+            <input
+                    class="std-input"
+                    id="input-lastname"
+                    type="text"
+                    th:field="*{email}"/>
+            <label
+                    for="radio-admin"
+                    class="basic-lbl">
+                Admin:
+            </label>
+            <input
+                    type="radio"
+                    id="radio-admin"
+                    name="role"
+                    th:field="*{role}"
+                    value="ADMIN"/>
+            <label
+                    for="radio-user"
+                    class="basic-lbl">
+                User:
+            </label>
+            <input
+                    type="radio"
+                    id="radio-user"
+                    name="role"
+                    th:field="*{role}"
+                    value="USER"/>
+        </div>
+        <div class="input-box">
+            <label
+                    for="input-pass"
+                    class="basic-lbl">
+                Hasło:
+            </label>
+            <input
+                    class="std-input"
+                    id="input-pass"
+                    type="password"
+                    th:field="*{password}"/>
+            <label
+                    for="input-valid-pass"
+                    class="basic-lbl">
+                Podaj ponownie hasło:
+            </label>
+            <input
+                    class="std-input"
+                    id="input-valid-pass"
+                    name="validPassword"
+                    type="password"/>
+        </div>
+        <input
+                type="submit"
+                class="std-btn"
+                value="Dodaj"/>
+    </form>
+
+</article>
+<footer th:replace="layout/footer :: footer"></footer>
+</body>
+</html>

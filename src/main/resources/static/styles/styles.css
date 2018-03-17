@@ -224,7 +224,6 @@ body {
     height: 50px;
     width: 250px;
 }
-
 /* Offer show */
 .offer-show {
     width: var(--width-);
@@ -283,7 +282,7 @@ body {
 .offer-editor-box{
     font-size: 18px;
     width: 88%;
-    margin-top: 25px;
+    margin-top: 250px;
     padding: -3px;
     text-align: right;
 }

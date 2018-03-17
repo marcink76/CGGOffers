@@ -15,7 +15,7 @@ public class User {
     private String userName;
 
     @Column(name = "haslo", nullable = false)
-    private String userPass;
+    private String password;
 
     @Column(name = "imie")
     private String name;
@@ -25,6 +25,9 @@ public class User {
 
     @Column(name = "aktywnosc")
     private boolean status;
+
+    @Column(name = "e_mail")
+    private String email;
 
     @Column(name = "rola")
     @Enumerated(EnumType.STRING)
@@ -89,11 +92,19 @@ public class User {
         this.offerList = offerList;
     }
 
-    public String getUserPass() {
-        return userPass;
+    public String getPassword() {
+        return password;
     }
 
-    public void setUserPass(String userPass) {
-        this.userPass = userPass;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

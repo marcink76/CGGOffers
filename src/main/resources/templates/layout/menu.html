@@ -4,8 +4,8 @@
 <nav th:fragment="menu" id="main-menu" class="main-menu">
     <ul id="ul-main-menu">
         <li class="cell-menu"><a href="/"><img src="/images/home.jpg" class="home-img"/></a></li>
-        <li class="cell-menu"><a th:href="@{'/component/showAll'}" class="std-href">Pokaż wszystkie skladniki</a></li>
-        <li class="cell-menu"><a th:href="@{'/component/addComponent'}" class="std-href">Dodaj składnik oferty</a></li>
+        <li class="cell-menu"><a th:href="@{'/component/showAll'}" class="std-href">Pokaż skladniki</a></li>
+        <li class="cell-menu"><a th:href="@{'/component/addComponent'}" class="std-href">Dodaj składnik</a></li>
         <li class="cell-menu"><a th:href="@{'/investor/showAll'}" class="std-href">Pokaż inwestorów</a></li>
         <li class="cell-menu"><a th:href="@{'/investor/addInvestor'}" class="std-href">Dodaj inwestora</a></li>
         <li class="cell-menu"><a th:href="@{'/offers/showAll'}" class="std-href">Pokaż oferty</a></li>
@@ -14,7 +14,8 @@
         <li class="cell-menu"><a th:href="@{'/templates/showAll'}" class="std-href">Pokaż szablony</a></li>
         <li class="cell-menu"><a th:href="@{'/templates/addTemplate'}" class="std-href">Dodaj szablon</a></li>
         <li class="cell-menu"><a th:href="@{'/invoice/showAll'}" class="std-href">Faktury</a></li>
-        <li class="cell-menu"><a th:href="@{'/user/showAll'}" class="std-href">Użytkownicy</a></li>
+        <li class="cell-menu"><a th:href="@{'/users/showAll'}" class="std-href">Użytkownicy</a></li>
+        <li class="cell-menu"><a th:href="@{'/users/addUser'}" class="std-href">Dodaj użytkownika</a></li>
 
     </ul>
 </nav>
