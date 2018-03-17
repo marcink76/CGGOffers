@@ -19,7 +19,7 @@
             <div th:if="${#fields.hasErrors()}" th:errors="*{name}">Brak nazwy inwestora!</div>
             <label for="input-firstname" class="basic-lbl">Imię:</label>
             <input class="std-input" id="input-firstname" type="text" th:field="*{firstName}"/>
-            <label for="input-street" class="basic-lbl">Nazwisko:</label>
+            <label for="input-lastname" class="basic-lbl">Nazwisko:</label>
             <input class="std-input" id="input-lastname" type="text" th:field="*{lastName}"/>
         </div>
         <div id="adress" class="input-box">

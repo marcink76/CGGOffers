@@ -7,7 +7,27 @@
 <body>
 <nav><a href="/offers/showAll">Pokaż oferty</a></nav>
 <article class="offer-show">
-    <div class="logotype"><img src="/images/CGG_logo.png" class="logotype-show-offer"/></div>
+    <div>
+        <div
+                class="show-bidder-box">
+            <h4>Ofertę sporządził:</h4>
+            <p>Centrum Geologii i Geotechniki</p>
+            <p>ul. Monte Cassino 5</p>
+            <p>06-400 Ciechanów</p>
+            <p>NIP: 566-189-96-03</p>
+        </div>
+        <div
+                class="logotype">
+            <img
+                    src="/images/CGG_logo.png"
+                    class="logotype-show-offer"/>
+        </div>
+        <div>
+
+        </div>
+
+    </div>
+
     <div class="offer-number-box">
         <h2 class="offer-show-h2"
             th:text="${'Oferta nr: ' + offer.id +'/'+ offer.date}">
@@ -21,13 +41,6 @@
             <p th:text="${offer.investor.nip}"></p>
             <p th:text="${offer.investor.city + ' ' + offer.investor.zipcode}"></p>
             <p th:text="${offer.investor.street} + ' ' + ${offer.investor.posesionNumber} + ' ' + ${offer.investor.localNumber}"></p>
-        </div>
-        <div class="show-bidder-box">
-            <h4>Ofertę sporządził:</h4>
-            <p>Centrum Geologii i Geotechniki</p>
-            <p>ul. Monte Cassino 5</p>
-            <p>06-400 Ciechanów</p>
-            <p>NIP: 566-189-96-03</p>
         </div>
     </div>
 

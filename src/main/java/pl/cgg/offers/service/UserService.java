@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import pl.cgg.offers.models.User;
 import pl.cgg.offers.repositories.UserRepository;
 
+import java.util.List;
+
 @Service
 public class UserService {
 
@@ -15,6 +17,14 @@ public class UserService {
 
     public User getOneUser(Long userId){
         return userRepository.getOne(userId);
+    }
+
+    public List<User> getAllUsers(){
+        return userRepository.findAll();
+    }
+
+    public void saveUser(User user){
+        userRepository.save(user);
     }
 
     public User getUser() {
