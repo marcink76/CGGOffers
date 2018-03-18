@@ -3,6 +3,7 @@
 <head th:replace="head :: head">
     <meta charset="UTF-8"/>
     <title>Title</title>
+
 </head>
 <body>
 <header th:replace="layout/header :: header"></header>
@@ -18,6 +19,22 @@
             <th>Oferta z szablonu</th>
             <th>Nazwa inwestora</th>
             <th>Miasto</th>
+            <th>Zafakturowanie</th>
+            <th>Pokaż</th>
+            <th>Edytuj</th>
+            <th>Wystaw fakturę</th>
+        </tr>
+        <tr class="row">
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th><label for="filter-by-city"></label>
+                <input id="filter-by-city"
+                       class="input-std"
+                       type="text"
+                    /></th>
 
             <th>Zafakturowanie</th>
             <th>Pokaż</th>
@@ -25,7 +42,7 @@
             <th>Wystaw fakturę</th>
         </tr>
         <tr th:each="offer, stat:${offersList}" th:class="${stat.odd} ? 'row odd-row' : 'row even-row' ">
-            <td th:text="${offer.id} + '/' + ${offer.date}"></td>
+            <td id="offer-id" th:text="${offer.id} + '/' + ${offer.date}"></td>
             <td th:text="${offer.description == null} ? 'brak'"
                 th:class="${offer.description == null} ? 'empty-table-cell'"></td>
             <td th:text="${offer.totalPrice}"></td>
@@ -43,7 +60,11 @@
             </td>
         </tr>
     </table>
+    <div class="show-preview"></div>
 </article>
 <footer th:replace="layout/footer :: footer"></footer>
+<script src="/scripts/jquery-3.3.1.js"></script>
+<script src="/scripts/getPreview.js"></script>
 </body>
+
 </html>

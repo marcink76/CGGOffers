@@ -32,6 +32,10 @@ public class OfferService {
         offerRepository.save(offer);
     }
 
+    public List<Offer> getOffersByString(String filterString){
+        return offerRepository.getOffersByInvestor_CityStartsWith(filterString);
+    }
+
     public void setInvestorToOffer(Offer offer, Long id){
         offer.setInvestor(investorService.getInvestorById(id));
         offerRepository.save(offer);

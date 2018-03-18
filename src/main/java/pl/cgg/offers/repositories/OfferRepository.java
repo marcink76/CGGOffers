@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface OfferRepository extends JpaRepository<Offer, Long> {
-
+    List<Offer> getOffersByInvestor_CityStartsWith(String filterLetter);
 }

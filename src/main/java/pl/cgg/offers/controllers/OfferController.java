@@ -54,7 +54,7 @@ public class OfferController {
     }
 
     @GetMapping("/addOffer")
-    public String addOffer(@RequestParam(required = false) Character firstLetter,
+    public String addOffer(@RequestParam(required = false) String firstLetter,
                            Model model) {
         List<Investor> investorList;
         if (firstLetter == null) {
@@ -62,6 +62,7 @@ public class OfferController {
         } else {
             investorList = investorService.getByFirstLetter(firstLetter);
         }
+
         model.addAttribute("firstLetter", firstLetter);
         model.addAttribute("method", "get");
         model.addAttribute("chars", utils.alphabet());
@@ -136,6 +137,12 @@ public class OfferController {
         return "finalOfferForm";
     }
 
+    @PostMapping("/getOfferByFilter")
+    public String getOfferByFilter(@RequestParam("filterString") String filterString,
+            Model model){
+        model.addAttribute("offersList", offerService.getOffersByString(filterString));
+        return "showAllOffers";
+    }
     @GetMapping("/ajaxtest")
     public String ajaxTest() {
 
