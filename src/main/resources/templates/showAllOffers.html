@@ -3,7 +3,6 @@
 <head th:replace="head :: head">
     <meta charset="UTF-8"/>
     <title>Title</title>
-
 </head>
 <body>
 <header th:replace="layout/header :: header"></header>
@@ -11,7 +10,7 @@
 <article class="main-art" id="main-article">
     <h4>Oferty:</h4>
     <h4 th:if="${offersList.isEmpty()}">Lista ofert jest pusta!</h4>
-    <table th:if="${!offersList.isEmpty()}">
+    <table th:if="${!offersList.isEmpty()}" class="table">
         <tr class="row">
             <th>Numer</th>
             <th>Opis</th>
@@ -32,17 +31,24 @@
             <th></th>
             <th><label for="filter-by-city"></label>
                 <input id="filter-by-city"
-                       class="input-std"
+                       class="std-input"
                        type="text"
-                    /></th>
-
-            <th>Zafakturowanie</th>
-            <th>Pokaż</th>
-            <th>Edytuj</th>
-            <th>Wystaw fakturę</th>
+                /></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
         </tr>
-        <tr th:each="offer, stat:${offersList}" th:class="${stat.odd} ? 'row odd-row' : 'row even-row' ">
-            <td id="offer-id" th:text="${offer.id} + '/' + ${offer.date}"></td>
+        <tr
+                th:each="offer, stat:${offersList}"
+                th:class="${stat.odd} ? 'row odd-row' : 'row even-row' ">
+            <td
+                    th:text="${offer.id} + '/' + ${offer.date}"
+                    th:value="${offer.id}"
+                    th:onmouseover="'loadOffer(' + ${offer.id} + ')'"
+                    onmouseout="hidePreviewBox()">
+            </td>
+
             <td th:text="${offer.description == null} ? 'brak'"
                 th:class="${offer.description == null} ? 'empty-table-cell'"></td>
             <td th:text="${offer.totalPrice}"></td>
@@ -60,11 +66,10 @@
             </td>
         </tr>
     </table>
-    <div class="show-preview"></div>
+    <div id="show-preview"></div>
 </article>
 <footer th:replace="layout/footer :: footer"></footer>
-<script src="/scripts/jquery-3.3.1.js"></script>
 <script src="/scripts/getPreview.js"></script>
+<script src="/scripts/jquery-3.3.1.js"></script>
 </body>
-
 </html>
