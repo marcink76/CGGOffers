@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <title>Title</title>
 </head>
-<body>
+<body onload="hidePreviewBox()">
 <header th:replace="layout/header :: header"></header>
 <nav th:replace="layout/menu :: menu"></nav>
 <article class="main-art" id="main-article">
@@ -41,22 +41,26 @@
         </tr>
         <tr
                 th:each="offer, stat:${offersList}"
-                th:class="${stat.odd} ? 'row odd-row' : 'row even-row' ">
-            <td
-                    th:text="${offer.id} + '/' + ${offer.date}"
-                    th:value="${offer.id}"
-                    th:onmouseover="'loadOffer(' + ${offer.id} + ')'"
-                    onmouseout="hidePreviewBox()">
+                th:class="${stat.odd} ? 'row odd-row' : 'row even-row' "
+                th:onmouseover="'loadOffer(' + ${offer.id} + ')'"
+                onmouseout="hidePreviewBox()">
+            <td th:text="${offer.id} + '/' + ${offer.date}"
+                class="active-cell">
             </td>
-
             <td th:text="${offer.description == null} ? 'brak'"
-                th:class="${offer.description == null} ? 'empty-table-cell'"></td>
-            <td th:text="${offer.totalPrice}"></td>
-            <td th:text="${offer.offerFromTemplate == true} ? 'tak' : 'nie'"></td>
-            <td th:text="${offer.investor.name}"></td>
-            <td th:text="${offer.investor.city}"></td>
+                th:class="${offer.description == null} ? 'empty-table-cell'"
+                class="active-cell"></td>
+            <td th:text="${offer.totalPrice}"
+                class="active-cell"></td>
+            <td th:text="${offer.offerFromTemplate == true} ? 'tak' : 'nie'"
+                class="active-cell"></td>
+            <td th:text="${offer.investor.name}"
+                class="active-cell"></td>
+            <td th:text="${offer.investor.city}"
+                class="active-cell"></td>
             <td th:text="${offer.invoicing == true} ? 'tak' : 'nie'"
-                th:style="${offer.invoicing} ? 'background-color : #10715e ; color : white' : 'background-color : #0aa69a'"></td>
+                th:style="${offer.invoicing} ? 'background-color : #10715e ; color : white' : 'background-color : #0aa69a'"
+                class="active-cell"></td>
             <td><a th:href="@{'/offers/showOneOffer/'+${offer.id}}">POKAŻ</a></td>
             <td>EDYTUJ</td>
             <td>

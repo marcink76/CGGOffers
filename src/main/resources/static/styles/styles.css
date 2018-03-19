@@ -316,3 +316,6 @@ clear: both;
 .date-place{
     font-size: 18px;
 }
+.active-cell{
+    cursor: pointer;
+}
