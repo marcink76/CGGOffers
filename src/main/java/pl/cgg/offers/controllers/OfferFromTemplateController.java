@@ -40,7 +40,7 @@ public class OfferFromTemplateController {
     @PostMapping("/setTemplateToOffer")
     public String setTemplateToOffer(@RequestParam(value = "template-id", required = false) Long id,
                                      @RequestParam(value = "investorType", required = false) String investorType,
-                                     @RequestParam(required = false) Character firstLetter,
+                                     @RequestParam(required = false) String firstLetter,
                                      Model model) {
         Offer offer = new Offer();
 

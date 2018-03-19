@@ -5,7 +5,8 @@ import org.springframework.stereotype.Service;
 import pl.cgg.offers.models.Investor;
 import pl.cgg.offers.repositories.InvestorRepository;
 
-import javax.persistence.criteria.CriteriaBuilder;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -31,6 +32,28 @@ public class InvestorService {
         return investor;
     }
 
+    public List<Investor> getOffersByFirstLetters(String nameFirstLetters,
+                                                  String investorLastNameFirstLetters,
+                                                  String investorCityFirstLetters) {
+        if (nameFirstLetters.equals("") && investorLastNameFirstLetters.equals("")) {
+            return investorRepository.getInvestorsByCityStartingWith(investorCityFirstLetters);
+        }
+        if (investorLastNameFirstLetters.equals("") && investorCityFirstLetters.equals("")){
+            return investorRepository.getInvestorsByNameStartingWith(nameFirstLetters);
+        }
+        if (investorCityFirstLetters.equals("") && investorLastNameFirstLetters.equals("")){
+            return investorRepository.getInvestorsByLastNameStartingWith(investorLastNameFirstLetters);
+        }
+        //TODO
+        if (investorCityFirstLetters.equals("")){
+            List<String> stringList = new ArrayList<>();
+            stringList.add(investorLastNameFirstLetters);
+            stringList.add(nameFirstLetters);
+            return investorRepository.getInvestorsByNameStartingWithAndLastNameStartingWith(nameFirstLetters, investorLastNameFirstLetters);
+        }
+        return Collections.emptyList();
+    }
+
     public List<Investor> getInvestorList() {
         return investorList;
     }
@@ -43,13 +66,13 @@ public class InvestorService {
         return investorRepository.findOne(id);
     }
 
-    public void deleteInvestorFromBase(Long investorId){
+    public void deleteInvestorFromBase(Long investorId) {
         investorRepository.delete(investorId);
     }
 
-    public List<Investor> getByFirstLetter(Character firstLetter){
-        String firstLetters = firstLetter.toString();
-        return investorRepository.getInvestorsByNameStartsWith(firstLetters);
+    public List<Investor> getByFirstLetter(String firstLetter) {
+        String firstLetters = firstLetter;
+        return investorRepository.getInvestorsByNameStartingWith(firstLetters);
     }
 
     public Investor getInvestor() {

@@ -44,8 +44,8 @@ public class OfferController {
     }
 
     @GetMapping("/showOneOffer/{id}")
-    public String showOne(@PathVariable("id")Long id,
-                          Model model){
+    public String showOne(@PathVariable("id") Long id,
+                          Model model) {
         Offer offer = offerService.getOneOffer(id);
         List<ComponentPrice> componentPrices = componentPriceService.getComponentPriceByOffer(offer);
         model.addAttribute("offer", offer);
@@ -54,15 +54,23 @@ public class OfferController {
     }
 
     @GetMapping("/addOffer")
-    public String addOffer(@RequestParam(required = false) Character firstLetter,
+    public String addOffer(@RequestParam(required = false) String nameFirstLetter,
+                           @RequestParam(required = false) String investorLastNameFirstLetters,
+                           @RequestParam(required = false) String investorCityFirstLetters,
                            Model model) {
         List<Investor> investorList;
-        if (firstLetter == null) {
+        if (nameFirstLetter == null && investorLastNameFirstLetters == null && investorCityFirstLetters == null) {
             investorList = investorService.getAllInvestors();
         } else {
-            investorList = investorService.getByFirstLetter(firstLetter);
+            investorList = investorService.getOffersByFirstLetters(
+                    nameFirstLetter,
+                    investorLastNameFirstLetters,
+                    investorCityFirstLetters);
         }
-        model.addAttribute("firstLetter", firstLetter);
+
+        model.addAttribute("nameFirstLetter", nameFirstLetter);
+        model.addAttribute("investorLastNameFirstLetters", investorLastNameFirstLetters);
+        model.addAttribute("investorCityFirstLetters", investorCityFirstLetters);
         model.addAttribute("method", "get");
         model.addAttribute("chars", utils.alphabet());
         model.addAttribute("offer", new Offer());
@@ -117,7 +125,7 @@ public class OfferController {
                                   Model model) {
         double totalPrice = 0;
         List<ComponentPrice> componentPrices = componentPriceService.getComponentPriceList();
-        for (int i = 0; i < componentPrices.size() ; i++) {
+        for (int i = 0; i < componentPrices.size(); i++) {
             double componentPrice = wrapper.getComponentPrices().get(i).getComponentPrice();
             int componentQuantity = wrapper.getComponentPrices().get(i).getQuantity();
             boolean componentOptional = wrapper.getComponentPrices().get(i).isOptional();
@@ -134,6 +142,13 @@ public class OfferController {
         model.addAttribute(offer);
         offerService.saveToBase(offer);
         return "finalOfferForm";
+    }
+
+    @PostMapping("/getOfferByFilter")
+    public String getOfferByFilter(@RequestParam("filterString") String filterString,
+                                   Model model) {
+        model.addAttribute("offersList", offerService.getOffersByString(filterString));
+        return "showAllOffers";
     }
 
     @GetMapping("/ajaxtest")

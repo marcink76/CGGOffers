@@ -1,5 +1,6 @@
 package pl.cgg.offers.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -8,6 +9,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "template", "user"})
 @Table(name = "oferta")
 public class Offer {
     @Id
@@ -31,6 +33,8 @@ public class Offer {
     @Column(name = "oferta_z_szablonu")
     private boolean offerFromTemplate;
 
+    @Column(name = "koszt_skladników_opcjonalnych")
+    private double optionComponent;
 
     @ManyToMany//(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<ComponentOffer> componentOfferList;

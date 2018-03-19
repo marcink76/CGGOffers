@@ -237,17 +237,18 @@ body {
     text-align: center;
 }
 .show-investor-box{
-    width: 50%;
+
     display: block;
     padding-left: 40px;
     float: left;
 
 }
 .show-bidder-box{
-    width: 50%;
+    margin-top: 65px;
     display: block;
     padding-left: 40px;
-    float: right;
+    float: left;
+    font-size: 18px;
 }
 .show-offer-section-box{
     width: 100%;
@@ -255,10 +256,11 @@ body {
     font-size: 18px;
 }
 .logotype-show-offer{
-    margin-top: 40px;
-    width: 350px;
+    float: left;
+    margin-top: 60px;
+    width: 375px;
     height: auto;
-    horiz-align: center;
+    margin-left: 225px;
 }
 .offer-table-box{
     padding-left: 150px;
@@ -277,7 +279,7 @@ body {
     font-size: 18px;
 }
 .offer-number-box{
-
+clear: both;
 }
 .offer-editor-box{
     font-size: 18px;
@@ -296,4 +298,24 @@ body {
     background-color: var(--background-color);
     color: white;
     margin-right: 10px;
+}
+#show-preview{
+    float: left;
+    background-color: var(--inputs-background-color);
+    padding: 10px;
+    width: 250px;
+    border: 1px var(--background-color) solid;
+    border-radius: 15px;
+    margin-left: 25px;
+
+}
+.table{
+    float: left;
+    border-radius: 10px;
+}
+.date-place{
+    font-size: 18px;
+}
+.active-cell{
+    cursor: pointer;
 }
