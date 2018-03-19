@@ -11,7 +11,7 @@
     <p>Wybierz pierwszą literę nazwy inwestora:</p>
 
     <div th:replace="layout/filtermenu" class="filterby-letter-box"></div>
-    <p class="info-box" th:if="${investorsList.isEmpty()}" th:text="${'Brak inwestorów na literę: ' + firstLetter}"></p>
+    <p class="info-box" th:if="${investorsList.isEmpty()}" th:text="${'Brak inwestorów na literę: ' + nameFirstLetter}"></p>
     <table>
         <tr class="row">
             <td>Lp</td>
@@ -20,27 +20,34 @@
             <td>Miasto</td>
             <td></td>
         </tr>
+        <form action="/offers/addOffer" id="name-form">
         <tr class="row">
             <td></td>
-            <td><form action="/offers/addOffer" id="name-form">
+            <td>
                 <input
-                        name="firstLetter"
+                        name="nameFirstLetter"
                         class="std-input"
-                        th:value="${firstLetter}"
+                        th:value="${nameFirstLetter}"
                         id="filter-by-name"/>
-            </form>
+
             </td>
             <td>
                 <input
                         class="std-input"
+                        name="investorLastNameFirstLetters"
+                        th:value="${investorLastNameFirstLetters}"
                         id="filter-by-lastname"/>
             </td>
             <td>
                 <input
                         class="std-input"
+                        name="investorCityFirstLetters"
+                        th:value="${investorCityFirstLetters}"
                         id="filter-by-city"/></td>
+
             <td></td>
         </tr>
+        </form>
         <tr th:each="investor, stat:${investorsList}" th:class="${stat.odd} ? 'row odd-row' : 'row even-row' ">
             <td th:text="${investor.id}"></td>
             <td th:text="${investor.name}"></td>

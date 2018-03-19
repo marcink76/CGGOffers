@@ -33,6 +33,8 @@ public class Offer {
     @Column(name = "oferta_z_szablonu")
     private boolean offerFromTemplate;
 
+    @Column(name = "koszt_skladników_opcjonalnych")
+    private double optionComponent;
 
     @ManyToMany//(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<ComponentOffer> componentOfferList;
