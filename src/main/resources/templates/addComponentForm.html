@@ -20,9 +20,13 @@
             <label for="input-unit">Jednostka:</label>
             <input class="std-input" id="input-unit" type="text" th:field="*{unit}"/>
             <label for="category-selector">Kategoria:</label>
-            <select id="category-selector" th:field="*{category}">
+            <select id="category-selector"
+                    th:field="*{category}"
+                    class="std-select std-input">
                 <option th:each="category:${T(pl.cgg.offers.models.ComponentCategory).values()}"
-                        th:text="${category.getDescription()}" th:value="${category}"></option>
+                        th:text="${category.getDescription()}"
+                        th:value="${category}">
+                </option>
             </select>
             <input type="submit" value="Wprowadź" class="std-btn"/>
 

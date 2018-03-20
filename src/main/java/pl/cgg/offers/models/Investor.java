@@ -1,9 +1,8 @@
 package pl.cgg.offers.models;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 import javax.persistence.*;
-import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.List;
 
@@ -15,14 +14,24 @@ public class Investor implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "inwestor_id")
     private Long id;
-    @NotEmpty(message = "podaj nazwę inwestora!")
-    @Min(2)
+    @NotNull(message = "Podaj poprawną nazwę użytkownika.")
+    @Size(min = 2, max = 30, message = "Nazwa musi zawierać min 2 litery")
     @Column(name = "Nazwa")
     private String name;
+
     @Column(name = "Imie")
+    @Size(min = 2, max = 30, message = "Imię musi zawierać min 2 litery")
+    @NotNull
     private String firstName;
+
     @Column(name = "Nazwisko")
+    @Size(min = 2, max = 30, message = "Nazwisko musi zawierać min 2 litery")
+    @NotNull
     private String lastName;
+
+    @Column (name = "miejsce")
+    @Enumerated(value = EnumType.STRING)
+    private Place place;
     @Column(name = "Ulica")
     private String street;
     @Column(name = "Nr_posesji")
@@ -162,5 +171,13 @@ public class Investor implements Serializable {
 
     public void setArchive(boolean archive) {
         this.archive = archive;
+    }
+
+    public Place getPlace() {
+        return place;
+    }
+
+    public void setPlace(Place place) {
+        this.place = place;
     }
 }

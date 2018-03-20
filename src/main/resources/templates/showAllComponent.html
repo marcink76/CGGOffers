@@ -23,7 +23,7 @@
             <td th:text="${components.description}"></td>
             <td th:text="${components.name}"></td>
             <td th:text="${components.unit}"></td>
-            <td th:text="${components.category}"></td>
+            <td th:text="${components.category.getDescription()}"></td>
         </tr>
     </table>
 </article>

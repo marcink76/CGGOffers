@@ -300,13 +300,16 @@ clear: both;
     margin-right: 10px;
 }
 #show-preview{
+    position: fixed;
+    top: 218px;
     float: left;
     background-color: var(--inputs-background-color);
     padding: 10px;
     width: 250px;
     border: 1px var(--background-color) solid;
     border-radius: 15px;
-    margin-left: 25px;
+    margin-left: 960px;
+    box-shadow: #cccccccc 2px 2px 2px;
 
 }
 .table{
@@ -321,4 +324,7 @@ clear: both;
 }
 .componentOffer-price{
     width: 50px;
+}
+.std-select{
+    height: 27px;
 }

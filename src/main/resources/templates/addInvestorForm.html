@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="head :: head">
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<header th:replace="layout/header :: header"></header>
+<nav th:replace="layout/menu :: menu"></nav>
+
+<article class="main-art" id="main-article">
+    <h4>Dodawanie inwestora:</h4>
+    <form th:action="@{/investor/addInvestorToBase}" method="post" th:object="${investor}">
+        <fieldset id="basic-data" class="input-box">
+            <legend>Nazwa inwestora:</legend>
+            <label
+                    for="input-name"
+                    class="basic-lbl">
+                Nazwa inwestora:
+            </label>
+            <input
+                    class="std-input"
+                    id="input-name"
+                    type="text"
+                    th:field="*{name}"/>
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: #cd0000"></span>
+            <label
+                    for="input-firstname"
+                    class="basic-lbl">
+                Imię:
+            </label>
+            <input
+                    class="std-input"
+                    id="input-firstname"
+                    type="text"
+                    th:field="*{firstName}"/>
+            <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" style="color: #cd0000"></span>
+            <label
+                    for="input-lastname"
+                    class="basic-lbl">
+                Nazwisko:
+            </label>
+            <input
+                    class="std-input"
+                    id="input-lastname"
+                    type="text"
+                    th:field="*{lastName}"/>
+            <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" style="color: #cd0000"></span>
+        </fieldset>
+        <fieldset
+                id="adress"
+                class="input-box">
+            <legend>Adres:</legend>
+            <label
+                    for="select-place">
+                Siedziba:
+            </label>
+            <select
+                    id="select-place"
+                    th:field="*{place}"
+                    class="std-select std-input">
+                <option
+                        th:each="place : ${T(pl.cgg.offers.models.Place).values()}"
+                        th:text="${place.getPlace()}"
+                        th:value="${place}">
+                </option>
+            </select>
+            <label
+                    for="input-street"
+                    class="basic-lbl">
+            </label>
+            <input
+                    class="std-input"
+                    id="input-street"
+                    type="text"
+                    th:field="*{street}"/>
+            <label
+                    for="input-posesion-nr"
+                    class="basic-lbl">
+                Numer posesji:
+            </label>
+            <input
+                    class="std-input"
+                    id="input-posesion-nr"
+                    type="text"
+                    th:field="*{posesionNumber}"/>
+            <label
+                    for="input-local-nr"
+                    class="basic-lbl">
+                Numer lokalu:
+            </label>
+            <input
+                    class="std-input"
+                    id="input-local-nr"
+                    type="text"
+                    th:field="*{localNumber}"/>
+            <label
+                    for="input-city"
+                    class="basic-lbl">
+                Miasto:</label>
+            <input
+                    class="std-input"
+                    id="input-city"
+                    type="text"
+                    th:field="*{city}"/>
+            <label
+                    for="input-zipcode"
+                    class="basic-lbl">
+                kod pocztowy:</label>
+            <input
+                    class="std-input"
+                    id="input-zipcode"
+                    type="text"
+                    th:field="*{zipcode}"/>
+        </fieldset>
+        <fieldset
+                id="additional-data"
+                class="input-box">
+            <legend>Dane kontaktowe:</legend>
+            <label
+                    for="input-nip"
+                    class="basic-lbl">
+                NIP:</label>
+            <input
+                    class="std-input"
+                    id="input-nip"
+                    type="number"
+                    pattern="[0-9]{10}"
+                    th:field="*{nip}"/>
+            <label
+                    for="input-email"
+                    class="basic-lbl">
+                E-mail</label>
+            <input
+                    class="std-input"
+                    id="input-email"
+                    type="email"
+                    th:field="*{email}"/>
+            <label
+                    for="input-phone-nr"
+                    class="basic-lbl">
+                Numer telefonu</label>
+            <input
+                    class="std-input"
+                    id="input-phone-nr"
+                    type="number"
+                    th:field="*{phoneNumber}"/>
+            <input
+                    type="submit"
+                    value="Wprowadź"
+                    class="std-btn"/>
+        </fieldset>
+    </form>
+</article>
+<footer th:replace="/layout/footer :: footer"></footer>
+
+</body>
+</html>
