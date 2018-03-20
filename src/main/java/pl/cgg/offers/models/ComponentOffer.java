@@ -1,7 +1,10 @@
 package pl.cgg.offers.models;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Comparator;
 import java.util.List;
@@ -18,13 +21,19 @@ public class ComponentOffer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "skladnik_id")
     private Long id;
-    @NotNull
+
+    @NotEmpty
+    @Size(min = 2, max = 40, message = "Nazwa składnika musi mieć minimum 2 litery!")
     @Column(name = "nazwa_uslugi")
     private String name;
+
     @Column(name = "opis")
     private String description;
+
     @Column(name = "jednostka")
-    private String unit;
+    @Enumerated(value = EnumType.STRING)
+    private Units unit;
+
     @Column(name = "kategoria_skladnika")
     @Enumerated(value = EnumType.STRING)
     private ComponentCategory category;
@@ -38,12 +47,6 @@ public class ComponentOffer {
     @ManyToOne
     @JoinColumn(name = "id_skladnika")
     private Template template;
-
-    public ComponentOffer(String name, String description, int quantity, double unitPrice, String unit, Offer offer) {
-        this.name = name;
-        this.description = description;
-        this.unit = unit;
-    }
 
     public ComponentOffer() {
     }
@@ -72,11 +75,11 @@ public class ComponentOffer {
         this.description = description;
     }
 
-    public String getUnit() {
+    public Units getUnit() {
         return unit;
     }
 
-    public void setUnit(String unit) {
+    public void setUnit(Units unit) {
         this.unit = unit;
     }
 

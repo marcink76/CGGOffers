@@ -11,14 +11,38 @@
 <article class="main-art" id="main-article">
     <h4>Dodawanie składnków:</h4>
 
-    <div class="input-box">
+    <fieldset class="input-box">
+        <legend>Dodawanie składnika oferty:</legend>
         <form th:action="@{'/component/addComponentToBase'}" th:object="${component}" method="post">
-            <label for="input-componentOffer-name">Nazwa:</label>
-            <input class="std-input" id="input-componentOffer-name" type="text" th:field="*{name}"/>
-            <label for="input-desc">Opis:</label>
-            <input class="std-input" id="input-desc" type="text" th:field="*{description}"/>
+            <label
+                    for="input-componentOffer-name">
+                Nazwa:
+            </label>
+
+            <input
+                    class="std-input"
+                    id="input-componentOffer-name"
+                    type="text"
+                    th:field="*{name}"/>
+            <label
+                    for="input-desc">
+                Opis:
+            </label>
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+            <input
+                    class="std-input"
+                    id="input-desc"
+                    type="text"
+                    th:field="*{description}"/>
             <label for="input-unit">Jednostka:</label>
-            <input class="std-input" id="input-unit" type="text" th:field="*{unit}"/>
+            <select id="input-unit"
+                    th:field="*{unit}"
+                    class="std-select std-input">
+                <option th:each="unit : ${T(pl.cgg.offers.models.Units).values()}"
+                        th:text="${unit.getUnits()}"
+                        th:value="${unit}">
+                </option>
+            </select>
             <label for="category-selector">Kategoria:</label>
             <select id="category-selector"
                     th:field="*{category}"
@@ -31,7 +55,7 @@
             <input type="submit" value="Wprowadź" class="std-btn"/>
 
         </form>
-    </div>
+    </fieldset>
 </article>
 <footer th:replace="layout/footer :: footer"></footer>
 </body>

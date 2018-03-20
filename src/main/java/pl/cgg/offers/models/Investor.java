@@ -1,5 +1,7 @@
 package pl.cgg.offers.models;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -14,7 +16,8 @@ public class Investor implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "inwestor_id")
     private Long id;
-    @NotNull(message = "Podaj poprawną nazwę użytkownika.")
+
+    @NotEmpty(message = "Podaj poprawną nazwę inwestora.")
     @Size(min = 2, max = 30, message = "Nazwa musi zawierać min 2 litery")
     @Column(name = "Nazwa")
     private String name;
