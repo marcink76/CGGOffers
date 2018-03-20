@@ -17,11 +17,18 @@
         <div id="to-add-box">
             <h4>Dodaj do oferty:</h4>
             <table>
+                <tr class="row">
+                    <th>Lp</th>
+                    <th>Nazwa składnika</th>
+                    <th>Opis</th>
+                    <th>Jednostka</th>
+                    <th>Dodaj</th>
+                </tr>
                 <tr th:each="component, stat:${componentList}" th:class="${stat.odd} ? 'row odd-row' : 'row even-row'">
                     <td th:text="${component.id}"></td>
                     <td th:text="${component.name}"></td>
                     <td th:text="${component.description}"></td>
-                    <td th:text="${component.unit}"></td>
+                    <td th:text="${component.unit.getUnits()}"></td>
                     <td>
                         <form th:action="@{'/offers/setInvestorToOffer'}" method="post">
                             <button name="componentId" type="submit" th:value="${component.id}" class="std-btn">Dodaj
@@ -34,13 +41,20 @@
         </div>
         <div id="added-to-box">
             <h4 th:if="${!tempComponentList.isEmpty()}">Elementy dodane do oferty:</h4>
-            <table>
+            <table th:if="${!tempComponentList.isEmpty()}">
+                <tr class="row">
+                    <th>Lp</th>
+                    <th>Nazwa składnika</th>
+                    <th>Opis</th>
+                    <th>Jednostka</th>
+                    <th>Usun</th>
+                </tr>
                 <tr th:each="component, stat:${tempComponentList}"
                     th:class="${stat.odd} ? 'row odd-row' : 'row even-row'">
                     <td th:text="${component.id}"></td>
                     <td th:text="${component.name}"></td>
                     <td th:text="${component.description}"></td>
-                    <td th:text="${component.unit}"></td>
+                    <td th:text="${component.unit.getUnits()}"></td>
                     <td>
                         <form th:action="@{'/offers/setInvestorToOffer'}" method="post">
                             <button name="componentIdDel" type="submit" th:value="${component.id}" class="std-btn">Usuń

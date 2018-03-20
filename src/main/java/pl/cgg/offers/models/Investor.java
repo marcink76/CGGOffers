@@ -4,6 +4,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.List;
@@ -35,17 +36,25 @@ public class Investor implements Serializable {
     @Column (name = "miejsce")
     @Enumerated(value = EnumType.STRING)
     private Place place;
+
     @Column(name = "Ulica")
     private String street;
+
     @Column(name = "Nr_posesji")
     private String posesionNumber;
+
     @Column(name = "Nr_lokalu")
     private String localNumber;
+
     @Column(name = "Miasto")
     private String city;
+
     @Column(name = "Kod_pocztowy")
+    @Pattern(regexp = "^[0-9]{2}-[0-9]{3}$", message = "Podaj kod pocztowy w formacie XX-XXX")
     private String zipcode;
+
     @Column(name = "nip")
+    @Size(min = 10, max=10)
     private String nip;
     @Column(name = "email")
     private String email;

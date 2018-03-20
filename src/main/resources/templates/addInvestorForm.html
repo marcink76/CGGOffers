@@ -112,6 +112,7 @@
                     id="input-zipcode"
                     type="text"
                     th:field="*{zipcode}"/>
+            <span th:if="${#fields.hasErrors('zipcode')}" th:text="*{zipcode}" style="color: #cd0000"></span>
         </fieldset>
         <fieldset
                 id="additional-data"
