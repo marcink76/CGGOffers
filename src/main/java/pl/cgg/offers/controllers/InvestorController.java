@@ -9,6 +9,7 @@ import pl.cgg.offers.models.Investor;
 import pl.cgg.offers.service.InvestorService;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/investor")
@@ -18,9 +19,23 @@ public class InvestorController {
     private InvestorService investorService;
 
     @GetMapping("/showAll")
-    public String showAll(Model model) {
-        model.addAttribute("investorList", investorService.getAllInvestors());
-
+    public String showAll(Model model,
+                          @RequestParam(required = false) String nameFirstLetter,
+                          @RequestParam(required = false) String investorLastNameFirstLetters,
+                          @RequestParam(required = false) String investorCityFirstLetters) {
+        List<Investor> investorList;
+        if (nameFirstLetter == null && investorLastNameFirstLetters == null && investorCityFirstLetters == null) {
+            investorList = investorService.getAllInvestors();
+        } else {
+            investorList = investorService.getOffersByFirstLetters(
+                    nameFirstLetter,
+                    investorLastNameFirstLetters,
+                    investorCityFirstLetters);
+        }
+        model.addAttribute("investorList", investorList);
+        model.addAttribute("nameFirstLetter", nameFirstLetter);
+        model.addAttribute("investorLastNameFirstLetters", investorLastNameFirstLetters);
+        model.addAttribute("investorCityFirstLetters", investorCityFirstLetters);
         return "showAllInvestors";
     }
 

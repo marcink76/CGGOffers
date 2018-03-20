@@ -8,8 +8,10 @@
 <header th:replace="layout/header :: header"></header>
 <nav th:replace="layout/menu :: menu"></nav>
 <article class="main-art" id="main-article">
-    <h4>Wprowadź ceny i ilości</h4>
+    <h4>Wprowadź ceny, ilości oraz opis oferty</h4>
     <form th:action="@{'/offers/completeOffer'}" method="post" th:object="${wrapper}">
+        <label for="offer-desc">Podaj opis oferty:</label><br/>
+        <textarea name="offerDesc" id="offer-desc" class="txt-area std-input"></textarea>
         <table>
             <tr class="row">
                 <th>Id</th>
@@ -26,13 +28,14 @@
                 <td>
                     <input
                             type="number"
-                            class="std-input"
+                            class="quantity std-input"
+                            th:id="${stat.index}"
                             th:field="*{componentPrices[__${stat.index}__].quantity}"/>
                 </td>
                 <td>
                     <input
                             type="number"
-                            class="std-input"
+                            class="price std-input"
                             th:field="*{componentPrices[__${stat.index}__].componentPrice}"/>
                 </td>
                 <td class="componentOffer-price">
@@ -42,12 +45,15 @@
                 <td>
                     <input
                             type="checkbox"
+                            class="optional-chk"
                             th:field="*{componentPrices[__${stat.index}__].optional}"
                             th:value="true"/>
                 </td>
                 <td>
                     <input
                             type="checkbox"
+                            th:id="${stat.index}"
+                            class="lumpsum-chk"
                             th:field="*{componentPrices[__${stat.index}__].aLumpSum}"
                             th:value="true"/>
                 </td>
@@ -69,5 +75,6 @@
         th:replace="layout/footer :: footer">
     
 </footer>
+<script src="/scripts/inputsBlocker.js"></script>
 </body>
 </html>

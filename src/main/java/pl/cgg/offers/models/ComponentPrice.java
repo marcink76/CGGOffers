@@ -11,17 +11,17 @@ public class ComponentPrice {
     private Long id;
 
     @Column(name = "ilosc")
-    private int quantity;
+    private double quantity;
 
     @Column(name = "cena_jednostkowa")
     private double componentPrice;
 
     @Column(name = "cena_calkowita")
     private double totalPrice;
-//TODO Add checkbox to form
+
     @Column(name = "ryczalt")
     private boolean aLumpSum;
-//TODO Add checkbox to form
+
     @Column(name = "pozycja_opcjonalna")
     private boolean optional;
 
@@ -55,11 +55,11 @@ public class ComponentPrice {
         this.componentPrice = componentPrice;
     }
 
-    public int getQuantity() {
+    public double getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(double quantity) {
         this.quantity = quantity;
     }
 

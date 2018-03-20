@@ -5,7 +5,7 @@ function hidePreviewBox() {
 }
 
 function loadOffer(offerId) {
-    previewbox.style = ('visibility: visible')
+    previewbox.style = ('visibility: visible');
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
@@ -14,8 +14,9 @@ function loadOffer(offerId) {
             previewbox.innerHTML =
                 offer.id + '/' + offer.date.year + '<br/>' +
                 offer.investor.name + '<br/>' +
+                offer.description + '<br/>' +
                 offer.investor.firstName + ' ' + offer.investor.lastName + '<br/>' +
-                offer.componentOfferList[1].name + '<br/>' +
+                offer.componentOfferList.length + '<br/>' +
                 offer.totalPrice;
         }
     };

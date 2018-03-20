@@ -12,6 +12,7 @@ import java.util.List;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "template", "user"})
 @Table(name = "oferta")
 public class Offer {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_oferty")
@@ -33,8 +34,11 @@ public class Offer {
     @Column(name = "oferta_z_szablonu")
     private boolean offerFromTemplate;
 
+    @Column(name = "archwalne")
+    private boolean archival;
+
     @Column(name = "koszt_skladników_opcjonalnych")
-    private double optionComponent;
+    private double optionalComponentPrice;
 
     @ManyToMany//(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<ComponentOffer> componentOfferList;
@@ -138,5 +142,21 @@ public class Offer {
 
     public void setTemplate(Template template) {
         this.template = template;
+    }
+
+    public boolean isArchival() {
+        return archival;
+    }
+
+    public void setArchival(boolean archival) {
+        this.archival = archival;
+    }
+
+    public double getOptionalComponentPrice() {
+        return optionalComponentPrice;
+    }
+
+    public void setOptionalComponentPrice(double optionalComponentPrice) {
+        this.optionalComponentPrice = optionalComponentPrice;
     }
 }
