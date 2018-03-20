@@ -40,6 +40,9 @@ public class Offer {
     @Column(name = "koszt_skladników_opcjonalnych")
     private double optionalComponentPrice;
 
+    @Column(name = "rabat")
+    private int discount;
+
     @ManyToMany//(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<ComponentOffer> componentOfferList;
 
@@ -158,5 +161,13 @@ public class Offer {
 
     public void setOptionalComponentPrice(double optionalComponentPrice) {
         this.optionalComponentPrice = optionalComponentPrice;
+    }
+
+    public int getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(int discount) {
+        this.discount = discount;
     }
 }

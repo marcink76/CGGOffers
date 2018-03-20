@@ -28,6 +28,7 @@
                 <td>
                     <input
                             type="number"
+                            step="0.1"
                             class="quantity std-input"
                             th:id="${stat.index}"
                             th:field="*{componentPrices[__${stat.index}__].quantity}"/>
@@ -35,6 +36,7 @@
                 <td>
                     <input
                             type="number"
+                            step="0.1"
                             class="price std-input"
                             th:field="*{componentPrices[__${stat.index}__].componentPrice}"/>
                 </td>

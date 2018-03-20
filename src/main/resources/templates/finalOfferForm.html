@@ -21,12 +21,13 @@
         <li></li>
     </ul>
     <table>
-        <tr>
+        <tr class="row">
             <th>LP</th>
             <th>Składnik oferty</th>
             <th>Ilość</th>
             <th>Cena jednostkowa</th>
             <th>Cena</th>
+            <th>Ryczałt</th>
         </tr>
         <tr th:each="prices, stat:${componentPricesList}"
             th:class="${stat.odd} ? 'row even-row' : 'row odd-row'">
@@ -35,6 +36,7 @@
             <td th:text="${prices.quantity}"></td>
             <td th:text="${prices.componentPrice}"></td>
             <td th:text="${prices.quantity} * ${prices.componentPrice}"></td>
+            <td th:text="${prices.aLumpSum}? 'tak' : 'nie'"></td>
         </tr>
     </table>
 </article>
