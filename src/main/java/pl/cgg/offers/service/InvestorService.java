@@ -38,20 +38,25 @@ public class InvestorService {
         if (nameFirstLetters.equals("") && investorLastNameFirstLetters.equals("")) {
             return investorRepository.getInvestorsByCityStartingWith(investorCityFirstLetters);
         }
-        if (investorLastNameFirstLetters.equals("") && investorCityFirstLetters.equals("")){
+        if (investorLastNameFirstLetters.equals("") && investorCityFirstLetters.equals("")) {
             return investorRepository.getInvestorsByNameStartingWith(nameFirstLetters);
         }
-        if (investorCityFirstLetters.equals("") && investorLastNameFirstLetters.equals("")){
+        if (investorCityFirstLetters.equals("") && investorLastNameFirstLetters.equals("")) {
             return investorRepository.getInvestorsByLastNameStartingWith(investorLastNameFirstLetters);
         }
-        //TODO
-        if (investorCityFirstLetters.equals("")){
-            List<String> stringList = new ArrayList<>();
-            stringList.add(investorLastNameFirstLetters);
-            stringList.add(nameFirstLetters);
+        if (investorCityFirstLetters.equals("")) {
             return investorRepository.getInvestorsByNameStartingWithAndLastNameStartingWith(nameFirstLetters, investorLastNameFirstLetters);
         }
-        return Collections.emptyList();
+        if (nameFirstLetters.equals("")) {
+            return investorRepository.getInvestorsByLastNameStartingWithAndCityStartingWith
+                    (investorLastNameFirstLetters, investorCityFirstLetters);
+        }
+        if (investorLastNameFirstLetters.equals("")) {
+            return investorRepository.getInvestorsByNameStartingWithAndCityStartingWith(nameFirstLetters, investorCityFirstLetters);
+        }
+        return investorRepository.getInvestorsByNameStartingWithAndCityStartingWithAndLastNameStartingWith
+                (nameFirstLetters,
+                investorCityFirstLetters, investorLastNameFirstLetters);
     }
 
     public List<Investor> getInvestorList() {

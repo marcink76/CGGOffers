@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 import pl.cgg.offers.models.*;
 import pl.cgg.offers.service.*;
 import pl.cgg.offers.utility.Utils;
@@ -67,7 +68,6 @@ public class OfferController {
                     investorLastNameFirstLetters,
                     investorCityFirstLetters);
         }
-
         model.addAttribute("nameFirstLetter", nameFirstLetter);
         model.addAttribute("investorLastNameFirstLetters", investorLastNameFirstLetters);
         model.addAttribute("investorCityFirstLetters", investorCityFirstLetters);
@@ -121,13 +121,15 @@ public class OfferController {
 
     @PostMapping("/completeOffer")
     public String saveOfferToBase(@ModelAttribute("wrapper") ComponentPriceWrapper wrapper,
+                                  @RequestParam("offerDesc") String offerDesc,
                                   Offer offer,
                                   Model model) {
         double totalPrice = 0;
+        double optionalPrice = 0;
         List<ComponentPrice> componentPrices = componentPriceService.getComponentPriceList();
         for (int i = 0; i < componentPrices.size(); i++) {
             double componentPrice = wrapper.getComponentPrices().get(i).getComponentPrice();
-            int componentQuantity = wrapper.getComponentPrices().get(i).getQuantity();
+            double componentQuantity = wrapper.getComponentPrices().get(i).getQuantity();
             boolean componentOptional = wrapper.getComponentPrices().get(i).isOptional();
             boolean componentLumpSum = wrapper.getComponentPrices().get(i).isaLumpSum();
             componentPrices.get(i).setComponentPrice(componentPrice);
@@ -135,8 +137,13 @@ public class OfferController {
             componentPrices.get(i).setaLumpSum(componentLumpSum);
             componentPrices.get(i).setOptional(componentOptional);
             componentPriceService.saveComponentPrice(componentPrices.get(i));
+            if (componentOptional){
+                optionalPrice += componentPrice * componentQuantity;
+            }
             totalPrice += componentPrice * componentQuantity;
         }
+        offer.setOptionalComponentPrice(optionalPrice);
+        offer.setDescription(offerDesc);
         offer.setTotalPrice(totalPrice);
         model.addAttribute("componentPricesList", componentPrices);
         model.addAttribute(offer);
@@ -146,8 +153,11 @@ public class OfferController {
 
     @PostMapping("/getOfferByFilter")
     public String getOfferByFilter(@RequestParam("filterString") String filterString,
-                                   Model model) {
+                                   Model model,
+                                   SessionStatus sessionStatus) {
+
         model.addAttribute("offersList", offerService.getOffersByString(filterString));
+        sessionStatus.setComplete();
         return "showAllOffers";
     }
 

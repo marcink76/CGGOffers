@@ -13,10 +13,10 @@
     <table th:if="${!offersList.isEmpty()}" class="table">
         <tr class="row">
             <th>Numer</th>
-            <th>Opis</th>
             <th>Cena</th>
             <th>Oferta z szablonu</th>
             <th>Nazwa inwestora</th>
+            <th>Nazwisko inwestora</th>
             <th>Miasto</th>
             <th>Zafakturowanie</th>
             <th>Pokaż</th>
@@ -24,7 +24,6 @@
             <th>Wystaw fakturę</th>
         </tr>
         <tr class="row">
-            <th></th>
             <th></th>
             <th></th>
             <th></th>
@@ -38,6 +37,7 @@
             <th></th>
             <th></th>
             <th></th>
+            <th></th>
         </tr>
         <tr
                 th:each="offer, stat:${offersList}"
@@ -47,14 +47,16 @@
             <td th:text="${offer.id} + '/' + ${offer.date}"
                 class="active-cell">
             </td>
-            <td th:text="${offer.description == null} ? 'brak'"
+            <!--<td th:text="${offer.description == null} ? 'brak'"
                 th:class="${offer.description == null} ? 'empty-table-cell'"
-                class="active-cell"></td>
+                class="active-cell"></td>-->
             <td th:text="${offer.totalPrice}"
                 class="active-cell"></td>
             <td th:text="${offer.offerFromTemplate == true} ? 'tak' : 'nie'"
                 class="active-cell"></td>
             <td th:text="${offer.investor.name}"
+                class="active-cell"></td>
+            <td th:text="${offer.investor.lastName}"
                 class="active-cell"></td>
             <td th:text="${offer.investor.city}"
                 class="active-cell"></td>

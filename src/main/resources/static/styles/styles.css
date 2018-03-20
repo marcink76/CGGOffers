@@ -319,3 +319,6 @@ clear: both;
 .active-cell{
     cursor: pointer;
 }
+.componentOffer-price{
+    width: 50px;
+}

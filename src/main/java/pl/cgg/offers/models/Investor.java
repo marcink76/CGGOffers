@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "inwestor")
-public class Investor implements Serializable{
+public class Investor implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,6 +39,8 @@ public class Investor implements Serializable{
     private String email;
     @Column(name = "numertelefonu")
     private String phoneNumber;
+    @Column(name = "archiwalny")
+    private boolean archive;
 
     @OneToMany
     private List<Offer> offerList;
@@ -152,5 +154,13 @@ public class Investor implements Serializable{
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public boolean isArchive() {
+        return archive;
+    }
+
+    public void setArchive(boolean archive) {
+        this.archive = archive;
     }
 }

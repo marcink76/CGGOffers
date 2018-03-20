@@ -4,12 +4,16 @@
 <div th:fragment="filtermenu" class="filterby-letter-box">
     <form th:method="${method}">
         <button
-                name="firstLetter"
+                name="nameFirstLetter"
                 class="letter-btn"
                 th:each="char:${chars}"
                 th:value="${char}"
                 th:text="${char}">
         </button>
+        <input type="hidden"
+               name="investorLastNameFirstLetters"/>
+        <input type="hidden"
+               name="investorCityFirstLetters"/>
     </form>
 </div>
 </html>

@@ -60,11 +60,26 @@
             <tr th:each="prices, stat:${prices}" th:class="${stat.odd} ? 'row odd-row' : 'row even-row'">
                 <td th:text="${stat.index} + 1"></td>
                 <td th:text="${offer.componentOfferList[__${stat.index}__].name}"></td>
-                <td th:text="${prices.quantity}"></td>
-                <td th:text="${prices.componentPrice}"></td>
-                <td th:text="${prices.componentPrice} * ${prices.quantity}"></td>
-                <td th:text="${prices.aLumpSum == true} ? 'tak': 'nie'"></td>
-                <td th:text="${prices.optional == true} ? 'tak': 'nie'"></td>
+                <td>
+                    <span
+                            th:if="${!prices.aLumpSum}"
+                            th:text="${prices.quantity}">
+                    </span>
+                </td>
+                <td>
+                    <span
+                            th:if="${!prices.aLumpSum}"
+                            th:text="${prices.componentPrice}">
+                    </span>
+                </td>
+                <td>
+                    <span
+                            th:if="${!prices.aLumpSum}"
+                            th:text="${prices.componentPrice} * ${prices.quantity}">
+                    </span>
+                </td>
+                <td th:text="${prices.aLumpSum == true} ? 'tak' : 'nie'"></td>
+                <td th:text="${prices.optional == true} ? 'tak' : 'nie'"></td>
             </tr>
             <tr>
                 <th></th>
@@ -73,8 +88,16 @@
                 <th class="cell-sigma">Suma netto:</th>
                 <th class="cell-sum" th:text="${offer.totalPrice}"></th>
             </tr>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th class="cell-sigma">Suma składników opcjonalnych:</th>
+                <th class="cell-sum" th:text="${offer.optionalComponentPrice}"></th>
+            </tr>
         </table>
     </div>
+    <div class="offer-description" th:text="${offer.description}"></div>
     <div class="offer-editor-box">
         <div>
             <h4>Ofertę sporządził:</h4>

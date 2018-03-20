@@ -24,27 +24,41 @@
             <th>nip</th>
             <th>usuwanie</th>
         </tr>
-        <tr class="row">
-            <th></th>
-            <th></th>
-            <th>
-                <input
-                        class="std-input"
-                        id="filter-by-lastname"/></th>
-            <th></th>
-            <th>
-                <input
-                        class="std-input"
-                        id="filter-by-city"/>
-            </th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
+        <form action="/investor/showAll" id="name-form">
+            <tr class="row">
+                <th>Filtruj:</th>
+                <th></th>
+
+                <th>
+                    <input
+                            class="std-input"
+                            name="investorLastNameFirstLetters"
+                            th:value="${investorLastNameFirstLetters}"
+                            id="filter-by-lastname"/>
+                </th>
+                <th>
+                    <input
+                            name="nameFirstLetter"
+                            class="std-input"
+                            th:value="${nameFirstLetter}"
+                            id="filter-by-name"/>
+
+                </th>
+                <th>
+                    <input
+                            class="std-input"
+                            name="investorCityFirstLetters"
+                            th:value="${investorCityFirstLetters}"
+                            id="filter-by-city"/></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </form>
         <tr th:each="investors, stat:${investorList}" class="table-row"
             th:class="${stat.odd} ? 'row odd-row' : 'row even-row'">
             <td th:text="${investors.id}"></td>
@@ -67,7 +81,7 @@
     </table>
 </article>
 <footer th:replace="layout/footer :: footer"></footer>
-<script src="/scripts/filter.js"></script>
+<script src="/scripts/filterByString.js"></script>
 <script src="/scripts/jquery-3.3.1.js"></script>
 </body>
 </html>
