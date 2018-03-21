@@ -10,22 +10,29 @@
 <article class="main-art" id="main-article">
     <h4 th:if="${ComponentList.isEmpty()}" th:text="Brak komponentów"></h4>
     <h4>Składniki ofert:</h4>
-    <table>
-        <tr class="row">
-            <th>Id</th>
-            <th>Opis</th>
-            <th>Nazwa</th>
-            <th>Jednostka</th>
-            <th>Kategoria</th>
-        </tr>
-        <tr th:each="components, stat :${ComponentList}" th:class="${stat.odd} ? 'row odd-row' : 'row even-row'">
-            <td th:text="${components.id}"></td>
-            <td th:text="${components.name}"></td>
-            <td th:text="${components.description}"></td>
-            <td th:text="${components.unit.getUnits()}"></td>
-            <td th:text="${components.category.getDescription()}"></td>
-        </tr>
-    </table>
+    <form th:action="@{/component/edit}" method="get">
+        <table>
+            <tr class="row">
+                <th>Id</th>
+                <th>Opis</th>
+                <th>Nazwa</th>
+                <th>Jednostka</th>
+                <th>Kategoria</th>
+                <th>Edycja</th>
+            </tr>
+            <tr th:each="components, stat :${ComponentList}" th:class="${stat.odd} ? 'row odd-row' : 'row even-row'">
+                <td th:text="${components.id}"></td>
+                <td th:text="${components.name}"></td>
+                <td th:text="${components.description}"></td>
+                <td th:text="${components.unit.getUnits()}"></td>
+                <td th:text="${components.category.getDescription()}"></td>
+                <td>
+                    <button class="std-btn" name="id" th:value="${components.id}">Edytuj</button>
+                </td>
+            </tr>
+        </table>
+        <input type="hidden" name="edit" value="true"/>
+    </form>
 </article>
 <footer th:replace="layout/footer :: footer"></footer>
 </body>

@@ -76,6 +76,14 @@ public class ComponentService {
             tempComponentOfferList.removeIf(component -> component.getId() == componentIdDel);
         }
     }
+
+    public void editComponent(ComponentOffer component) {
+        componentRepository.updateComponent(component.getCategory(),
+                                            component.getDescription(),
+                                            component.getName(),
+                                            component.getId(),
+                                            component.getUnit());
+    }
     // getters and setters
 //------------------------------------------------------------
 
