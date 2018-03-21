@@ -27,13 +27,27 @@
             <th></th>
             <th></th>
             <th></th>
-            <th></th>
-            <th><label for="filter-by-city"></label>
-                <input id="filter-by-city"
-                       class="std-input"
-                       type="text"
-                /></th>
-            <th></th>
+            <th>
+                <input
+                        name="nameFirstLetter"
+                        class="std-input"
+                        th:value="${nameFirstLetter}"
+                        id="filter-by-name"/>
+            </th>
+            <th>
+                <input
+                        class="std-input"
+                        name="investorLastNameFirstLetters"
+                        th:value="${investorLastNameFirstLetters}"
+                        id="filter-by-lastname"/>
+            </th>
+            <th>
+                <input
+                        class="std-input"
+                        name="investorCityFirstLetters"
+                        th:value="${investorCityFirstLetters}"
+                        id="filter-by-city"/>
+            </th>
             <th></th>
             <th></th>
             <th></th>

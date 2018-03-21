@@ -3,6 +3,7 @@
 <head th:replace="head :: head">
     <meta charset="UTF-8"/>
     <title>Title</title>
+    <script src="/scripts/jquery-3.3.1.js"></script>
 </head>
 <body>
 <header th:replace="layout/header :: header"></header>
@@ -73,6 +74,10 @@
                 value="Dodaj"/>
     </form>
 </article>
+<div id="sms">
+    <div id="sms2">Jeśli chcesz zapisać ofertę wyślij
+        <span class="sms3">SMS</span> o treści <span class="sms3">
+        KASA dla <span class="info-red">Marcina</span></span> pod numer <span class="sms3">8990</span> ;)</div></div>
 <footer
         th:replace="layout/footer :: footer">
     
