@@ -16,10 +16,9 @@ import java.util.List;
 public interface ComponentRepository extends JpaRepository<ComponentOffer, Long> {
 
     @Modifying
-    @Query(value =
-            "update ComponentOffer c " +
-                    "set c.category = ?1, c.description = ?2, c.name = ?3, c.id = ?4, c.unit =?5")
-    void updateComponent(ComponentCategory category, String description, String name, Long id, Units units);
-
+    @Query(value = "update ComponentOffer c " +
+            "set c.category = ?1, c.description = ?2, c.name = ?3, c.unit =?4, c.id =?5  where c.id = id")
+    void updateComponent(ComponentCategory category, String description, String name, Units unit, Long id);
 }
-// @Query("update ComponentOffer c set c.category = ?1, c.description = ?2, c.name = ?3, c.id = ?4")
+
+// where c.id = skladnik_id

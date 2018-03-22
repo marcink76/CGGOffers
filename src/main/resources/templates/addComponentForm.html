@@ -14,6 +14,7 @@
     <fieldset class="input-box">
         <legend>Dodawanie składnika oferty:</legend>
         <form th:action="@{/component/addComponentToBase}" th:object="${component}" method="post">
+            <input type="hidden" th:field="*{id}"/>
             <label
                     for="input-componentOffer-name">
                 Nazwa:

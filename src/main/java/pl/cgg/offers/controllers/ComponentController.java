@@ -48,7 +48,7 @@ public class ComponentController {
             return "addComponentForm";
         }
         if (edit) {
-            componentService.editComponent(componentOffer);
+            componentService.mergeComponent(componentOffer);
         } else {
             componentService.addToBase(componentOffer);
         }
