@@ -5,7 +5,10 @@
     <title>Title</title>
 </head>
 <body>
-<nav><a href="/offers/showAll">Pokaż oferty</a></nav>
+<nav><a href="/offers/showAll">Pokaż oferty</a>
+    <a th:href="@{'/offers/edit/'+${offer.id}}">Edytuj ofertę</a>
+
+</nav>
 <article class="offer-show">
     <div>
         <div
@@ -103,6 +106,14 @@
                 <th></th>
                 <th class="cell-sigma">Suma składników opcjonalnych:</th>
                 <th class="cell-sum" th:text="${offer.optionalComponentPrice}"></th>
+            </tr>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th class="cell-sigma">Suma ryczałtu:</th>
+                <th class="cell-sum" th:text="${offer.totalLumpPrice}"></th>
             </tr>
         </table>
     </div>

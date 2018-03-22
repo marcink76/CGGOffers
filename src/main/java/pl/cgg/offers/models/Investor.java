@@ -49,6 +49,10 @@ public class Investor implements Serializable {
     @Column(name = "Miasto")
     private String city;
 
+    @Column(name = "Typ_inwestora")
+    @Enumerated(value = EnumType.STRING)
+    private InvestorsCategory category;
+
     @Column(name = "Kod_pocztowy")
     @Pattern(regexp = "^[0-9]{2}-[0-9]{3}$", message = "Podaj kod pocztowy w formacie XX-XXX")
     private String zipcode;
@@ -191,5 +195,13 @@ public class Investor implements Serializable {
 
     public void setPlace(Place place) {
         this.place = place;
+    }
+
+    public InvestorsCategory getCategory() {
+        return category;
+    }
+
+    public void setCategory(InvestorsCategory category) {
+        this.category = category;
     }
 }

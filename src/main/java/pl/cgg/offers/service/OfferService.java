@@ -45,7 +45,7 @@ public class OfferService {
     }
 
     public Offer getOneOffer(Long id){
-        return offerRepository.getOne(id);
+        return offerRepository.findOne(id);
     }
 
     public List<ComponentOffer> getAllComponent(){

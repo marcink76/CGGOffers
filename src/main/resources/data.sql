@@ -82,3 +82,6 @@ INSERT INTO offers.uzytkownik (nazwisko, imie, rola, login, haslo, aktywnosc)
 VALUES ('Skrzypcz', 'Tomasz', 'ROLE_USER', 'Tom', 'Tom', TRUE);
 INSERT INTO offers.uzytkownik (nazwisko, imie, rola, login, haslo, aktywnosc)
 VALUES ('Konieczny', 'Marcin', 'ROLE_ADMIN', 'M', 'K', TRUE);
+
+INSERT INTO offers.etapy (opis_etapu, czas_trwania) VALUES ('Analiza gruntu', '7');
+INSERT INTO offers.etapy (opis_etapu, czas_trwania) VALUES ('Badanie geologiczne', '22');

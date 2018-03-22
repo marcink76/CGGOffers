@@ -3,6 +3,7 @@ package pl.cgg.offers.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import pl.cgg.offers.models.*;
@@ -10,6 +11,8 @@ import pl.cgg.offers.service.*;
 import pl.cgg.offers.utility.Utils;
 import pl.cgg.offers.wrappers.ComponentPriceWrapper;
 
+import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -38,10 +41,43 @@ public class OfferController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private StageService stageService;
+
     @GetMapping("/showAll")
     public String showAll(Model model) {
         model.addAttribute("offersList", offerService.getAll());
         return "showAllOffers";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editOffer(@PathVariable("id") Long id,
+                            boolean edit,
+                            Model model){
+
+        Offer offer = offerService.getOneOffer(id);
+        List<Stage> stages = stageService.getByOffer(offer);
+
+        model.addAttribute("stages", stages);
+        model.addAttribute("offer", offer);
+        model.addAttribute("stage", new Stage());
+        return "editOfferForm";
+    }
+
+    @PostMapping("/edit/save")
+    public String saveEditedOfferToBase(@Valid @ModelAttribute("offer") Offer offer,
+                                        @Valid @ModelAttribute("stage") Stage stage,
+                                        BindingResult result,
+                                        Model model){
+        if (result.hasErrors()){
+            return "";
+        }
+        stageService.saveStage(stage);
+        //TODO dokończyć
+        //offer.setStages(stages);
+        offerService.saveToBase(offer);
+        stageService.setStageList(null);
+        return "redirect:/offers/showOneOffer/" + offer.getId();
     }
 
     @GetMapping("/showOneOffer/{id}")
@@ -137,7 +173,7 @@ public class OfferController {
             componentPrices.get(i).setaLumpSum(componentLumpSum);
             componentPrices.get(i).setOptional(componentOptional);
             componentPriceService.saveComponentPrice(componentPrices.get(i));
-            if (componentOptional){
+            if (componentOptional) {
                 optionalPrice += componentPrice * componentQuantity;
             }
             totalPrice += componentPrice * componentQuantity;
