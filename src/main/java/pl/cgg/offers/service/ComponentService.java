@@ -8,6 +8,7 @@ import pl.cgg.offers.repositories.ComponentRepository;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 @Service
 public class ComponentService {
@@ -76,6 +77,15 @@ public class ComponentService {
             tempComponentOfferList.removeIf(component -> component.getId() == componentIdDel);
         }
     }
+
+    public void mergeComponent(ComponentOffer component){
+        componentRepository.updateComponent(component.getCategory(),
+                                            component.getDescription(),
+                                            component.getName(),
+                component.getUnit(),
+                component.getId());
+    }
+
     // getters and setters
 //------------------------------------------------------------
 

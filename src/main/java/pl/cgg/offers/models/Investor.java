@@ -3,7 +3,9 @@ package pl.cgg.offers.models;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.List;
 
@@ -15,25 +17,44 @@ public class Investor implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "inwestor_id")
     private Long id;
-    @NotEmpty(message = "podaj nazwę inwestora!")
-    @Min(2)
+
+    @NotEmpty(message = "Podaj poprawną nazwę inwestora.")
+    @Size(min = 2, max = 30, message = "Nazwa musi zawierać min 2 litery")
     @Column(name = "Nazwa")
     private String name;
+
     @Column(name = "Imie")
+    @Size(min = 2, max = 30, message = "Imię musi zawierać min 2 litery")
+    @NotNull
     private String firstName;
+
     @Column(name = "Nazwisko")
+    @Size(min = 2, max = 30, message = "Nazwisko musi zawierać min 2 litery")
+    @NotNull
     private String lastName;
+
+    @Column (name = "miejsce")
+    @Enumerated(value = EnumType.STRING)
+    private Place place;
+
     @Column(name = "Ulica")
     private String street;
+
     @Column(name = "Nr_posesji")
     private String posesionNumber;
+
     @Column(name = "Nr_lokalu")
     private String localNumber;
+
     @Column(name = "Miasto")
     private String city;
+
     @Column(name = "Kod_pocztowy")
+    @Pattern(regexp = "^[0-9]{2}-[0-9]{3}$", message = "Podaj kod pocztowy w formacie XX-XXX")
     private String zipcode;
+
     @Column(name = "nip")
+    @Size(min = 10, max=10)
     private String nip;
     @Column(name = "email")
     private String email;
@@ -162,5 +183,13 @@ public class Investor implements Serializable {
 
     public void setArchive(boolean archive) {
         this.archive = archive;
+    }
+
+    public Place getPlace() {
+        return place;
+    }
+
+    public void setPlace(Place place) {
+        this.place = place;
     }
 }

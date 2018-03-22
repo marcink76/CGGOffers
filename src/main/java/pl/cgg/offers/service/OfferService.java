@@ -27,6 +27,9 @@ public class OfferService {
         return offerRepository.findAll();
     }
 
+    public void updateOffer(Offer offer){
+    }
+
     public void saveToBase(Offer offer) {
         offer.setDate(LocalDate.now());
         offerRepository.save(offer);

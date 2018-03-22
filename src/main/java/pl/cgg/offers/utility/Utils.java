@@ -11,11 +11,8 @@ public class Utils {
     private List<Character> characterList;
 
     public List<Character> alphabet() {
-        char[] charArray = {'a', 'b', 'c', 'd', 'e', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
-                'k', 'l', 'ł',
-                'm',
-                'o',
-                'p', 'r', 's', 't', 'u', 'w', 'x', 'y', 'z'};
+        char[] charArray = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
+                'k', 'l', 'ł', 'm', 'o', 'p', 'q', 'r', 's', 't', 'u', 'w', 'x', 'y', 'z'};
         List<Character> characters = new ArrayList<>();
 
         for (char chars : charArray) {

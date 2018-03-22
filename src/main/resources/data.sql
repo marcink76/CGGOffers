@@ -59,26 +59,26 @@ VALUES ('Zygmunt', 'Arachnowicz', 'Solina', 'biuro@geosol.pl', '1', 'Zygokop', '
 
 
 INSERT INTO offers.skladnik_oferty (opis, nazwa_uslugi, jednostka, kategoria_skladnika)
-VALUES ('Badania gruntu', 'Badanie gruntu', 'szt.', 'FIELD_TESTS');
+VALUES ('Badania gruntu', 'Badanie gruntu', 'PIECE', 'FIELD_TESTS');
 INSERT INTO offers.skladnik_oferty (opis, nazwa_uslugi, jednostka, kategoria_skladnika)
-VALUES ('Odwierty głebokie', 'Odwiert', 'szt.', 'SUPERVISIONS');
+VALUES ('Odwierty głebokie', 'Odwiert', 'PIECE', 'SUPERVISIONS');
 INSERT INTO offers.skladnik_oferty (opis, nazwa_uslugi, jednostka, kategoria_skladnika)
-VALUES ('Badanie w laboratorium', 'Badania laboratoryjne', 'szt.', 'DEVELOPMENT');
+VALUES ('Badanie w laboratorium', 'Badania laboratoryjne', 'SPECIMEN', 'DEVELOPMENT');
 INSERT INTO offers.skladnik_oferty (opis, nazwa_uslugi, jednostka, kategoria_skladnika)
-VALUES ('Tyczenie', 'Skoki o tyczce inaczej', 'szt.', 'FIELD_TESTS');
+VALUES ('Skoki o tyczce inaczej', 'Tyczenie', 'PIECE', 'FIELD_TESTS');
 INSERT INTO offers.skladnik_oferty (opis, nazwa_uslugi, jednostka, kategoria_skladnika)
-VALUES ('Wiercenie geotechniczne', 'Robimy baaaardzo głębokie dziury', 'm', 'FIELD_TESTS');
+VALUES ('Robimy baaaardzo głębokie dziury', 'Wiercenie geotechniczne', 'METER', 'FIELD_TESTS');
 INSERT INTO offers.skladnik_oferty (opis, nazwa_uslugi, jednostka, kategoria_skladnika)
-VALUES ('Sondowanie dynamiczne CPT', 'Sondujemy dynamicznie cośtam', 'm', 'FIELD_TESTS');
+VALUES ('Sondujemy dynamicznie cośtam', 'Sondowanie dynamiczne CPT', 'METER', 'FIELD_TESTS');
 INSERT INTO offers.skladnik_oferty (opis, nazwa_uslugi, jednostka, kategoria_skladnika)
-VALUES ('Badanie VSS', 'Badanie VSS', 'm', 'SUPERVISIONS');
+VALUES ('Badanie VSS', 'Badanie VSS', 'SPECIMEN', 'SUPERVISIONS');
 INSERT INTO offers.skladnik_oferty (opis, nazwa_uslugi, jednostka, kategoria_skladnika)
-VALUES ('Opinia geotechniczna', 'Opinia geotechniczna', 'm', 'DEVELOPMENT');
+VALUES ('Opinia geotechniczna', 'Opinia geotechniczna', 'SPECIMEN', 'DEVELOPMENT');
 
 
 INSERT INTO offers.uzytkownik (nazwisko, imie, rola, login, haslo, aktywnosc)
-VALUES ('Skrzypcz', 'Ewelina', 'ADMIN', 'Ewel', 'Ewe', TRUE);
+VALUES ('Skrzypcz', 'Ewelina', 'ROLE_ADMIN', 'Ewel', 'Ewe', TRUE);
 INSERT INTO offers.uzytkownik (nazwisko, imie, rola, login, haslo, aktywnosc)
-VALUES ('Skrzypcz', 'Tomasz', 'USER', 'Tom', 'Tom', TRUE);
+VALUES ('Skrzypcz', 'Tomasz', 'ROLE_USER', 'Tom', 'Tom', TRUE);
 INSERT INTO offers.uzytkownik (nazwisko, imie, rola, login, haslo, aktywnosc)
-VALUES ('Konieczny', 'Marcin', 'ADMIN', 'M', 'K', TRUE);
+VALUES ('Konieczny', 'Marcin', 'ROLE_ADMIN', 'M', 'K', TRUE);

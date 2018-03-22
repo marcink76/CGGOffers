@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
@@ -20,6 +21,7 @@ public class Offer {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "Data_wprowadzenia")
+    //@NotNull
     private LocalDate date;
 
     @Column(name = "opis")
@@ -39,6 +41,9 @@ public class Offer {
 
     @Column(name = "koszt_skladników_opcjonalnych")
     private double optionalComponentPrice;
+
+    @Column(name = "rabat")
+    private int discount;
 
     @ManyToMany//(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<ComponentOffer> componentOfferList;
@@ -158,5 +163,13 @@ public class Offer {
 
     public void setOptionalComponentPrice(double optionalComponentPrice) {
         this.optionalComponentPrice = optionalComponentPrice;
+    }
+
+    public int getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(int discount) {
+        this.discount = discount;
     }
 }

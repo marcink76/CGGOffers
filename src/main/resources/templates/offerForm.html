@@ -52,6 +52,7 @@
                 <th>Lp</th>
                 <th>Usługa</th>
                 <th>Ilość</th>
+                <th>Jednostka</th>
                 <th>Cena jednostkowa</th>
                 <th>Suma</th>
                 <th>Ryczałt</th>
@@ -64,6 +65,12 @@
                     <span
                             th:if="${!prices.aLumpSum}"
                             th:text="${prices.quantity}">
+                    </span>
+                </td>
+                <td>
+                    <span
+                            th:if="${!prices.aLumpSum}"
+                            th:text="${prices.componentOffer.unit.getUnits()}">
                     </span>
                 </td>
                 <td>
@@ -85,10 +92,12 @@
                 <th></th>
                 <th></th>
                 <th></th>
+                <th></th>
                 <th class="cell-sigma">Suma netto:</th>
                 <th class="cell-sum" th:text="${offer.totalPrice}"></th>
             </tr>
             <tr>
+                <th></th>
                 <th></th>
                 <th></th>
                 <th></th>

@@ -43,14 +43,13 @@ public class InvestorController {
     public String addInvesotr(@ModelAttribute("investor") Investor investor,
                               Model model) {
         model.addAttribute("investor", new Investor());
-
-        return "addInvestrorForm";
+        return "addInvestorForm";
     }
 
     @PostMapping("/addInvestorToBase")
     public String addInvestorToBase(@Valid @ModelAttribute Investor investor, BindingResult result) {
         if (result.hasErrors()) {
-            return "addInvestor";
+            return "addInvestorForm";
         }
         investorService.addInvestor(investor);
         return "redirect:showAll";

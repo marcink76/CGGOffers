@@ -1,7 +1,7 @@
 package pl.cgg.offers.models;
 
 public enum UserRole {
-    ADMIN, USER;
+    ROLE_ADMIN, ROLE_USER;
 
     UserRole() {
     }
