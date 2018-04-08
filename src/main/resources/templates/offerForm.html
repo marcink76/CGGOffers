@@ -124,6 +124,18 @@
             <p th:text="${offer.user.name} + ' ' + ${offer.user.lastName}"></p>
         </div>
     </div>
+    <table th:if="${!stages.isEmpty()}" class="stages-table">
+        <tr>
+            <th>lp</th>
+            <th>opis etapu</th>
+            <th>czas trwania w tyg.</th>
+        </tr>
+        <tr th:each="stage, stat : ${stages}">
+            <td th:text="${stat.index + 1}"></td>
+            <td th:text="${stage.description}"></td>
+            <td th:text="${stage.durationTime}"></td>
+        </tr>
+    </table>
 </article>
 </body>
 </html>

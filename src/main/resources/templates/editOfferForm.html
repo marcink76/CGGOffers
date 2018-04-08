@@ -5,23 +5,60 @@
     <title>Title</title>
 </head>
 <body>
+<a th:href="@{'/offers/showOneOffer/'+${offer.id}}">Powrót</a>
 <p th:text="${offer.id}"></p>
 <p th:text="${offer.investor.name}"></p>
 <p th:text="${offer.investor.firstName}"></p>
 <p th:text="${offer.totalLumpPrice}"></p>
-<p th:each="stage:${stages}" th:text="${stage.description} + '   ' + ${stage.durationTime}"></p>
-<form th:action="@{/offers/edit/save}" method="post" th:object="${stage}">
+
+<table>
+    <tr th:each="stage:${stages}">
+        <td th:text="${stage.description} + '   ' + ${stage.durationTime}"></td>
+        <td>
+            <form th:action="@{/offers/edit/addStage}"
+                  method="post">
+                <button
+                        name="stageId"
+                        th:value="${stage.id}">
+                    -
+                </button>
+            </form>
+        </td>
+    </tr>
+</table>
+<p></p>
+
+
+<form th:action="@{/offers/edit/addStage}" method="post" th:object="${stage}">
     <label for="stage-desc">Opis:</label>
     <input id="stage-desc" type="text" th:field="*{description}"/>
+    <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
     <label for="stage-duration">Czas trwania [tyg.]</label>
     <input id="stage-duration" type="number" th:field="*{durationTime}" step="1"/>
+    <p th:if="${#fields.hasErrors('durationTime')}" th:errors="*{durationTime}"></p>
+    <input type="submit" value="+"/>
+</form>
+<form th:action="@{/offers/edit/save}" th:object="${wrapper}">
+    <table>
+        <tr>
+            <th></th>
+        </tr>
+        <tr th:each="component, stat : ${components}">
+            <td th:text="${component.id}"></td>
+            <td th:text="${component.name}">
+            </td>
+            <td><input type="text" th:field="*{componentPrices[__${stat.index}__].componentPrice}"/></td>
+            <td><button th:value="${component.id}">-</button></td>
+        </tr>
+    </table>
+    <p type="text"></p>
+</form>
 
-    <form th:action="@{/offers/edit/save}" method="post" th:object="${offer}">
-        <br/>
-        <label for="input-totalLump">Ryczałt:</label>
-        <input id="input-totalLump" type="text" th:field="${offer.totalLumpPrice}"/>
-        <input type="submit" value="Koniec"/>
-    </form>
+<form th:action="@{/offers/edit/save}" method="post" th:object="${offer}">
+    <br/>
+    <label for="input-totalLump">Ryczałt:</label>
+    <input id="input-totalLump" type="text" th:field="${offer.totalLumpPrice}"/>
+    <input type="submit" value="Zapisz koszt"/>
 </form>
 </body>
 </html>

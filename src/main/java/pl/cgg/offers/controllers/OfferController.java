@@ -10,6 +10,7 @@ import pl.cgg.offers.models.*;
 import pl.cgg.offers.service.*;
 import pl.cgg.offers.utility.Utils;
 import pl.cgg.offers.wrappers.ComponentPriceWrapper;
+import sun.net.www.content.text.plain;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -52,31 +53,51 @@ public class OfferController {
 
     @GetMapping("/edit/{id}")
     public String editOffer(@PathVariable("id") Long id,
-                            boolean edit,
-                            Model model){
-
+                            Model model) {
         Offer offer = offerService.getOneOffer(id);
-        List<Stage> stages = stageService.getByOffer(offer);
+        ComponentPriceWrapper wrapper = new ComponentPriceWrapper();
 
+        List<Stage> stages = stageService.getByOffer(offer);
+        List<ComponentPrice> prices = componentPriceService.getComponentPriceByOffer(offer);
+        wrapper.setComponentPrices(prices);
         model.addAttribute("stages", stages);
         model.addAttribute("offer", offer);
+        model.addAttribute("components", offer.getComponentOfferList());
+        model.addAttribute("wrapper", wrapper);
         model.addAttribute("stage", new Stage());
+
+        return "editOfferForm";
+    }
+
+    @PostMapping("/edit/addStage")
+    public String addStageToOffer(@Valid @ModelAttribute("offer") Offer offer,
+                                  @Valid @ModelAttribute("stage") Stage stage,
+                                  @RequestParam(required = false) Long stageId,
+                                  Model model,
+                                  BindingResult result) {
+        if (result.hasErrors()) {
+            return "";
+        }
+        if (stageId != null) {
+            stageService.removeStage(stageId);
+        }
+        List<Stage> stages = stageService.getByOffer(offer);
+        if (stageId == null) {
+            stages.add(stage);
+            stage.setOffer(offer);
+            stageService.saveStage(stages);
+        }
+        model.addAttribute("stages", stages);
         return "editOfferForm";
     }
 
     @PostMapping("/edit/save")
     public String saveEditedOfferToBase(@Valid @ModelAttribute("offer") Offer offer,
-                                        @Valid @ModelAttribute("stage") Stage stage,
-                                        BindingResult result,
-                                        Model model){
-        if (result.hasErrors()){
+                                        BindingResult result) {
+        if (result.hasErrors()) {
             return "";
         }
-        stageService.saveStage(stage);
-        //TODO dokończyć
-        //offer.setStages(stages);
         offerService.saveToBase(offer);
-        stageService.setStageList(null);
         return "redirect:/offers/showOneOffer/" + offer.getId();
     }
 
@@ -87,6 +108,7 @@ public class OfferController {
         List<ComponentPrice> componentPrices = componentPriceService.getComponentPriceByOffer(offer);
         model.addAttribute("offer", offer);
         model.addAttribute("prices", componentPrices);
+        model.addAttribute("stages", stageService.getByOffer(offer));
         return "offerForm";
     }
 
@@ -141,7 +163,7 @@ public class OfferController {
 
         List<ComponentPrice> emptyList = componentPriceService.getComponentPrice();
         wrapper.setComponentPrices(emptyList);
-        model.addAttribute(offer);//to dodałem
+        model.addAttribute(offer);
         model.addAttribute("wrapper", wrapper);
         model.addAttribute("componentList", tempComponentOfferList);
 
@@ -152,6 +174,7 @@ public class OfferController {
         }
         componentPriceService.setComponentPriceList(wrapper.getComponentPrices());
         offer.setComponentOfferList(tempComponentOfferList);
+
         return "showCompleteOfferForm";
     }
 
@@ -184,6 +207,7 @@ public class OfferController {
         model.addAttribute("componentPricesList", componentPrices);
         model.addAttribute(offer);
         offerService.saveToBase(offer);
+
         return "finalOfferForm";
     }
 

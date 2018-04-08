@@ -1,7 +1,10 @@
 package pl.cgg.offers.models;
 
 import javax.persistence.*;
-import java.util.List;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "etapy")
@@ -13,14 +16,16 @@ public class Stage {
     private Long id;
 
     @Column(name = "opis_etapu")
+    //@Size(min = 2, max = 50, message = "Nazwa etapu musi mieć od 2 do 50 liter")
     private String description;
 
     @Column(name = "czas_trwania")
+    //@Min(1)
+    //@Max(100)
     private int durationTime;
 
-    @ManyToMany()
-    //@JoinColumn(name = "id_etapu", referencedColumnName = "id_oferty")
-    private List<Offer> offers;
+    @ManyToOne()
+    private Offer offer;
 
     public Stage(String description, int durationTime) {
         this.description = description;
@@ -52,5 +57,13 @@ public class Stage {
 
     public void setDurationTime(int durationTime) {
         this.durationTime = durationTime;
+    }
+
+    public Offer getOffer() {
+        return offer;
+    }
+
+    public void setOffer(Offer offer) {
+        this.offer = offer;
     }
 }

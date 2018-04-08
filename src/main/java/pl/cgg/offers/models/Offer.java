@@ -59,7 +59,8 @@ public class Offer {
     @JoinColumn(name = "id_szablonu")
     private Template template;
 
-    @ManyToMany
+    @OneToMany
+    @JoinColumn(name = "offer_id", referencedColumnName = "id_oferty")
     private List<Stage> stages;
 
     public Offer() {

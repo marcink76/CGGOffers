@@ -18,10 +18,18 @@ public class StageService {
     private List<Stage> stageList = new ArrayList<>();
 
     public List<Stage> getByOffer(Offer offer){
-        return stageRepository.findAllByOffers(offer);
+       return stageRepository.getByOffer(offer);
+    }
+
+    public void removeStage(Long id){
+        stageRepository.delete(id);
     }
 
     public void saveStage(Stage stage){
+        stageRepository.save(stage);
+    }
+
+    public void saveStage(List<Stage> stage){
         stageRepository.save(stage);
     }
 
