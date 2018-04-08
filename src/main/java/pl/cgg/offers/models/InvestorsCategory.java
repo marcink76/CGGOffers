@@ -1,10 +1,16 @@
 package pl.cgg.offers.models;
 
 public enum InvestorsCategory {
-    INDYVIDUAL("Inwestor indywidualny"),
-    CORPORATE("Inwestor corporacyjny");
+    INDIVIDUAL("Inwestor indywidualny"),
+    CORPORATE("Inwestor korporacyjny");
 
-    InvestorsCategory(String s) {
+    private String description;
 
+    InvestorsCategory(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }

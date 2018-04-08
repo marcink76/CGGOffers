@@ -46,6 +46,16 @@
                     type="text"
                     th:field="*{lastName}"/>
             <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" style="color: #cd0000"></span>
+            <label
+                    for="select-cat"
+                    class="basic-lbl">
+                Nazwisko:
+            </label>
+            <select id="select-cat" class="std-select std-input" th:field="*{category}">
+                <option th:each="cat : ${T(pl.cgg.offers.models.InvestorsCategory).values()}"
+                        th:value="${cat}"
+                        th:text="${cat.getDescription()}"></option>
+            </select>
         </fieldset>
         <fieldset
                 id="adress"

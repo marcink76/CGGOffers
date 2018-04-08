@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.cgg.offers.models.ComponentOffer;
 import pl.cgg.offers.models.Offer;
+import pl.cgg.offers.models.Stage;
 import pl.cgg.offers.repositories.OfferRepository;
 
 import java.time.LocalDate;
@@ -30,6 +31,10 @@ public class OfferService {
     public void updateOffer(Offer offer){
     }
 
+    public void updateOfferByStages(List<Stage> stages, Long id){
+        offerRepository.updateStagesInOffer(stages, id);
+    }
+
     public void saveToBase(Offer offer) {
         offer.setDate(LocalDate.now());
         offerRepository.save(offer);
@@ -45,7 +50,7 @@ public class OfferService {
     }
 
     public Offer getOneOffer(Long id){
-        return offerRepository.getOne(id);
+        return offerRepository.findOne(id);
     }
 
     public List<ComponentOffer> getAllComponent(){

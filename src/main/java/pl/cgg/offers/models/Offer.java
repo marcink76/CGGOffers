@@ -4,8 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -30,19 +28,22 @@ public class Offer {
     @Column(name = "Koszt_calkowity")
     private double totalPrice;
 
-    @Column(name = "zafakturowanie")
+    @Column(name = "Koszt_ryczaltowy")
+    private double totalLumpPrice;
+
+    @Column(name = "Zafakturowanie")
     private boolean invoicing;
 
-    @Column(name = "oferta_z_szablonu")
+    @Column(name = "Oferta_z_szablonu")
     private boolean offerFromTemplate;
 
-    @Column(name = "archwalne")
+    @Column(name = "Archwalne")
     private boolean archival;
 
-    @Column(name = "koszt_skladników_opcjonalnych")
+    @Column(name = "Koszt_skladników_opcjonalnych")
     private double optionalComponentPrice;
 
-    @Column(name = "rabat")
+    @Column(name = "Rabat")
     private int discount;
 
     @ManyToMany//(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -57,6 +58,10 @@ public class Offer {
     @ManyToOne
     @JoinColumn(name = "id_szablonu")
     private Template template;
+
+    @OneToMany
+    @JoinColumn(name = "offer_id", referencedColumnName = "id_oferty")
+    private List<Stage> stages;
 
     public Offer() {
     }
@@ -171,5 +176,21 @@ public class Offer {
 
     public void setDiscount(int discount) {
         this.discount = discount;
+    }
+
+    public double getTotalLumpPrice() {
+        return totalLumpPrice;
+    }
+
+    public void setTotalLumpPrice(double totalLumpPrice) {
+        this.totalLumpPrice = totalLumpPrice;
+    }
+
+    public List<Stage> getStages() {
+        return stages;
+    }
+
+    public void setStages(List<Stage> stages) {
+        this.stages = stages;
     }
 }

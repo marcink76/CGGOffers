@@ -5,7 +5,10 @@
     <title>Title</title>
 </head>
 <body>
-<nav><a href="/offers/showAll">Pokaż oferty</a></nav>
+<nav><a href="/offers/showAll">Pokaż oferty</a>
+    <a th:href="@{'/offers/edit/'+${offer.id}}">Edytuj ofertę</a>
+
+</nav>
 <article class="offer-show">
     <div>
         <div
@@ -104,6 +107,14 @@
                 <th class="cell-sigma">Suma składników opcjonalnych:</th>
                 <th class="cell-sum" th:text="${offer.optionalComponentPrice}"></th>
             </tr>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th class="cell-sigma">Suma ryczałtu:</th>
+                <th class="cell-sum" th:text="${offer.totalLumpPrice}"></th>
+            </tr>
         </table>
     </div>
     <div class="offer-description" th:text="${offer.description}"></div>
@@ -113,6 +124,18 @@
             <p th:text="${offer.user.name} + ' ' + ${offer.user.lastName}"></p>
         </div>
     </div>
+    <table th:if="${!stages.isEmpty()}" class="stages-table">
+        <tr>
+            <th>lp</th>
+            <th>opis etapu</th>
+            <th>czas trwania w tyg.</th>
+        </tr>
+        <tr th:each="stage, stat : ${stages}">
+            <td th:text="${stat.index + 1}"></td>
+            <td th:text="${stage.description}"></td>
+            <td th:text="${stage.durationTime}"></td>
+        </tr>
+    </table>
 </article>
 </body>
 </html>

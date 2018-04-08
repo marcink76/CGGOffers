@@ -17,7 +17,7 @@ public interface ComponentRepository extends JpaRepository<ComponentOffer, Long>
 
     @Modifying
     @Query(value = "update ComponentOffer c " +
-            "set c.category = ?1, c.description = ?2, c.name = ?3, c.unit =?4, c.id =?5  where c.id = id")
+            "set c.category = ?1, c.description = ?2, c.name = ?3, c.unit =?4 where c.id = ?5")
     void updateComponent(ComponentCategory category, String description, String name, Units unit, Long id);
 }
 

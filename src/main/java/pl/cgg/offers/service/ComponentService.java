@@ -82,8 +82,8 @@ public class ComponentService {
         componentRepository.updateComponent(component.getCategory(),
                                             component.getDescription(),
                                             component.getName(),
-                component.getUnit(),
-                component.getId());
+                                            component.getUnit(),
+                                            component.getId());
     }
 
     // getters and setters
