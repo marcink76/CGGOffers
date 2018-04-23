@@ -14,7 +14,9 @@
         <tr class="row">
             <th>Numer</th>
             <th>Cena</th>
+            <!--<editor-fold desc="Description">
             <th>Oferta z szablonu</th>
+            </editor-fold>-->
             <th>Nazwa inwestora</th>
             <th>Nazwisko inwestora</th>
             <th>Miasto</th>
@@ -24,7 +26,6 @@
             <th>Wystaw fakturę</th>
         </tr>
         <tr class="row">
-            <th></th>
             <th></th>
             <th></th>
             <th>
@@ -66,8 +67,10 @@
                 class="active-cell"></td>-->
             <td th:text="${offer.totalPrice}"
                 class="active-cell"></td>
+            <!--<editor-fold desc="Description">
             <td th:text="${offer.offerFromTemplate == true} ? 'tak' : 'nie'"
                 class="active-cell"></td>
+            </editor-fold>-->
             <td th:text="${offer.investor.name}"
                 class="active-cell"></td>
             <td th:text="${offer.investor.lastName}"
@@ -82,6 +85,11 @@
             <td>
                 <form th:action="@{'/invoice/addInvoice'}" method="post">
                     <button name="offerId" th:value="${offer.id}" class="std-btn">DODAJ FV</button>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{'/offers/makepdf'}" method="post">
+                    <button name="pdf-id" th:value="${offer.id}" class="std-btn">PDF</button>
                 </form>
             </td>
         </tr>

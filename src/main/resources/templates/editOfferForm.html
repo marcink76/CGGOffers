@@ -48,7 +48,9 @@
             <td th:text="${component.name}">
             </td>
             <td><input type="text" th:field="*{componentPrices[__${stat.index}__].componentPrice}"/></td>
-            <td><button th:value="${component.id}">-</button></td>
+            <td>
+                <button th:value="${component.id}">-</button>
+            </td>
         </tr>
     </table>
     <p type="text"></p>
@@ -56,9 +58,17 @@
 
 <form th:action="@{/offers/edit/save}" method="post" th:object="${offer}">
     <br/>
+    <label for="input-description">Podaj tytuł oferty:</label>
+    <input id="input-description" th:field="${offer.description}"/>
     <label for="input-totalLump">Ryczałt:</label>
     <input id="input-totalLump" type="text" th:field="${offer.totalLumpPrice}"/>
-    <input type="submit" value="Zapisz koszt"/>
+    <label for="input-date">Data:</label>
+    <input id="input-date" type="date" th:field="*{date}"/>
+
+    <select th:field="*{investor}">
+        <option th:each="investor, stats:${investors}" th:value="${investor.id}" th:text="${investor.name}"></option>
+    </select>
+    <input type="submit" value="Zapisz ofertę"/>
 </form>
 </body>
 </html>

@@ -1,5 +1,6 @@
 package pl.cgg.offers.controllers;
 
+import com.itextpdf.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,11 +9,14 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import pl.cgg.offers.models.*;
 import pl.cgg.offers.service.*;
+import pl.cgg.offers.utility.PdfGenerator;
 import pl.cgg.offers.utility.Utils;
 import pl.cgg.offers.wrappers.ComponentPriceWrapper;
 import sun.net.www.content.text.plain;
 
 import javax.validation.Valid;
+import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,6 +49,9 @@ public class OfferController {
     @Autowired
     private StageService stageService;
 
+    @Autowired
+    private PdfGenerator pdfGenerator;
+
     @GetMapping("/showAll")
     public String showAll(Model model) {
         model.addAttribute("offersList", offerService.getAll());
@@ -64,6 +71,7 @@ public class OfferController {
         model.addAttribute("offer", offer);
         model.addAttribute("components", offer.getComponentOfferList());
         model.addAttribute("wrapper", wrapper);
+        model.addAttribute("investors", investorService.getAllInvestors());
         model.addAttribute("stage", new Stage());
 
         return "editOfferForm";
@@ -93,7 +101,9 @@ public class OfferController {
 
     @PostMapping("/edit/save")
     public String saveEditedOfferToBase(@Valid @ModelAttribute("offer") Offer offer,
+                                        @ModelAttribute("investor") Investor investor,
                                         BindingResult result) {
+        System.out.println(investor.getId());
         if (result.hasErrors()) {
             return "";
         }
@@ -111,6 +121,20 @@ public class OfferController {
         model.addAttribute("stages", stageService.getByOffer(offer));
         return "offerForm";
     }
+    //TODO poprawić
+    @GetMapping("/clone/")
+    public String cloneOffer(@ModelAttribute("offer") Offer offer){
+        Offer newOffer = new Offer();
+        newOffer = offer;
+        newOffer.setDate(LocalDate.now());
+        newOffer.setComponentOfferList(offer.getComponentOfferList());
+        newOffer.setId(null);
+        offerService.saveToBase(newOffer);
+
+        return "redirect:/offers/showOneOffer/" + newOffer.getId();
+    }
+
+
 
     @GetMapping("/addOffer")
     public String addOffer(@RequestParam(required = false) String nameFirstLetter,
@@ -206,6 +230,7 @@ public class OfferController {
         offer.setTotalPrice(totalPrice);
         model.addAttribute("componentPricesList", componentPrices);
         model.addAttribute(offer);
+        offer.setDate(LocalDate.now());
         offerService.saveToBase(offer);
 
         return "finalOfferForm";
@@ -219,6 +244,12 @@ public class OfferController {
         model.addAttribute("offersList", offerService.getOffersByString(filterString));
         sessionStatus.setComplete();
         return "showAllOffers";
+    }
+
+    @PostMapping("/makepdf")
+    public String makePdf(@RequestParam(name = "pdf-id") Long pdfId) throws IOException, DocumentException {
+        pdfGenerator.makePdf(pdfId);
+        return "homesite";
     }
 
     @GetMapping("/ajaxtest")
