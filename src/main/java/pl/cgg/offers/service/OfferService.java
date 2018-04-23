@@ -36,7 +36,6 @@ public class OfferService {
     }
 
     public void saveToBase(Offer offer) {
-        offer.setDate(LocalDate.now());
         offerRepository.save(offer);
     }
 

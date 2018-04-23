@@ -5,9 +5,10 @@
     <title>Title</title>
 </head>
 <body>
-<nav><a href="/offers/showAll">Pokaż oferty</a>
+<nav>
+    <a href="/offers/showAll">Pokaż oferty</a>
     <a th:href="@{'/offers/edit/'+${offer.id}}">Edytuj ofertę</a>
-
+    <a th:href="@{'/offers/clone/'}">Klonuj ofertę</a>
 </nav>
 <article class="offer-show">
     <div>
@@ -48,7 +49,7 @@
             <p th:text="${offer.investor.street} + ' ' + ${offer.investor.posesionNumber} + ' ' + ${offer.investor.localNumber}"></p>
         </div>
     </div>
-
+    <div class="offer-description" th:text="${offer.description}"></div>
     <div class="offer-table-box">
         <table>
             <tr class="row">
@@ -115,9 +116,17 @@
                 <th class="cell-sigma">Suma ryczałtu:</th>
                 <th class="cell-sum" th:text="${offer.totalLumpPrice}"></th>
             </tr>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th class="cell-sigma">Koszt całkowity:</th>
+                <th class="cell-sum" th:text="${offer.totalLumpPrice} + ${offer.optionalComponentPrice}"></th>
+            </tr>
         </table>
     </div>
-    <div class="offer-description" th:text="${offer.description}"></div>
+
     <div class="offer-editor-box">
         <div>
             <h4>Ofertę sporządził:</h4>
