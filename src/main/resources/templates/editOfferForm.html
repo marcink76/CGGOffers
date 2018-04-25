@@ -30,57 +30,73 @@
 
 
 <form th:action="@{/offers/edit/addStage}" method="post" th:object="${stage}">
-    <label for="stage-desc">Opis:</label>
-    <input id="stage-desc" type="text" th:field="*{description}"/>
-    <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
-    <label for="stage-duration">Czas trwania [tyg.]</label>
-    <input id="stage-duration" type="number" th:field="*{durationTime}" step="1"/>
-    <p th:if="${#fields.hasErrors('durationTime')}" th:errors="*{durationTime}"></p>
-    <input type="submit" value="+"/>
+    <fieldset id="basic-data" class="input-box">
+        <legend>Dodawanie etapów czasowych</legend>
+        <label for="stage-desc">Opis:</label>
+        <input id="stage-desc" type="text" th:field="*{description}"/>
+        <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
+        <label for="stage-duration">Czas trwania [tyg.]</label>
+        <input id="stage-duration" type="number" th:field="*{durationTime}" step="1"/>
+        <p th:if="${#fields.hasErrors('durationTime')}" th:errors="*{durationTime}"></p>
+        <input type="submit" value="+"/>
+    </fieldset>
 </form>
 <form th:action="@{/offers/editPrices}" th:object="${wrapper}" method="post">
-    <table>
-        <tr>
-            <th></th>
-        </tr>
-        <tr th:each="component, stat : ${components}">
-            <td th:text="${component.id}"></td>
-            <td th:text="${component.name}">
-            </td>
-            <td><input type="text" th:field="*{componentPrices[__${stat.index}__].quantity}"/></td>
-            <td><input type="text" th:field="*{componentPrices[__${stat.index}__].componentPrice}"/></td>
-            <td><input type="checkbox" th:field="*{componentPrices[__${stat.index}__].aLumpSum}" th:value="${true}"/>
-            </td>
-            <td><input type="checkbox" th:field="*{componentPrices[__${stat.index}__].optional}" th:value="${true}"/>
-            </td>
-            <td>
-                <button th:value="${component.id}">-</button>
-            </td>
-        </tr>
-    </table>
-    <button>Zapisz</button>
+    <fieldset class="input-box">
+        <legend>Edycja cen i ilości:</legend>
+        <table>
+            <tr>
+                <th></th>
+            </tr>
+            <tr th:each="component, stat : ${components}">
+                <td th:text="${component.id}"></td>
+                <td th:text="${component.name}">
+                </td>
+                <td><input type="text" th:field="*{componentPrices[__${stat.index}__].quantity}"/></td>
+                <td><input type="text" th:field="*{componentPrices[__${stat.index}__].componentPrice}"/></td>
+                <td><input type="checkbox" th:field="*{componentPrices[__${stat.index}__].aLumpSum}"
+                           th:value="${true}"/>
+                </td>
+                <td><input type="checkbox" th:field="*{componentPrices[__${stat.index}__].optional}"
+                           th:value="${true}"/>
+                </td>
+                <td>
+                    <form th:action="@{/offers/edit/removeComponent}" method="post">
+                        <input type="hidden" th:name="componentId" th:value="${component.id}"/>
+                        <button>-</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+        <button>Zapisz</button>
+    </fieldset>
 </form>
-<form th:action="@{offers/edit/addComponent}" method="post">
+<form th:if="${!allComponents.isEmpty()}" th:action="@{/offers/edit/addComponent}" method="post">
     <select name="componentId">
-
+        <option th:each="component, stats : ${allComponents}" th:text="${component.name}"
+                th:value="${component.id}"></option>
     </select>
     <button>Dodaj składnik</button>
 </form>
-<form th:action="@{/offers/edit/save}" method="post" th:object="${offer}">
-    <br/>
-    <label for="input-description">Podaj tytuł oferty:</label>
-    <input id="input-description" th:field="${offer.description}"/>
-    <label for="input-totalLump">Ryczałt:</label>
-    <input id="input-totalLump" type="text" th:field="${offer.totalLumpPrice}"/>
-    <label for="input-date">Data:</label>
-    <input id="input-date" type="date" th:field="*{date}"/>
 
-    <select th:field="*{investor}">
-        <option th:each="investor, stats:${investors}"
-                th:value="${investor.id}"
-                th:text="${investor.name}"></option>
-    </select>
-    <input type="submit" value="Zapisz ofertę"/>
+<form th:action="@{/offers/edit/save}" method="post" th:object="${offer}">
+    <fieldset class="input-box">
+        <legend>Edycja danych oferty:</legend>
+        <br/>
+        <label for="input-description">Podaj tytuł oferty:</label>
+        <input id="input-description" th:field="${offer.description}"/>
+        <label for="input-totalLump">Ryczałt:</label>
+        <input id="input-totalLump" type="text" th:field="${offer.totalLumpPrice}"/>
+        <label for="input-date">Data:</label>
+        <input id="input-date" type="date" th:field="*{date}"/>
+
+        <select th:field="*{investor}">
+            <option th:each="investor, stats:${investors}"
+                    th:value="${investor.id}"
+                    th:text="${investor.name}"></option>
+        </select>
+        <input type="submit" value="Zapisz ofertę"/>
+    </fieldset>
 </form>
 </body>
 </html>

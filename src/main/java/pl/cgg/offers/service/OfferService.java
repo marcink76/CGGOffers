@@ -7,7 +7,6 @@ import pl.cgg.offers.models.Offer;
 import pl.cgg.offers.models.Stage;
 import pl.cgg.offers.repositories.OfferRepository;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -33,6 +32,10 @@ public class OfferService {
 
     public void updateOfferByStages(List<Stage> stages, Long id){
         offerRepository.updateStagesInOffer(stages, id);
+    }
+
+    public void updateComponents(List<ComponentOffer> components, Long id) {
+        offerRepository.updateComponents(components, id);
     }
 
     public void saveToBase(Offer offer) {

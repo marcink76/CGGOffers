@@ -37,6 +37,7 @@ public class ComponentController {
     @GetMapping("/addComponent")
     public String addComponent(Model model) {
         model.addAttribute("component", new ComponentOffer());
+        model.addAttribute("edit", false);
         return "addComponentForm";
     }
 

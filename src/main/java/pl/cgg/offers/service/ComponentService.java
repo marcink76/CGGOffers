@@ -3,12 +3,12 @@ package pl.cgg.offers.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.cgg.offers.models.ComponentOffer;
+import pl.cgg.offers.models.Offer;
 import pl.cgg.offers.repositories.ComponentRepository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 
 @Service
 public class ComponentService {
@@ -54,8 +54,20 @@ public class ComponentService {
         return componentOfferList;
     }
 
-    public void addToTempComponentList(Long componentId, Long componentIdDel) {
+    public List<ComponentOffer> componentFilter(Offer offer) {
+        List<ComponentOffer> components = componentRepository.findAll();
+        List<ComponentOffer> components2 = offer.getComponentOfferList();
+        for (int i = 0; i < components2.size(); i++) {
+            for (int j = 0; j < components.size(); j++) {
+                if (components2.get(i).getId().equals(components.get(j).getId())) {
+                    components.remove(j);
+                }
+            }
+        }
+        return components;
+    }
 
+    public void addToTempComponentList(Long componentId, Long componentIdDel) {
         if (componentId == null && componentIdDel == null) {
             componentOfferList = componentRepository.findAll();
             tempComponentOfferList.clear();
@@ -78,12 +90,12 @@ public class ComponentService {
         }
     }
 
-    public void mergeComponent(ComponentOffer component){
+    public void mergeComponent(ComponentOffer component) {
         componentRepository.updateComponent(component.getCategory(),
-                                            component.getDescription(),
-                                            component.getName(),
-                                            component.getUnit(),
-                                            component.getId());
+                component.getDescription(),
+                component.getName(),
+                component.getUnit(),
+                component.getId());
     }
 
     // getters and setters

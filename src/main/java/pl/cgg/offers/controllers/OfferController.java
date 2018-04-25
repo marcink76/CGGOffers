@@ -68,6 +68,7 @@ public class OfferController {
         model.addAttribute("stages", stages);
         model.addAttribute("offer", offer);
         model.addAttribute("components", offer.getComponentOfferList());
+        model.addAttribute("allComponents", componentService.componentFilter(offer));
         model.addAttribute("wrapper", wrapper);
         model.addAttribute("investors", investorService.getAllInvestors());
         model.addAttribute("stage", new Stage());
@@ -96,6 +97,31 @@ public class OfferController {
         model.addAttribute("stages", stages);
         return "editOfferForm";
     }
+
+    //TODO dorobić kontrolery usuwania i dodawania składników oferty
+    @PostMapping("/edit/addComponent")
+    public String addComponent(@ModelAttribute("offer") Offer offer,
+                               @ModelAttribute("stage") Stage stage,
+                               @RequestParam("componentId") Long componentId) {
+        List<ComponentOffer> components = offer.getComponentOfferList();
+        ComponentOffer component = componentService.getOneComponent(componentId);
+        components.add(component);
+        offer.setComponentOfferList(components);
+        offerService.updateComponents(components, offer.getId());
+        return "editOfferForm";
+    }
+
+    @PostMapping("/edit/removeComponent")
+    public String removeComponent(@ModelAttribute("offer") Offer offer,
+                                  @ModelAttribute("stage") Stage stage,
+                                  @RequestParam("componentId") Long componentId) {
+        List<ComponentOffer> components = offer.getComponentOfferList();
+        components.removeIf(component -> component.getId() == componentId);
+        offer.setComponentOfferList(components);
+        offerService.updateComponents(components, offer.getId());
+        return "editOfferForm";
+    }
+
 
     @PostMapping("/edit/save")
     public String saveEditedOfferToBase(@Valid @ModelAttribute("offer") Offer offer,
