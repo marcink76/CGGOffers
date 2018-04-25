@@ -12,12 +12,10 @@ import pl.cgg.offers.service.*;
 import pl.cgg.offers.utility.PdfGenerator;
 import pl.cgg.offers.utility.Utils;
 import pl.cgg.offers.wrappers.ComponentPriceWrapper;
-import sun.net.www.content.text.plain;
 
 import javax.validation.Valid;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -111,6 +109,29 @@ public class OfferController {
         return "redirect:/offers/showOneOffer/" + offer.getId();
     }
 
+    //TODO Finish query
+    @PostMapping("/editPrices")
+    public String editPrices(@Valid @ModelAttribute("offer") Offer offer,
+                             @ModelAttribute("wrapper") ComponentPriceWrapper wrapper) {
+
+        List<ComponentPrice> priceList = componentPriceService.getComponentPriceByOffer(offer);
+
+        for (int i = 0; i < wrapper.getComponentPrices().size(); i++) {
+            double componentPrice = wrapper.getComponentPrices().get(i).getComponentPrice();
+            double quantity = wrapper.getComponentPrices().get(i).getQuantity();
+            boolean optional = wrapper.getComponentPrices().get(i).isOptional();
+            boolean lumpPrice = wrapper.getComponentPrices().get(i).isaLumpSum();
+            priceList.get(i).setComponentPrice(componentPrice);
+            priceList.get(i).setQuantity(quantity);
+            priceList.get(i).setOffer(offer);
+            priceList.get(i).setOptional(optional);
+            priceList.get(i).setaLumpSum(lumpPrice);
+            componentPriceService.updateComponentPrice(componentPrice, quantity, priceList.get(i).getId());
+            System.out.println(componentPrice + " " + quantity);
+        }
+        return "redirect:/offers/showOneOffer/" + offer.getId();
+    }
+
     @GetMapping("/showOneOffer/{id}")
     public String showOne(@PathVariable("id") Long id,
                           Model model) {
@@ -121,9 +142,10 @@ public class OfferController {
         model.addAttribute("stages", stageService.getByOffer(offer));
         return "offerForm";
     }
+
     //TODO poprawić
     @GetMapping("/clone/")
-    public String cloneOffer(@ModelAttribute("offer") Offer offer){
+    public String cloneOffer(@ModelAttribute("offer") Offer offer) {
         Offer newOffer = new Offer();
         newOffer = offer;
         newOffer.setDate(LocalDate.now());
@@ -133,7 +155,6 @@ public class OfferController {
 
         return "redirect:/offers/showOneOffer/" + newOffer.getId();
     }
-
 
 
     @GetMapping("/addOffer")
@@ -181,7 +202,6 @@ public class OfferController {
 
     @PostMapping("/addComponentToOffer")
     public String setComponentsToOffer(Offer offer, Model model) {
-
         ComponentPriceWrapper wrapper = new ComponentPriceWrapper();
         List<ComponentOffer> tempComponentOfferList = componentService.getTempComponentOfferList();
 

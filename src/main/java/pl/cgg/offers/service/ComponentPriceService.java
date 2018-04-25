@@ -26,6 +26,10 @@ public class ComponentPriceService {
         return componetPriceRepository.getAllByOffer(offer);
     }
 
+    public void updateComponentPrice(Double componentPrice, Double quantity, Long id) {
+        componetPriceRepository.updateComponentPrice(componentPrice, quantity, id);
+    }
+
     public HashMap<ComponentOffer, ComponentPrice> getComponentPriceToMap() {
         HashMap<ComponentOffer, ComponentPrice> componentPriceHashMap = new HashMap<>();
         List<ComponentOffer> componentOfferList = componentService.getTempComponentOfferList();
