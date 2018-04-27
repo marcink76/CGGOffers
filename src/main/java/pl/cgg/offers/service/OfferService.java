@@ -34,9 +34,6 @@ public class OfferService {
         offerRepository.updateStagesInOffer(stages, id);
     }
 
-    public void updateComponents(List<ComponentOffer> components, Long id) {
-        offerRepository.updateComponents(components, id);
-    }
 
     public void saveToBase(Offer offer) {
         offerRepository.save(offer);

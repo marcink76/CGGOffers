@@ -46,7 +46,7 @@ public class Offer {
     @Column(name = "Rabat")
     private int discount;
 
-    @ManyToMany//(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     private List<ComponentOffer> componentOfferList;
 
     @ManyToOne

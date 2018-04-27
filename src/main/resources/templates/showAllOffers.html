@@ -81,7 +81,7 @@
                 th:style="${offer.invoicing} ? 'background-color : #10715e ; color : white' : 'background-color : #0aa69a'"
                 class="active-cell"></td>
             <td><a th:href="@{'/offers/showOneOffer/'+${offer.id}}">POKAŻ</a></td>
-            <td>EDYTUJ</td>
+            <td><a th:href="@{'/offers/edit/'+${offer.id}}">EDYTUJ</a></td>
             <td>
                 <form th:action="@{'/invoice/addInvoice'}" method="post">
                     <button name="offerId" th:value="${offer.id}" class="std-btn">DODAJ FV</button>

@@ -7,8 +7,10 @@
 <body>
 <a th:href="@{'/offers/showOneOffer/'+${offer.id}}">Powrót</a>
 <p th:text="${offer.id}"></p>
+<p th:text="${offer.date}"></p>
 <p th:text="${offer.investor.name}"></p>
-<p th:text="${offer.investor.firstName}"></p>
+<p th:text="${offer.investor.firstName} + ' ' + ${offer.investor.lastName}"></p>
+<p th:text="${offer.investor.zipcode}+' '+${offer.investor.city}"></p>
 <p th:text="${offer.totalLumpPrice}"></p>
 
 <table>
@@ -62,7 +64,7 @@
                 </td>
                 <td>
                     <form th:action="@{/offers/edit/removeComponent}" method="post">
-                        <input type="hidden" th:name="componentId" th:value="${component.id}"/>
+                        <input type="hidden" name="idComponentToRemove" th:value="${component.id}"/>
                         <button>-</button>
                     </form>
                 </td>
@@ -71,8 +73,8 @@
         <button>Zapisz</button>
     </fieldset>
 </form>
-<form th:if="${!allComponents.isEmpty()}" th:action="@{/offers/edit/addComponent}" method="post">
-    <select name="componentId">
+<form th:action="@{/offers/edit/addComponent}" method="post">
+    <select name="idComponentToAdd">
         <option th:each="component, stats : ${allComponents}" th:text="${component.name}"
                 th:value="${component.id}"></option>
     </select>

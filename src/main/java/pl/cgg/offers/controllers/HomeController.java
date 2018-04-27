@@ -11,4 +11,9 @@ public class HomeController {
         model.addAttribute("message", "Witaj na stronie z ofertami.");
         return "homesite";
     }
+
+    @GetMapping("/index")
+    public String indexPage() {
+        return "homesite";
+    }
 }

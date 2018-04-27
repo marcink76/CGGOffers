@@ -62,6 +62,7 @@
                 <th>Ryczałt</th>
                 <th>Opcja</th>
             </tr>
+            <!--region Description
             <tr th:each="prices, stat:${prices}" th:class="${stat.odd} ? 'row odd-row' : 'row even-row'">
                 <td th:text="${stat.index} + 1"></td>
                 <td th:text="${offer.componentOfferList[__${stat.index}__].name}"></td>
@@ -91,6 +92,38 @@
                 </td>
                 <td th:text="${prices.aLumpSum == true} ? 'tak' : 'nie'"></td>
                 <td th:text="${prices.optional == true} ? 'tak' : 'nie'"></td>
+            </tr>
+            endregion-->
+
+            <tr th:each="component, stat:${components}" th:class="${stat.odd} ? 'row odd-row' : 'row even-row'">
+                <td th:text="${stat.index} + 1"></td>
+                <td th:text="${component.name}"></td>
+                <td>
+                    <span
+                            th:if="${!prices[__${stat.index}__].aLumpSum}"
+                            th:text="${prices[__${stat.index}__].quantity}">
+                    </span>
+                </td>
+                <td>
+                    <span
+                            th:if="${!prices[__${stat.index}__].aLumpSum}"
+                            th:text="${'costam'}">
+                    </span>
+                </td>
+                <td>
+                    <span
+                            th:if="${!!prices[__${stat.index}__].aLumpSum}"
+                            th:text="${'costam'}">
+                    </span>
+                </td>
+                <td>
+                    <span
+                            th:if="${!!prices[__${stat.index}__].aLumpSum}"
+                            th:text="${component.componentPrice.componentPrice} * ${component.componentPrice.quantity}">
+                    </span>
+                </td>
+                <td th:text="${prices[__${stat.index}__].aLumpSum == true} ? 'tak' : 'nie'"></td>
+                <td th:text="${prices[__${stat.index}__].optional == true} ? 'tak' : 'nie'"></td>
             </tr>
             <tr>
                 <th></th>

@@ -4,7 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import pl.cgg.offers.models.ComponentOffer;
 import pl.cgg.offers.models.Offer;
 import pl.cgg.offers.models.Stage;
 
@@ -19,8 +18,4 @@ public interface OfferRepository extends JpaRepository<Offer, Long> {
     @Modifying
     @Query(value = "update Offer o set o.stages = ?1 where o.id = ?2")
     void updateStagesInOffer (List<Stage> stages, Long id);
-
-    @Modifying
-    @Query(value = "update Offer o set o.componentOfferList = ?1 where o.id = ?2")
-    void updateComponents(List<ComponentOffer> componentList, Long id);
 }

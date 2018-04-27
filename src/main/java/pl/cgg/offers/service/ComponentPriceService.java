@@ -22,12 +22,22 @@ public class ComponentPriceService {
 
     private List<ComponentPrice> componentPriceList = new ArrayList<>();
 
-    public List<ComponentPrice> getComponentPriceByOffer(Offer offer){
+    public List<ComponentPrice> getComponentPriceByOffer(Offer offer) {
         return componetPriceRepository.getAllByOffer(offer);
     }
 
     public void updateComponentPrice(Double componentPrice, Double quantity, Long id) {
         componetPriceRepository.updateComponentPrice(componentPrice, quantity, id);
+    }
+
+    public void removeComponentPrice(Offer offer, Long id) {
+        List<ComponentPrice> prices = componetPriceRepository.getAllByOffer(offer);
+        for (ComponentPrice price : prices) {
+            if (price.getComponentOffer().getId().equals(id)) {
+                componetPriceRepository.delete(price.getId());
+                System.out.println(price.getComponentOffer().getId() + " " + price.getId());
+            }
+        }
     }
 
     public HashMap<ComponentOffer, ComponentPrice> getComponentPriceToMap() {
@@ -39,11 +49,11 @@ public class ComponentPriceService {
         return componentPriceHashMap;
     }
 
-    public void saveComponentPrice(ComponentPrice componentPrice){
+    public void saveComponentPrice(ComponentPrice componentPrice) {
         componetPriceRepository.save(componentPrice);
     }
 
-    public List<ComponentPrice> getComponentPrice(){
+    public List<ComponentPrice> getComponentPrice() {
         List<ComponentPrice> componentPrices = new ArrayList<>();
         List<ComponentOffer> componentOfferList = componentService.getTempComponentOfferList();
         for (ComponentOffer comps : componentOfferList) {

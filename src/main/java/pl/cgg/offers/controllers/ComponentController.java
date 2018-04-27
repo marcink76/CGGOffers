@@ -23,8 +23,6 @@ public class ComponentController {
         return "showAllComponent";
     }
 
-    //TODO  dokończyć edycję
-
     @GetMapping("/edit")
     public String editComponent(@RequestParam("id") Long id,
                                 Model model) {

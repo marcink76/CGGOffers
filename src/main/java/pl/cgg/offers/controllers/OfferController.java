@@ -56,6 +56,19 @@ public class OfferController {
         return "showAllOffers";
     }
 
+    //TODO poprawić pobieranie składników
+    @GetMapping("/showOneOffer/{id}")
+    public String showOne(@PathVariable("id") Long id,
+                          Model model) {
+        Offer offer = offerService.getOneOffer(id);
+        List<ComponentPrice> componentPrices = componentPriceService.getComponentPriceByOffer(offer);
+        model.addAttribute("offer", offer);
+        model.addAttribute("prices", componentPrices);
+        model.addAttribute("components", offer.getComponentOfferList());
+        model.addAttribute("stages", stageService.getByOffer(offer));
+        return "offerForm";
+    }
+
     @GetMapping("/edit/{id}")
     public String editOffer(@PathVariable("id") Long id,
                             Model model) {
@@ -72,7 +85,6 @@ public class OfferController {
         model.addAttribute("wrapper", wrapper);
         model.addAttribute("investors", investorService.getAllInvestors());
         model.addAttribute("stage", new Stage());
-
         return "editOfferForm";
     }
 
@@ -98,7 +110,7 @@ public class OfferController {
         return "editOfferForm";
     }
 
-    //TODO dorobić kontrolery usuwania i dodawania składników oferty
+    //TODO przenieść całą edycję oferty do jednego kontrolera, a logikę do warstwy serwisowej
     @PostMapping("/edit/addComponent")
     public String addComponent(@ModelAttribute("offer") Offer offer,
                                @ModelAttribute("stage") Stage stage,
@@ -107,7 +119,7 @@ public class OfferController {
         ComponentOffer component = componentService.getOneComponent(componentId);
         components.add(component);
         offer.setComponentOfferList(components);
-        offerService.updateComponents(components, offer.getId());
+        offerService.saveToBase(offer);
         return "editOfferForm";
     }
 
@@ -116,9 +128,10 @@ public class OfferController {
                                   @ModelAttribute("stage") Stage stage,
                                   @RequestParam("componentId") Long componentId) {
         List<ComponentOffer> components = offer.getComponentOfferList();
+        componentPriceService.removeComponentPrice(offer, componentId);
         components.removeIf(component -> component.getId() == componentId);
         offer.setComponentOfferList(components);
-        offerService.updateComponents(components, offer.getId());
+        offerService.saveToBase(offer);
         return "editOfferForm";
     }
 
@@ -135,7 +148,6 @@ public class OfferController {
         return "redirect:/offers/showOneOffer/" + offer.getId();
     }
 
-    //TODO Finish query
     @PostMapping("/editPrices")
     public String editPrices(@Valid @ModelAttribute("offer") Offer offer,
                              @ModelAttribute("wrapper") ComponentPriceWrapper wrapper) {
@@ -158,16 +170,6 @@ public class OfferController {
         return "redirect:/offers/showOneOffer/" + offer.getId();
     }
 
-    @GetMapping("/showOneOffer/{id}")
-    public String showOne(@PathVariable("id") Long id,
-                          Model model) {
-        Offer offer = offerService.getOneOffer(id);
-        List<ComponentPrice> componentPrices = componentPriceService.getComponentPriceByOffer(offer);
-        model.addAttribute("offer", offer);
-        model.addAttribute("prices", componentPrices);
-        model.addAttribute("stages", stageService.getByOffer(offer));
-        return "offerForm";
-    }
 
     //TODO poprawić
     @GetMapping("/clone/")
@@ -296,11 +298,5 @@ public class OfferController {
     public String makePdf(@RequestParam(name = "pdf-id") Long pdfId) throws IOException, DocumentException {
         pdfGenerator.makePdf(pdfId);
         return "homesite";
-    }
-
-    @GetMapping("/ajaxtest")
-    public String ajaxTest() {
-
-        return "ajax";
     }
 }
