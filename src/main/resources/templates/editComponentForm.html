@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+<fieldset class="input-box">
+    <legend>Edycja komponentu:</legend>
+    <form th:action="@{'/offer/edit/saveComponent'}" th:object="${component}" method="post">
+        <table>
+            <tr>
+                <td th:text="${component.name}"></td>
+
+                <td>
+                    <input th:field="*{componentPrice.quantity}"/>
+                </td>
+                <td>
+                    <input type="checkbox" th:field="*{componentPrice.optional}"/>
+                </td>
+                <td>
+                    <input type="checkbox" th:field="*{componentPrice.aLumpSum}"/>
+                </td>
+                <td>
+                    <input th:field="*{componentPrice.componentPrice}"/>
+                </td>
+                <td>
+                    <button>Zapisz</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</fieldset>
+</body>
+</html>

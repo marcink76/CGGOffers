@@ -20,6 +20,9 @@ public class ComponentPriceService {
     @Autowired
     private ComponetPriceRepository componetPriceRepository;
 
+    @Autowired
+    private OfferService offerService;
+
     private List<ComponentPrice> componentPriceList = new ArrayList<>();
 
     public List<ComponentPrice> getComponentPriceByOffer(Offer offer) {
@@ -29,6 +32,14 @@ public class ComponentPriceService {
     public void updateComponentPrice(Double componentPrice, Double quantity, Long id) {
         componetPriceRepository.updateComponentPrice(componentPrice, quantity, id);
     }
+
+
+    public void deleteByComponentAndOffer(Long componentId, Long offerId) {
+        ComponentOffer component = componentService.getOneComponent(componentId);
+        Offer offer = offerService.getOneOffer(offerId);
+        componetPriceRepository.deleteByComponentOfferAndOffer(component, offer);
+    }
+
 
     public void removeComponentPrice(Offer offer, Long id) {
         List<ComponentPrice> prices = componetPriceRepository.getAllByOffer(offer);

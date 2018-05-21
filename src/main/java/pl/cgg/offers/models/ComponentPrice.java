@@ -25,10 +25,10 @@ public class ComponentPrice {
     @Column(name = "pozycja_opcjonalna")
     private boolean optional;
 
-    @OneToOne
+    @OneToOne//(cascade = CascadeType.REMOVE)
     private ComponentOffer componentOffer;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     private Offer offer;
 
     public ComponentPrice(int quantity, double componentPrice){

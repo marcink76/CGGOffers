@@ -34,7 +34,7 @@ public class ComponentRESTCtrl {
         componentService.addToBase(componentOffer);
         return ResponseEntity.ok(componentOffer);
     }
-    //TODO add PUT request
+//  TODO add PUT request
 //    @PutMapping("{id}")
 //    public ResponseEntity<?>
 }

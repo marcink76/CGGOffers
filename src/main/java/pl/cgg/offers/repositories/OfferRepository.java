@@ -18,4 +18,5 @@ public interface OfferRepository extends JpaRepository<Offer, Long> {
     @Modifying
     @Query(value = "update Offer o set o.stages = ?1 where o.id = ?2")
     void updateStagesInOffer (List<Stage> stages, Long id);
+
 }

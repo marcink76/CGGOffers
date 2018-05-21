@@ -81,7 +81,7 @@ public class OfferController {
         model.addAttribute("stages", stages);
         model.addAttribute("offer", offer);
         model.addAttribute("components", offer.getComponentOfferList());
-        model.addAttribute("allComponents", componentService.componentFilter(offer));
+        model.addAttribute("filtredComponents", componentService.componentFilter(offer));
         model.addAttribute("wrapper", wrapper);
         model.addAttribute("investors", investorService.getAllInvestors());
         model.addAttribute("stage", new Stage());
@@ -91,6 +91,7 @@ public class OfferController {
     @PostMapping("/edit/addStage")
     public String addStageToOffer(@Valid @ModelAttribute("offer") Offer offer,
                                   @Valid @ModelAttribute("stage") Stage stage,
+                                  @ModelAttribute("wrapper") ComponentPriceWrapper wrapper,
                                   @RequestParam(required = false) Long stageId,
                                   Model model,
                                   BindingResult result) {
@@ -107,34 +108,57 @@ public class OfferController {
             stageService.saveStage(stages);
         }
         model.addAttribute("stages", stages);
+        model.addAttribute("components", offer.getComponentOfferList());
+        model.addAttribute("filtredComponents", componentService.componentFilter(offer));
+        return "editOfferForm";
+    }
+
+    @PostMapping("/edit/component")
+    public String editComponent(Model model,
+                                @RequestParam Long componentId) {
+        ComponentOffer component = componentService.getOneComponent(componentId);
+        model.addAttribute("component", component);
+        return "editComponentForm";
+    }
+
+    @PostMapping("/edit/saveComponent")
+    public String saveComponent(@ModelAttribute ComponentOffer component) {
+
         return "editOfferForm";
     }
 
     //TODO przenieść całą edycję oferty do jednego kontrolera, a logikę do warstwy serwisowej
-    @PostMapping("/edit/addComponent")
+    @PostMapping("/edit/saveOffer")
     public String addComponent(@ModelAttribute("offer") Offer offer,
                                @ModelAttribute("stage") Stage stage,
-                               @RequestParam("componentId") Long componentId) {
+                               @ModelAttribute("wrapper") ComponentPriceWrapper wrapper,
+                               @RequestParam(required = false) Long idComponentToRemove,
+                               @RequestParam(required = false) Long idComponentToAdd,
+                               @RequestParam(required = false) Long stageId,
+                               Model model) {
         List<ComponentOffer> components = offer.getComponentOfferList();
-        ComponentOffer component = componentService.getOneComponent(componentId);
-        components.add(component);
-        offer.setComponentOfferList(components);
-        offerService.saveToBase(offer);
+        if (idComponentToAdd != null) {
+            ComponentOffer component = componentService.getOneComponent(idComponentToAdd);
+            components.add(component);
+            ComponentPrice price = new ComponentPrice();
+            component.setComponentPrice(price);
+            price.setOffer(offer);
+            price.setComponentOffer(component);
+            componentPriceService.saveComponentPrice(component.getComponentPrice());
+            offer.setComponentOfferList(components);
+        }
+        if (idComponentToRemove != null) {
+            //componentPriceService.removeComponentPrice(offer, idComponentToRemove);
+            components.removeIf(component -> component.getId() == idComponentToRemove);
+            offer.setComponentOfferList(components);
+            offerService.saveToBase(offer);
+            //componentPriceService.deleteByComponentAndOffer(idComponentToRemove, offer.getId());
+        }
+        offerService.saveToBase(offer); //Prawdopodobnie to powoduje błedy przy dodawaniu i odejmowaniu komponentów
+        model.addAttribute("components", components);
+        model.addAttribute("filtredComponents", componentService.componentFilter(offer));
         return "editOfferForm";
     }
-
-    @PostMapping("/edit/removeComponent")
-    public String removeComponent(@ModelAttribute("offer") Offer offer,
-                                  @ModelAttribute("stage") Stage stage,
-                                  @RequestParam("componentId") Long componentId) {
-        List<ComponentOffer> components = offer.getComponentOfferList();
-        componentPriceService.removeComponentPrice(offer, componentId);
-        components.removeIf(component -> component.getId() == componentId);
-        offer.setComponentOfferList(components);
-        offerService.saveToBase(offer);
-        return "editOfferForm";
-    }
-
 
     @PostMapping("/edit/save")
     public String saveEditedOfferToBase(@Valid @ModelAttribute("offer") Offer offer,
